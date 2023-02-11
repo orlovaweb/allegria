@@ -1,0 +1,100 @@
+/* Section aboutUs-banner */
+.aboutUs-banner{
+    background: url(../assets/aboutUs-banner.jpg);
+    background-size: cover;
+    height: 594px;
+    margin-bottom: 133px;
+}
+.aboutUs-banner__offer{
+    margin: 245px auto 0;
+    color: #fff;
+    max-width: 627px;
+    text-align: center;
+}
+.aboutUs-banner__offer h1{
+    font-family: 'Cormorant', serif;
+    text-transform: uppercase;
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--light-grey);
+}
+.aboutUs-banner__offer p{
+    font-size: 14px;
+    line-height: 19px;
+}
+/* Section aboutUs-material */
+.aboutUs-material{
+    margin-bottom: 113px;
+}
+.aboutUs-material p{
+    max-width: 627px;
+    font-size: 14px;
+    margin: 0 auto 153px;
+    text-align: center;
+}
+.aboutUs-material__imgs{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.aboutUs-material__imgs::after{
+    content: "";
+    position: absolute;
+    width: 246px;
+    height: 205px;
+    background: url(../assets/aboutUsDecor1.svg);
+    top: 10px;
+    right: 250px;
+    z-index: 2;
+}
+.aboutUs-material__img-right{
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+}
+/* Section aboutUs-goods */
+.aboutUs-goods{
+margin-bottom: 160px;
+}
+.aboutUs-goods__offer{
+    max-width: 627px;
+    margin-bottom: 100px;
+}
+.aboutUs-goods__offer h3{
+    font-size: 25px;
+    font-weight: 500;
+    padding-bottom: 30px;
+}
+.aboutUs-goods__offer p{
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+.aboutUs-goods__imgs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.aboutUs-goods__imgs::after{
+    content: "";
+    position: absolute;
+    width: 246px;
+    height: 205px;
+    background: url(../assets/aboutUsDecor2.svg);
+    bottom: 0;
+    right: -100px;
+    z-index: 2;
+}
+/* Section aboutUs-safety */
+.aboutUs-safety{
+    background-color: var(--light-grey);
+}
+.aboutUs-safety p{
+    max-width: 627px;
+    margin: 110px auto 97px;
+    font-size: 14px;
+    text-align: center;
+}
