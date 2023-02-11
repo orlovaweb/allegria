@@ -1,0 +1,46 @@
+.second-banner{
+    margin: 120px 0;
+    height: 700px;
+    background-color: #CEC6C4;
+}
+.bg-img{
+    height: 100%;
+    background: url(/src/app/assets/banner2.jpg) no-repeat left;
+    background-size: contain;
+}
+.second-banner-wrapper{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.second-banner__offer {
+    max-width: 468px;
+    margin-top: 151px;
+    color: #fff;
+} 
+.second-banner__offer h1{
+    font-family: 'Cormorant', serif;
+    font-size: 90px;
+    font-weight: 500;
+    line-height: 102%;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+} 
+.second-banner__offer p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 34px;
+} 
+.second-banner__offer a{
+    color: var(--light-grey);
+} 
+.second-banner__img-wrapper{
+    width: 600px;
+    height: 600px;
+    background-color: #fff;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

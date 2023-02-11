@@ -1,0 +1,48 @@
+.aboutUs{
+    background-color: #254A5A;
+    color: #fff;
+    height: 500px;
+    position: relative;
+    margin-bottom: 125px;
+}
+.aboutUs__offer{
+    margin-left: 150px;
+    max-width: 500px;
+    padding-top: 132px;
+}
+.aboutUs__offer h1{
+    font-family: 'Cormorant', serif;
+    text-transform: uppercase;
+    font-size: 90px;
+    line-height: 80%;
+    width: 180px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+.aboutUs__offer h1 span{
+    font-size: 30px;
+}
+.aboutUs__offer p{
+    font-size: 14px;
+    line-height: 17px;
+}
+.aboutUs::before{
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 265px;
+    background: url(../assets/decor.svg);
+    top: -52px;
+    right: 38%;
+    z-index: 2;
+}
+.aboutUs::after{
+    content: "";
+    position: absolute;
+    width: 474px;
+    height: 543px;
+    background: url(../assets/sectionAboutUs.jpg);
+    top: 44px;
+    right: calc(38% - 400px);
+    z-index: 3;
+}
