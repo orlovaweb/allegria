@@ -1,0 +1,180 @@
+/* Section brands-AmericanVintage-banner */
+.brands-AmericanVintage-banner{
+    height: 600px;
+    background: url(../assets/brands-banner.jpg);
+    background-size: cover;
+    margin-bottom: 120px;
+}
+.brands-AmericanVintage-banner__offer{
+    padding-top: 237px;
+    color: var(--light-grey);
+}
+.brands-offer{
+    text-align: center;
+    max-width: 627px;
+    margin: 0 auto;
+}
+.brands-offer h3,h2{
+    text-transform: uppercase;
+    font-family: 'Cormorant', serif;
+    font-weight: 500;
+}
+.brands-offer h3{
+    font-size: 20px;
+    line-height: 24px;
+}
+.brands-offer h2{
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 10px;
+}
+.brands-offer p{
+    font-size: 14px;
+    line-height: 17px;
+}
+/* Section brands-AmericanVintage-contain */
+.brands-AmericanVintage-contain{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 120px;
+}
+.brands-AmericanVintage-contain__left img{
+    width: 400px;
+    height: 350px;
+}
+.brands-AmericanVintage-contain__right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.brands-AmericanVintage-contain__right-text{
+    margin: 33px 0 108px;
+}
+.brands-AmericanVintage-contain__right-img img{
+    width: 250px;
+    height: 220px;
+}
+.brands-text{
+    max-width: 627px;
+}
+.brands-text h3{
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 30px;
+    margin-bottom: 35px;
+}
+.brands-text p{
+    font-size: 14px;
+    line-height: 17px;
+}
+/* Section brands-Deha-banner */
+.brands-Deha-banner{
+    height: 600px;
+    background: url(../assets/brands4.jpg);
+    background-size: cover;
+    margin-bottom: 120px;
+}
+.brands-Deha-banner__offer{
+    padding-top: 237px;
+    color: var(--light-grey);
+}
+/* Section brands-Deha-contain                          */
+.brands-Deha-contain{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 176px;
+}
+.brands-Deha-contain__left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.brands-Deha-contain__left::after{
+    content: "";
+    background: url(../assets/brands-decor.svg);
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: -34px;
+    left: 89px;
+    z-index: 2;
+}
+.brands-Deha-contain__left-text{
+    margin: 76px 0;
+    text-align: center;
+}
+.brands-Deha-contain__left-img img{
+    width: 250px;
+    height: 220px;
+}
+.brands-Deha-contain__right{
+    width: 400px;
+    height: 350px;
+}
+/* Section brands-GeorgeGinaLucy-banner */
+.brands-GeorgeGinaLucy-banner__offer{
+    margin-bottom: 50px;
+}
+.brands-GeorgeGinaLucy-banner__img{
+    height: 600px;
+    background: url(../assets/brands7.jpg);
+    background-size: cover;
+    margin-bottom: 120px;
+}
+/* Section brands-GeorgeGinaLucy-contain */
+.brands-GeorgeGinaLucy-contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 120px;
+}
+.brands-GeorgeGinaLucy-contain__left{
+    margin-right: 84px;
+}
+/* Section brands-Birkenstock-banner */
+.brands-Birkenstock-banner{
+    height: 600px;
+    background: url(../assets/brands9.jpg);
+    background-size: cover;
+    margin-bottom: 120px;
+}
+.brands-Birkenstock-banner__offer{
+    padding-top: 237px;
+    color: var(--light-grey);
+}
+/* Section brands-Birkenstock-contain */
+.brands-Birkenstock-contain{
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+.brands-Birkenstock-contain__left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.brands-Birkenstock-contain__left::after{
+    content: "";
+    background: url(../assets/brands-decor.svg);
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: -34px;
+    left: 89px;
+    z-index: 2;
+}
+.brands-Birkenstock-contain__left-text{
+    text-align: center;
+    padding: 26px 0 104px;
+}
+.brands-Birkenstock-contain__left-img img{
+    width: 250px;
+    height: 220px;
+}
+.brands-Birkenstock-contain__right img{
+    width: 400px;
+    height: 350px;
+}
