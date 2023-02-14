@@ -3,8 +3,7 @@ import QuestionList from "../components/questionList";
 import "./faq.css";
 
 const Faq = () => {
-  const [selectedQuestionPurchases, setSelectedQuestionPurchases] =
-    useState(null);
+  const [selectedQuestionPurchases, setSelectedQuestionPurchases] = useState(0);
   const [selectedQuestionRefund, setSelectedQuestionRefund] = useState(null);
 
   const toggleQuestionPurchases = (i) => {

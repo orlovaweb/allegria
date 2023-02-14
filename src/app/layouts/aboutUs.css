@@ -39,6 +39,10 @@
     align-items: center;
     position: relative;
 }
+.aboutUs-material__imgs>img{
+    width: 550px;
+    height: 550px;
+}
 .aboutUs-material__imgs::after{
     content: "";
     position: absolute;
@@ -53,6 +57,10 @@
     flex-grow: 2;
     display: flex;
     justify-content: center;
+}
+.aboutUs-material__img-right img{
+    width: 400px;
+    height: 350px;
 }
 /* Section aboutUs-goods */
 .aboutUs-goods{
@@ -77,6 +85,10 @@ margin-bottom: 160px;
     align-items: center;
     position: relative;
 }
+.aboutUs-goods__imgs> img{
+    width: 410px;
+    height: 410px;
+}
 
 .aboutUs-goods__imgs::after{
     content: "";
@@ -87,6 +99,10 @@ margin-bottom: 160px;
     bottom: 0;
     right: -100px;
     z-index: 2;
+}
+.aboutUs-goods__right-img{
+    width: 280px;
+    height: 280px;
 }
 /* Section aboutUs-safety */
 .aboutUs-safety{

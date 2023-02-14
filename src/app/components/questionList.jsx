@@ -28,6 +28,6 @@ const QuestionList = ({ questions, toggleQuestion, selectedQuestion }) => {
 QuestionList.propTypes = {
   questions: PropTypes.array.isRequired,
   toggleQuestion: PropTypes.func.isRequired,
-  selectedQuestion: PropTypes.number.isRequired,
+  selectedQuestion: PropTypes.number,
 };
 export default QuestionList;

@@ -52,7 +52,9 @@ const AboutUs = () => {
           </div>
           <div className="aboutUs-goods__imgs">
             <img src={aboutUs4} alt="" />
-            <img className="aboutUs-goods__right-img" src={aboutUs5} alt="" />
+            <div className="aboutUs-goods__right-img">
+              <img src={aboutUs5} alt="" />
+            </div>
           </div>
         </div>
       </section>
