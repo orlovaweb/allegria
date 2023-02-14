@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import QuestionList from "../components/questionList";
 import "./faq.css";
 
 const Faq = () => {
@@ -29,67 +29,19 @@ const Faq = () => {
           <h3 className="faq-questions__title">Популярные вопросы</h3>
           <div className="faq-questions__purchases">
             <h4 className="faq-questions__purchases-title">Покупки</h4>
-            <ul>
-              {questionsPurchases.map((item, index) => (
-                <li key={item.id} className="question-box">
-                  <div
-                    className="question"
-                    onClick={() => toggleQuestionPurchases(index)}
-                  >
-                    <h5 className="question-text">{item.question}</h5>
-                    <div
-                      className={
-                        "question-btn" +
-                        (selectedQuestionPurchases === index
-                          ? " opened"
-                          : " closed")
-                      }
-                    ></div>
-                  </div>
-
-                  <p
-                    className={
-                      "answer" +
-                      (selectedQuestionPurchases === index ? " show" : "")
-                    }
-                  >
-                    {item.answer}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <QuestionList
+              questions={questionsPurchases}
+              toggleQuestion={toggleQuestionPurchases}
+              selectedQuestion={selectedQuestionPurchases}
+            />
           </div>
           <div className="faq-questions__refund">
             <h4 className="faq-questions__refund-title">Возврат и обмен</h4>
-            <ul>
-              {questionsRefund.map((item, index) => (
-                <li key={item.id} className="question-box">
-                  <div
-                    className="question"
-                    onClick={() => toggleQuestionRefund(index)}
-                  >
-                    <h5 className="question-text">{item.question}</h5>
-                    <div
-                      className={
-                        "question-btn" +
-                        (selectedQuestionRefund === index
-                          ? " opened"
-                          : " closed")
-                      }
-                    ></div>
-                  </div>
-
-                  <p
-                    className={
-                      "answer" +
-                      (selectedQuestionRefund === index ? " show" : "")
-                    }
-                  >
-                    {item.answer}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <QuestionList
+              questions={questionsRefund}
+              toggleQuestion={toggleQuestionRefund}
+              selectedQuestion={selectedQuestionRefund}
+            />
           </div>
         </div>
         <div className="faq-form">
@@ -104,8 +56,6 @@ const Faq = () => {
             </select>
             <textarea
               name="text"
-              // cols="30"
-              // rows="6"
               placeholder="Текст сообщения"
               required
             ></textarea>
