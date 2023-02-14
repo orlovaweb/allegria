@@ -1,0 +1,129 @@
+.faq-container{
+    max-width: 870px;
+    padding: 0 15px;
+    margin: 45px auto 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.faq-questions{
+    max-width: 470px;
+    width: 100%;
+}
+.faq-questions__title{
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+.faq-questions__purchases-title,.faq-questions__refund-title{
+    text-transform: uppercase;
+    padding-bottom: 17px;
+    border-bottom: 1px solid var(--light-grey);
+}
+.faq-questions__purchases{
+    margin-bottom: 40px;
+    width: 100%;
+}
+.question-box{
+    margin: 15px 0 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-grey);
+    box-sizing: border-box;
+}
+.question{
+    line-height: 170%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.question-text{
+    margin-bottom: 15px;
+    min-width: 0;
+}
+.question-btn{
+    width: 100%;
+    max-width: 10px;
+    height: 10px;
+    margin-left: 10px;
+}
+.question-btn.closed{
+    background: url(../assets/closed.svg) no-repeat center;
+}
+.question-btn.opened{
+    background: url(../assets/opened.svg) no-repeat center;
+}
+.answer{
+    line-height: 17px;
+    max-height: 0;
+    overflow: hidden;
+    max-width: 438px;
+}
+.answer.show{
+    max-height: 999px;
+    transition: all 0.5s linear;
+}
+.faq-form{
+    margin-top: 100px;
+    width: 300px;
+    background-color: var(--light-grey);
+    padding: 28px 25px;
+    font-size: 14px;
+}
+.faq-form h4{
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+.faq-form input{
+    border: none;
+    border-bottom: 1px solid var(--basic-first);
+    background-color: transparent;
+    margin-bottom: 15px;
+    display: block;
+    width: 100%;
+    padding-bottom: 5px;
+}
+.faq-form input::placeholder{
+    opacity: 0.5;
+}
+.faq-form label{
+    opacity: 0.5;
+    
+}
+.faq-form select{
+    background-color: transparent;
+    border: none;
+    width: 80px;
+}
+.faq-form textarea{
+    background-color: transparent;
+    border-color: var(--basic-first);
+    display: block;
+    margin: 15px 0 8px;
+    width: 250px;
+    height: 100px;
+    padding: 5px 10px;
+}
+.faq-form textarea::placeholder{
+    opacity: 0.5;
+}
+.faq-form button{
+    background-color: var(--focus);
+    border: none;
+    padding: 15px 0;
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+
+}

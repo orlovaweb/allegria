@@ -1,6 +1,7 @@
 .header{
     background-color: #fff;
     padding: 19px 0;
+    border-bottom: 1px solid #EAE9E8;
 }
 .header-wrapper{
     display: flex;
