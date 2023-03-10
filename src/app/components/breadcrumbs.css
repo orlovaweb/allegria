@@ -1,0 +1,21 @@
+.breadcrumbs{
+    margin: 8px 0 16px;
+    font-size: 10px;
+}
+.breadcrumbs a{
+    text-transform: none;
+    font-weight: 500;
+    margin-right: 7px;
+}
+.breadcrumbs div{
+    width: 3px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 7px;
+}
+.breadcrumbs p{
+    display: inline-block;
+    color: var(--dark-grey);
+}

@@ -32,7 +32,8 @@ img {
 }
 a{
   text-decoration: none;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
+  color: var(--basic-dark);
 }
 :root{
   --basic-first: #254A5A;
@@ -43,4 +44,22 @@ a{
 }
 .active{
   color: var(--focus);
+}
+.btn{
+  width: 220px;
+  height: 41px;
+  text-transform: uppercase;
+  background-color: var(--basic-dark);
+  color: var(--light-grey);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: #0b222c;
+}
+.btn:active{
+  background-color: #081920;
+
 }

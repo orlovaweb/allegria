@@ -1,6 +1,8 @@
 import React from "react";
 import footerEnter from "../assets/footer-enter.svg";
 import "./footer.css";
+import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 
 const Footer = () => {
   return (
@@ -16,13 +18,19 @@ const Footer = () => {
         <nav className="footer-nav">
           <ul>
             <li>
-              <a href="/aboutUs">О нас</a>
+              <Link to="/aboutUs" onClick={scroll.scrollToTop}>
+                О нас
+              </Link>
             </li>
             <li>
-              <a href="/faq">Распространенные вопросы</a>
+              <Link to="/faq" onClick={scroll.scrollToTop}>
+                Распространенные вопросы
+              </Link>
             </li>
             <li>
-              <a href="/brands">Бренды</a>
+              <Link to="/brands" onClick={scroll.scrollToTop}>
+                Бренды
+              </Link>
             </li>
           </ul>
         </nav>

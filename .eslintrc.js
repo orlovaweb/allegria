@@ -18,7 +18,7 @@ module.exports = {
     ],
     "rules": {
         "no-unused-vars": "warn",
-        indent: ["warn", 2, { SwitchCase: 1 }],
+        indent: ["off", 4, { SwitchCase: 1 }],
         semi: [2, "always"],
         "space-before-function-paren": ["error", { anonymous: "always", named: "never" }],
         quotes: ["error", "double", { allowTemplateLiterals: true }]
