@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Select from "react-select";
 import GroupList from "./groupList";
 import Breadcrumbs from "./breadcrumbs";
 import DisplayCount from "./displayCount";
@@ -7,17 +8,20 @@ import api from "../api";
 import "./goodsList.css";
 import _ from "lodash";
 
-const sortOptions = {
-  1: { name: "lastPrice", order: "asc" },
-  2: { name: "lastPrice", order: "desc" },
-  3: { name: "discount", order: "desc" }
-};
+const sortOptions = [
+  {
+    value: { name: "lastPrice", order: "asc" },
+    label: "Цена по возрастанию"
+  },
+  { value: { name: "lastPrice", order: "desc" }, label: "Цена по убыванию" },
+  { value: { name: "discount", order: "desc" }, label: "По размеру скидки" }
+];
 
 const Goods = () => {
   const [goods, setGoods] = useState();
   const [categories, setСategories] = useState();
   const [selectedCat, setSelectedCat] = useState();
-  const [sortBy, setSortBy] = useState(sortOptions["1"]);
+  const [sortBy, setSortBy] = useState(sortOptions[0].value);
 
   useEffect(() => {
     api.goods.fetchAll().then((data) => setGoods(data));
@@ -83,13 +87,13 @@ const Goods = () => {
                 </div>
                 <div className="goods__content-sort">
                   <span>Сортировать:</span>
-                  <select
-                    onChange={(e) => setSortBy(sortOptions[e.target.value])}
-                  >
-                    <option value="1">Цена по возрастанию</option>
-                    <option value="2">Цена по убыванию</option>
-                    <option value="3">По размеру скидки</option>
-                  </select>
+                  <Select
+                    options={sortOptions}
+                    defaultValue={sortOptions[0]}
+                    onChange={(e) => setSortBy(e.value)}
+                    className="goods__content-sort-select"
+                    classNamePrefix="custom-select"
+                  />
                 </div>
               </div>
               <div className="goods__content-list">

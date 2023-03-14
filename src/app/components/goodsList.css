@@ -32,11 +32,38 @@
     opacity: .3;
     margin-right: 7px;
 }
-.goods__content-sort select{
-    border: none;
-    width: 185px;
-    color: var(--basic-dark);
+.goods__content-sort-select{
+    display: inline-block;
 }
+/* Кастомизация Select с префиксом custom-select */
+.custom-select__control{
+    border: none !important;
+    border-bottom: 1px solid var(--dark-grey) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+.custom-select__control--menu-is-open{
+    border-color: var(--basic-dark) !important;
+}
+.custom-select__indicator-separator{
+    width: 0 !important;
+}
+.custom-select__value-container{
+    padding: 0 !important;
+}
+.custom-select__indicator{
+    padding: 0 !important;
+}
+.custom-select__option{
+    cursor: pointer !important ;
+}
+.custom-select__option--is-focused{
+    background-color: var(--light-grey) !important;
+}
+.custom-select__option--is-selected{
+    background-color: var(--basic-dark) !important;
+}
+/* Конец кастомизации Select */
 .goods__content-list{
     display: flex;
     flex-wrap: wrap;
