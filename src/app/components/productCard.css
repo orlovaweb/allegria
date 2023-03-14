@@ -1,0 +1,16 @@
+.card{
+  margin-bottom: 100px;
+}
+.card-wrapper{
+  max-width: 839px;
+  margin: 0px auto;
+  display: flex;
+}
+.card-img{
+  margin-right: 30px;
+}
+.card-img img{
+  width: 430px;
+  height: 520px;
+  object-fit: cover;
+}

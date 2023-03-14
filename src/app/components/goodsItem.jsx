@@ -33,7 +33,6 @@ const GoodsItem = ({ item, onToggleBookMark }) => {
             alt="clothes"
           />
           {renderDiscoun(item.discount)}
-          <></>
         </div>
         <div className="product-description">
           <p className="product-description__brand">{item.brand.name}</p>
