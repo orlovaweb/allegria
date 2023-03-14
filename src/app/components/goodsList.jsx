@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import PropTypes from "prop-types";
 import GroupList from "./groupList";
 import Breadcrumbs from "./breadcrumbs";
 import DisplayCount from "./displayCount";
@@ -17,15 +18,11 @@ const sortOptions = [
   { value: { name: "discount", order: "desc" }, label: "По размеру скидки" }
 ];
 
-const Goods = () => {
-  const [goods, setGoods] = useState();
+const Goods = ({ goods, onToggleBookMark }) => {
   const [categories, setСategories] = useState();
   const [selectedCat, setSelectedCat] = useState();
   const [sortBy, setSortBy] = useState(sortOptions[0].value);
 
-  useEffect(() => {
-    api.goods.fetchAll().then((data) => setGoods(data));
-  }, []);
   useEffect(() => {
     api.categories.fetchAll().then((data) => setСategories(data));
   }, []);
@@ -33,14 +30,7 @@ const Goods = () => {
   const handleCategorySelect = (item) => {
     setSelectedCat(item);
   };
-  const handleToggleBookMark = (id) => {
-    const elementIndex = goods.findIndex((c) => c._id === id);
-    const newGoods = [...goods];
-    if (newGoods[elementIndex].bookmark) {
-      newGoods[elementIndex].bookmark = false;
-    } else newGoods[elementIndex].bookmark = true;
-    setGoods(newGoods);
-  };
+
   const clearFilter = () => {
     setSelectedCat();
   };
@@ -100,7 +90,7 @@ const Goods = () => {
                 {count > 0 && (
                   <GoodsTable
                     items={sortedGoods}
-                    onToggleBookMark={handleToggleBookMark}
+                    onToggleBookMark={onToggleBookMark}
                   />
                 )}
               </div>
@@ -112,5 +102,8 @@ const Goods = () => {
   }
   return "Loading...";
 };
-
+Goods.propTypes = {
+  goods: PropTypes.array,
+  onToggleBookMark: PropTypes.func
+};
 export default Goods;

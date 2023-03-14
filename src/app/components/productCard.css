@@ -6,11 +6,16 @@
   margin: 0px auto;
   display: flex;
 }
-.card-img{
-  margin-right: 30px;
+.card__img-wrapper{
+  margin-right: 36px;
+  position: relative;
 }
-.card-img img{
+.card__img{
   width: 430px;
   height: 520px;
   object-fit: cover;
+}
+.card-bookMark{
+  top: 465px;
+  right: 10px;
 }

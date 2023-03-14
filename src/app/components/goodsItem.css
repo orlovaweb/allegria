@@ -35,6 +35,10 @@
     font-weight: 500;
     
 }
+.product-bookMark{
+    top: 270px;
+    right: 10px;
+}
 .product-description{
     text-align: center;
     margin-bottom: 25px;
@@ -69,13 +73,6 @@
 .product-price__with-discount{
     color: var(--focus);
 }
-/* .product-price{
-    font-weight: bold;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.045em;
-    text-transform: uppercase;
-} */
+
 
 

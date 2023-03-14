@@ -10,8 +10,10 @@ const renderIcon = (status) => {
 };
 const Bookmark = ({ status, ...rest }) => {
   return (
-    <div className="bookmark">
-      <button {...rest}>{renderIcon(status)}</button>
+    <div className="bookmark-wrapper">
+      <button {...rest}>
+        <span className="bookmark-icon">{renderIcon(status)}</span>
+      </button>
     </div>
   );
 };

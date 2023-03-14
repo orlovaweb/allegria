@@ -1,21 +1,19 @@
-.bookmark{
+.bookmark-wrapper button {
     position: absolute;
     width: 45px;
     height: 45px;
     background-color: #fff;
     border-radius: 50%;
-    top: 270px;
-    /* bottom: 123px; */
-    right: 10px;
     z-index: 5;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
 }
 .bookmark img{
     display: block;
 }
-.bookmark button{
-    border: none;
+.bookmark-icon{
     background-color: transparent;
+    padding-top: 5px;
 }
