@@ -4,13 +4,35 @@ import api from "../api";
 import Breadcrumbs from "./breadcrumbs";
 import Bookmark from "./bookmark";
 import "./productCard.css";
+import Discount from "./discount";
+import Price from "./price";
+import SizesList from "./sizesList";
+import Counter from "./counter";
+import Modal from "./modal";
 
 const ProductCard = ({ id, onToggleBookMark }) => {
   const [product, setProduct] = useState();
+  const [modalPayActive, setModalPayActive] = useState(false);
+  const [modalRefundActive, setModalRefundActive] = useState(false);
   useEffect(() => {
     api.goods.getById(id).then((data) => setProduct(data));
   }, []);
-  console.log(product);
+
+  const renderSizes = (sizes) => {
+    if (sizes)
+      return (
+        <div className="card__content-sizes">
+          <p>Размеры</p>
+          <div className="card__content-sizes-box">
+            <SizesList
+              sizes={product.sizes}
+              flagCloth={Boolean(product.cloth)}
+            />
+          </div>
+        </div>
+      );
+    return null;
+  };
 
   if (product) {
     return (
@@ -29,13 +51,104 @@ const ProductCard = ({ id, onToggleBookMark }) => {
                 status={product.bookmark}
                 onClick={() => onToggleBookMark(product._id)}
               />
+              <Discount discount={product.discount} />
             </div>
             <div className="card__content">
-              <h1>{product.brand.name}</h1>
-              <h2>{product.shortDescription}</h2>
+              <h1 className="card__content-brand">{product.brand.name}</h1>
+              <h2 className="card__content-shortDescription">
+                {product.shortDescription}
+              </h2>
+              <div className="card__content-price">
+                <Price price={product.price} discount={product.discount} />
+              </div>
+              {renderSizes(product.sizes)}
+              <div className="card__content-counter">
+                <Counter />
+              </div>
+              <button className="btn card__content-btn">
+                Добавить в корзину
+              </button>
+              <div className="card_content-popup-box">
+                <button onClick={() => setModalPayActive(true)}>
+                  Оплата и доставка
+                </button>
+                <button onClick={() => setModalRefundActive(true)}>
+                  Возврат и обмен
+                </button>
+              </div>
+
+              <div className="card_content-description">
+                <h3>Информация о товаре</h3>
+                <p>{product.longDescription}</p>
+              </div>
             </div>
           </div>
         </div>
+        <Modal active={modalPayActive} setActive={setModalPayActive}>
+          <div className="card-modal">
+            <h3>Оплата</h3>
+            <h4>Наличными при получении</h4>
+            <p>
+              Оплата осуществляется наличными денежными средствами курьеру
+              непосредственно при доставке заказа на адрес получателя. Выбрав
+              данный способ оплаты, Вы получаете возможность рассмотреть и
+              примерить заказанный товар.
+            </p>
+            <p>
+              Если какая-то позиция Вам не подошла, Вы можете просто вернуть ее
+              курьеру, не оплачивая.
+            </p>
+            <h4>Картой на сайте (Visa, Mastercard)</h4>
+            <p className="card-modal-last-p">
+              На сайте нашего интернет-магазина мы принимаем оплату платежными
+              картами Visa и Mastercard. Безопасность проведения платежей у нас
+              гарантирована системой eCommerceConnect с использованием
+              современного стандарта «3-D Secure».
+            </p>
+            <h3>Доставка</h3>
+            <h4>На отделение &quot;Почта России&quot;</h4>
+            <p>
+              Доставка заказов клиентам интернет-магазина ALLEGRIA
+              осуществляется по территории всей России курьерской службой
+              &quot;Почта России&quot;.
+            </p>
+          </div>
+        </Modal>
+        <Modal active={modalRefundActive} setActive={setModalRefundActive}>
+          <div className="card-modal">
+            <h3>Возврат и обмен</h3>
+            <p>
+              Возврат товаров, приобретенных в интернет-магазине ALLEGRIA,
+              происходит согласно Закону РФ «О защите прав потребителей».
+            </p>
+            <p>Вы можете вернуть товар на протяжении 14 дней со дня покупки.</p>
+            <h4>Как оформить заявку на возврат?</h4>
+            <p>
+              Если купленная вещь Вам не понравилась или не подошла — свяжитесь
+              с нашим контакт центром по телефону 000 00 000 и мы поможем
+              оформить заявку на возврат.
+            </p>
+            <h4>Какие есть условия по возврату товара?</h4>
+            <p>
+              Обмен и возврат товара производится в том случае, если указанный
+              товар не был в употреблении, полностью сохранен его товарный вид —
+              без повреждений и следов ношения, оригинальная упаковка, а также
+              бирки, пломбы, ярлыки, фирменные знаки.
+            </p>
+            <p>
+              Не возвращаются и не подлежат обмену купальники, нижнее белье,
+              чулочно-носочные изделия, предметы личной гигиены, перчатки.
+            </p>
+            <p>
+              Вы можете осуществить возврат товар непосредственно в наших
+              розничных магазинах, расположенных в Москве, Санкт-Петербурге,
+              Калуге, Казани. Для жителей других городов России пересылка товара
+              перевозчиком Почты России или любым другим, на склад интернет
+              магазина ALLEGRIA, расположенного в городе Москва, осуществляется
+              за счет компании.
+            </p>
+          </div>
+        </Modal>
       </section>
     );
   }

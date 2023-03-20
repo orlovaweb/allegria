@@ -42,7 +42,7 @@ a{
   --dark-grey: #CEC6C4;
   --light-grey: #EAE9E8;
 }
-.active{
+.active-link{
   color: var(--focus);
 }
 .btn{

@@ -1,5 +1,6 @@
 .card{
   margin-bottom: 100px;
+  position: relative;
 }
 .card-wrapper{
   max-width: 839px;
@@ -18,4 +19,81 @@
 .card-bookMark{
   top: 465px;
   right: 10px;
+}
+.card__content-brand{
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.card__content-shortDescription{
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+.card__content-price{
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 23px;
+}
+.card__content-sizes p{
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.card__content-sizes-box{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 27px;
+}
+.card__content-counter{
+  margin-bottom: 35px;
+}
+.card__content-btn{
+  width: 280px;
+  margin-bottom: 55px;
+}
+.card_content-popup-box{
+  margin-bottom: 20px;
+}
+.card_content-popup-box button{
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-size: 14px;
+  opacity: 0.4;
+  padding: 0;
+  cursor: pointer;
+  margin-right: 30px;
+}
+.card_content-popup-box button+button{
+  margin-right: 0px;
+}
+.card_content-description{
+  width: 380px;
+  font-size: 14px;
+  line-height: 170%;
+}
+.card_content-description h3{
+  font-weight: 500;
+  line-height: 19px;
+  text-transform: uppercase;
+  margin-bottom: 16px;  
+}
+.card-modal{
+  font-size: 14px;
+  line-height: 17px;
+}
+.card-modal h3{
+  text-transform: uppercase;
+}
+.card-modal h4,.card-modal h3{
+  font-weight: 600;
+  margin-bottom: 13px;
+}
+.card-modal p{ 
+  margin-bottom: 17px;
+}
+.card-modal .card-modal-last-p{
+  margin-bottom: 29px;
 }

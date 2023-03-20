@@ -1,0 +1,34 @@
+.counter{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.counter__btn{
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--light-grey);
+  font-size: 40px;
+  background-color: transparent;
+  padding:0;
+}
+.counter__btn:disabled{
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+.counter__btn:hover{
+  background-color: var(--light-grey);
+}
+.counter__btn:active{
+  border-color: var(--focus);
+}
+.counter__btn p{
+  font-weight: 300;
+  color: var(--basic-dark);
+  margin-bottom: 5px;
+  display: block;
+  line-height: 75%;
+}
+.counter span{
+  font-size: 15px;
+  font-weight: 500;
+}

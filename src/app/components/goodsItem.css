@@ -10,30 +10,13 @@
 .product-img{
     height: 325px;
     display: grid;
-    margin-bottom: 15px;    
+    margin-bottom: 15px; 
+    position: relative;   
 }
 .product-img img{
     width: 270px;
     height: 325px;
     object-fit: cover;
-}
-.product-img img, .product-discount{
-    grid-column: 1/2;
-    grid-row: 1/2;
-}
-.product-discount{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: var(--focus);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 10px 10px auto;
-    font-size: 14px;
-    font-weight: 500;
-    
 }
 .product-bookMark{
     top: 270px;
@@ -64,15 +47,9 @@
     letter-spacing: 0.045em;
     text-transform: uppercase;
 }
-.product-price__with-discount span{
-    text-decoration: line-through solid var(--dark-grey);
-    color: var(--dark-grey);
+.product-description__price.price__with-discount span{
     font-weight: 500;
-    margin-right: 5px;
-}
-.product-price__with-discount{
-    color: var(--focus);
-}
+  }
 
 
 

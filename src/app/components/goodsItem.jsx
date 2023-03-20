@@ -1,29 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./goodsItem.css";
 import Bookmark from "./bookmark";
-import { Link } from "react-router-dom";
+import Discount from "./discount";
+import Price from "./price";
 
 const GoodsItem = ({ item, onToggleBookMark }) => {
-  const renderPrice = (price, discount) => {
-    if (discount)
-      return (
-        <p className="product-price__with-discount">
-          <span>{price}руб</span>
-          {price - (discount / 100) * price}руб
-        </p>
-      );
-    else return <p className="product-price">{price}руб</p>;
-  };
-  const renderDiscoun = (discount) => {
-    if (discount)
-      return (
-        <div className="product-discount">
-          <p>{discount}%</p>
-        </div>
-      );
-    return null;
-  };
   return (
     <div className="product-card">
       <Link to={`/goods/${item._id}`}>
@@ -32,7 +15,7 @@ const GoodsItem = ({ item, onToggleBookMark }) => {
             src={process.env.PUBLIC_URL + "/img/" + item.img}
             alt="clothes"
           />
-          {renderDiscoun(item.discount)}
+          <Discount discount={item.discount} />
         </div>
         <div className="product-description">
           <p className="product-description__brand">{item.brand.name}</p>
@@ -40,7 +23,7 @@ const GoodsItem = ({ item, onToggleBookMark }) => {
             {item.shortDescription}
           </p>
           <div className="product-description__price">
-            {renderPrice(item.price, item.discount)}
+            <Price price={item.price} discount={item.discount} />
           </div>
         </div>
       </Link>

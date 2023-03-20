@@ -14,7 +14,7 @@
     max-width: 627px;
     margin: 0 auto;
 }
-.brands-offer h3,h2{
+.brands-offer h3,.brands-offer h2{
     text-transform: uppercase;
     font-family: 'Cormorant', serif;
     font-weight: 500;

@@ -2,6 +2,11 @@
     display: flex;
     margin-bottom: 127px;
 }
+.goods__nav{
+    width: 245px;
+    margin-right: 25px;
+    box-sizing: border-box;
+}
 .goods__content{
     display: flex;
     flex-direction: column;

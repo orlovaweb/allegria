@@ -1,0 +1,24 @@
+.size{
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--light-grey);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+.size p{
+  display: block;
+}
+.size-in-stock{
+  color: var(--basic-dark);
+  cursor: pointer;
+}
+.size:disabled{
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+.size:active{
+  border-color: var(--focus);
+}
