@@ -1,7 +1,6 @@
 .aboutUs{
     background-color: #254A5A;
     color: #fff;
-    height: 500px;
     position: relative;
     margin-bottom: 125px;
 }
@@ -9,6 +8,7 @@
     margin-left: 150px;
     max-width: 500px;
     padding-top: 132px;
+    padding-bottom: 72px;
 }
 .aboutUs__offer h1{
     font-family: 'Cormorant', serif;
@@ -24,7 +24,8 @@
 }
 .aboutUs__offer p{
     font-size: 14px;
-    line-height: 17px;
+    line-height: 22px;
+    font-weight: 300;
 }
 .aboutUs::before{
     content: "";
@@ -32,6 +33,7 @@
     width: 180px;
     height: 265px;
     background: url(../assets/decor.svg);
+    background-size: contain;
     top: -52px;
     right: 38%;
     z-index: 2;
@@ -42,7 +44,64 @@
     width: 474px;
     height: 543px;
     background: url(../assets/sectionAboutUs.jpg);
+    background-size: cover;
     top: 44px;
     right: calc(38% - 400px);
     z-index: 3;
+}
+@media screen and (max-width: 1200px) {
+    .aboutUs::after{
+        width: 300px;
+        height: 358px;
+        top: 271px;
+        right: 40px;
+    }
+    .aboutUs::before{
+        right: 200px;
+    }
+    .aboutUs__offer{
+        margin-left: 34px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .aboutUs::after{
+        width: 226px;
+        height: 258px;
+        top: 450px;
+        right: 40px;
+    }
+    .aboutUs{
+        margin-bottom: 239px;
+    }
+    .aboutUs::before{
+        right: 150px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .aboutUs::after{
+        display: none;
+    }
+    .aboutUs{
+        margin-bottom: 70px;
+    }
+    .aboutUs::before{
+        right: 50px;
+        width: 99px;
+        height: 146px;
+        top: -18px;
+    }
+    .aboutUs__offer{
+        padding-top: 70px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .aboutUs::before{
+        right: 20px;
+    }
+    .aboutUs__offer h1{
+        font-size: 80px;
+    }
+    .aboutUs__offer{
+        margin-left: 0px;
+    }
 }

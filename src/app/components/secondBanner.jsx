@@ -1,24 +1,27 @@
 import React from "react";
 import "./secondBanner.css";
-import banner from "../assets/banner2-img.jpg";
 
 const SecondBanner = () => {
   return (
     <div className="second-banner">
-      <div className="bg-img">
-        <div className="container">
-          <div className="second-banner-wrapper">
-            <div className="second-banner__offer">
-              <h1>New arrival</h1>
+      <div className="second-banner-wrapper">
+        <div className="second-banner__left">
+          <div className="second-banner__offer">
+            <h1>New arrival</h1>
+            <p>
+              Каждую неделю у нас поступление новых моделей. Новые коллекции
+              одежды для женщин в нашем онлайн-бутике: самый роскошный выбор от
+              дизайнеров женской одежды известных брендов на любой случай жизни.
+            </p>
+            <a href="/brands">Смотреть бренды</a>
+          </div>
+        </div>
+        <div className="second-banner__right">
+          <div className="second-banner__right-wrapper">
+            <div className="second-banner__right-content">
               <p>
-                Новая коллекция одежды для женщин от New Arrivals в нашем
-                онлайн-бутике: самый роскошный выбор от дизайнеров женской
-                одежды бренда New Arrivals на любой случай жизни.
+                Будь в тренде современной моды с интернет-магазином Allegria
               </p>
-              <a href="/">Смотреть коллекцию</a>
-            </div>
-            <div className="second-banner__img-wrapper">
-              <img src={banner} alt="" />
             </div>
           </div>
         </div>

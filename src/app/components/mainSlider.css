@@ -8,10 +8,15 @@
     height: 585px;;
     background: url(/src/app/assets/slide1.jpg);
     background-size: cover;
-    display: flex;
-    justify-content: center;
+    
     text-align: center;
     
+}
+.first-slide-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 .offer{
     color: var(--basic-dark);
@@ -33,7 +38,7 @@
     color: var(--focus);
 }
 .first-slide__offer{
-    margin-top: 182px;
+    /* margin-top: 182px; */
     color: var(--light-grey);
 }
 
@@ -44,7 +49,6 @@
     height: 585px;;
     background: url(/src/app/assets/slide2.jpg) no-repeat right;
     background-size: contain;
-    display: flex;
 }
 .second-slide__offer{
     margin-top: 150px;
@@ -53,7 +57,7 @@
 
 .third-slide{
     height: 585px;;
-    background: url(/src/app/assets/slide3.jpg) no-repeat;
+    background: url(/src/app/assets/slide3.jpg) no-repeat right;
     background-size: cover;
     display: flex;
 }
@@ -89,4 +93,53 @@
 }
 .main-slider .slick-dots li:nth-child(4).slick-active {
     color:var(--basic-dark);
+}
+@media screen and (max-width: 1150px) {
+    .offer{
+        color: var(--light-grey);
+        text-align: center;
+    }
+    .offer a{
+        color: var(--light-grey);
+    }
+    .second-slide{
+        background-size: cover;
+        background-position: 80% top;
+    }
+    .second-slide__offer{
+        margin-top: 0px;
+    }
+    .media-slide-wrapper{
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100%;
+
+    }
+    .media-slide-wrapper .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: #fff;
+
+    }
+    .third-slide{
+        background-position:  center;
+        background-size: cover;
+    }
+    .third-slide__offer{
+        margin-top: 0;
+    }
+    .fouth-slide{
+        background-size: cover;
+        background-position: top right;
+    }
+    .fouth-slide__offer{
+        margin-top: 0;
+    }
+    .main-slider .slick-dots li:nth-child(3).slick-active {
+        color:#fff;
+    }
+    .main-slider .slick-dots li:nth-child(4).slick-active {
+        color:#fff;
+    }
 }
