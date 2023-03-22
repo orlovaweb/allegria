@@ -6,9 +6,13 @@
     align-items: flex-start;
     justify-content: space-between;
     font-size: 14px;
+    gap: 50px;
+    flex-wrap: wrap;
+    
 }
 .faq-questions{
     max-width: 470px;
+    padding-right: 15px;
     width: 100%;
 }
 .faq-questions__title{
@@ -88,4 +92,13 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 
+}
+@media screen and (max-width: 849px) {
+    .faq-container{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .faq-form{
+        margin-top: 0px;
+    }
 }
