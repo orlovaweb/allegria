@@ -1,17 +1,13 @@
 import React from "react";
 import "./brands.css";
-import brands2 from "../assets/brands2.jpg";
 import brands3 from "../assets/brands3.jpg";
-import brands5 from "../assets/brands5.jpg";
 import brands6 from "../assets/brands6.jpg";
-import brands8 from "../assets/brands8.jpg";
-import brands10 from "../assets/brands10.jpg";
 import brands11 from "../assets/brands11.jpg";
 
 const Brands = () => {
   return (
     <>
-      <section className="brands-AmericanVintage-banner">
+      <section className="brands-AmericanVintage-banner brands-banner">
         <div className="brands-AmericanVintage-banner__offer brands-offer">
           <h3>Бренд</h3>
           <h2>American vintage</h2>
@@ -22,25 +18,23 @@ const Brands = () => {
         </div>
       </section>
       <section className="brands-AmericanVintage-contain">
-        <div className="brands-AmericanVintage-contain__left">
-          <img src={brands2} alt="" />
-        </div>
+        <div className="brands-AmericanVintage-contain__left"></div>
         <div className="brands-AmericanVintage-contain__right">
           <div className="brands-AmericanVintage-contain__right-text brands-text">
             <h3>American vintage</h3>
             <p>
               Продукция также включает немногочисленные аксессуары в виде
-              шарфов, ремней, шапок, а также женских сумок.<br></br> Несмотря на
-              название «American Vintage», бренд создан французом Мишель Азулэ.
-              Отличие бренда от других - это простота в исполнении изделий
-              (минимализм) и 100% натуральные ткани. бренд сочетает в себе
-              расслабленность южной Франции и простоту Америки. При создании
-              одежды используется очень тонкий высококачественный трикотаж,
-              который дает ощущение «второй кожи». Основная цветовая гамма - это
-              спокойные пастельные расцветки: ореховые, бежевые, желтые, серые и
-              так далее.<br></br> На первый взгляд, кажется, что вещи просты в
-              своем исполнении, но вся продукция от этой марки выглядит очень
-              стильно, оставляя без ума многих покупателей.
+              шарфов, ремней, шапок, а также женских сумок.
+              <br /> Несмотря на название «American Vintage», бренд создан
+              французом Мишель Азулэ. Отличие бренда от других - это простота в
+              исполнении изделий (минимализм) и 100% натуральные ткани. бренд
+              сочетает в себе расслабленность южной Франции и простоту Америки.
+              При создании одежды используется очень тонкий высококачественный
+              трикотаж, который дает ощущение «второй кожи». Основная цветовая
+              гамма - это спокойные пастельные расцветки: ореховые, бежевые,
+              желтые, серые и так далее.<br></br> На первый взгляд, кажется, что
+              вещи просты в своем исполнении, но вся продукция от этой марки
+              выглядит очень стильно, оставляя без ума многих покупателей.
             </p>
           </div>
           <div className="brands-AmericanVintage-contain__right-img">
@@ -48,7 +42,7 @@ const Brands = () => {
           </div>
         </div>
       </section>
-      <section className="brands-Deha-banner">
+      <section className="brands-Deha-banner brands-banner">
         <div className="brands-Deha-banner__offer brands-offer">
           <h3>Бренд</h3>
           <h2>Deha</h2>
@@ -80,12 +74,10 @@ const Brands = () => {
             <img src={brands6} alt="" />
           </div>
         </div>
-        <div className="brands-Deha-contain__right">
-          <img src={brands5} alt="" />
-        </div>
+        <div className="brands-Deha-contain__right"></div>
       </section>
       <section className="brands-GeorgeGinaLucy-banner">
-        <div className="brands-GeorgeGinaLucy-banner__offer brands-offer">
+        <div className="brands-offer brands-GeorgeGinaLucy-banner__offer ">
           <h3>Бренд</h3>
           <h2>George Gina & Lucy</h2>
           <p>
@@ -98,9 +90,7 @@ const Brands = () => {
         <div className="brands-GeorgeGinaLucy-banner__img"></div>
       </section>
       <section className="brands-GeorgeGinaLucy-contain">
-        <div className="brands-GeorgeGinaLucy-contain__left">
-          <img src={brands8} alt="" />
-        </div>
+        <div className="brands-GeorgeGinaLucy-contain__left"></div>
         <div className="brands-GeorgeGinaLucy-contain__right brands-text">
           <h3>George Gina & Lucy</h3>
           <p>
@@ -117,7 +107,7 @@ const Brands = () => {
           </p>
         </div>
       </section>
-      <section className="brands-Birkenstock-banner">
+      <section className="brands-Birkenstock-banner brands-banner">
         <div className="brands-Birkenstock-banner__offer brands-offer">
           <h3>Бренд</h3>
           <h2>Birkenstock</h2>
@@ -150,9 +140,7 @@ const Brands = () => {
             <img src={brands11} alt="" />
           </div>
         </div>
-        <div className="brands-Birkenstock-contain__right">
-          <img src={brands10} alt="" />
-        </div>
+        <div className="brands-Birkenstock-contain__right"></div>
       </section>
     </>
   );
