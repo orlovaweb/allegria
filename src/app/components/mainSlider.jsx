@@ -3,13 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import Slider from "react-slick";
-// import { useMediaQuery } from "react-responsive";
 
 const MainSlider = () => {
-  // const isDesktopOrLaptop = useMediaQuery({
-  //   query: "(min-width: 1224px)"
-  // });
-  // const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const settings = {
     dots: true,
     infinite: true,
@@ -29,8 +24,6 @@ const MainSlider = () => {
   };
   return (
     <section className="main-slider">
-      {/* {isDesktopOrLaptop && <p>You are a desktop or laptop</p>}
-      {isTabletOrMobile && <p>You are a tablet or mobile phone</p>} */}
       <Slider {...settings}>
         <div className="first-slide">
           <div className="first-slide-wrapper">

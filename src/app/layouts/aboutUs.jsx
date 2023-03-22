@@ -1,9 +1,5 @@
 import React from "react";
 import "./aboutUs.css";
-import aboutUs2 from "../assets/aboutUs2.jpg";
-import aboutUs3 from "../assets/aboutUs3.jpg";
-import aboutUs4 from "../assets/aboutUs4.jpg";
-import aboutUs5 from "../assets/aboutUs5.jpg";
 
 const AboutUs = () => {
   return (
@@ -26,9 +22,9 @@ const AboutUs = () => {
         </p>
         <div className="container">
           <div className="aboutUs-material__imgs">
-            <img src={aboutUs2} alt="" />
-            <div className="aboutUs-material__img-right">
-              <img src={aboutUs3} alt="" />
+            <div className="aboutUs-material__img-left"></div>
+            <div className="aboutUs-material__img-right-wrapper">
+              <div className="aboutUs-material__img-right"></div>
             </div>
           </div>
         </div>
@@ -51,9 +47,9 @@ const AboutUs = () => {
             </p>
           </div>
           <div className="aboutUs-goods__imgs">
-            <img src={aboutUs4} alt="" />
-            <div className="aboutUs-goods__right-img">
-              <img src={aboutUs5} alt="" />
+            <div className="aboutUs-goods__img-left"></div>
+            <div className="aboutUs-goods__img-right-wrapper">
+              <div className="aboutUs-goods__img-right"></div>
             </div>
           </div>
         </div>
