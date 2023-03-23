@@ -6,10 +6,8 @@
 .brands-banner{
     height: 600px;
     margin-bottom: 120px;
-
 }
 .brands-AmericanVintage-banner__offer{
-    
     color: var(--light-grey);
 }
 .brands-offer{
@@ -98,14 +96,15 @@
     align-items: center;
     position: relative;
 }
-.brands-Deha-contain__left::after{
+.brands-Deha-contain__left-img::after{
     content: "";
     background: url(../assets/brands-decor.svg) center;
+    background-size: contain;
     position: absolute;
     width: 200px;
     height: 200px;
-    bottom: -34px;
-    left: 89px;
+    bottom: -92px;
+    left: -76px;
     z-index: 2;
 }
 .brands-Deha-contain__left-text{
@@ -113,9 +112,11 @@
     text-align: center;
     padding-left:15px;
 }
-.brands-Deha-contain__left-img img{
+.brands-Deha-contain__left-img{
+    background: url("../assets/brands6.jpg");
     width: 250px;
     height: 220px;
+    position: relative;
 }
 .brands-Deha-contain__right{
     background: url("../assets/brands5.jpg") top;
@@ -173,23 +174,26 @@
     align-items: center;
     position: relative;
 }
-.brands-Birkenstock-contain__left::after{
+.brands-Birkenstock-contain__left-img::after{
     content: "";
     background: url(../assets/brands-decor.svg);
+    background-size: contain;
     position: absolute;
     width: 200px;
     height: 200px;
-    bottom: -34px;
-    left: 89px;
+    bottom: -94px;
+    left: -60px;
     z-index: 2;
 }
 .brands-Birkenstock-contain__left-text{
     text-align: center;
     padding: 26px 15px 104px;
 }
-.brands-Birkenstock-contain__left-img img{
+.brands-Birkenstock-contain__left-img {
     width: 250px;
     height: 220px;
+    background-image: url(../assets/brands11.jpg);
+    position: relative;
 }
 .brands-Birkenstock-contain__right{
     background: url("../assets/brands10.jpg") top;

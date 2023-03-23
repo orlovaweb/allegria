@@ -1,8 +1,6 @@
 import React from "react";
 import "./brands.css";
 import brands3 from "../assets/brands3.jpg";
-import brands6 from "../assets/brands6.jpg";
-import brands11 from "../assets/brands11.jpg";
 
 const Brands = () => {
   return (
@@ -70,9 +68,7 @@ const Brands = () => {
               в благосостояние планеты .
             </p>
           </div>
-          <div className="brands-Deha-contain__left-img">
-            <img src={brands6} alt="" />
-          </div>
+          <div className="brands-Deha-contain__left-img"></div>
         </div>
         <div className="brands-Deha-contain__right"></div>
       </section>
@@ -136,9 +132,7 @@ const Brands = () => {
               современными дизайнерами.
             </p>
           </div>
-          <div className="brands-Birkenstock-contain__left-img">
-            <img src={brands11} alt="" />
-          </div>
+          <div className="brands-Birkenstock-contain__left-img"></div>
         </div>
         <div className="brands-Birkenstock-contain__right"></div>
       </section>
