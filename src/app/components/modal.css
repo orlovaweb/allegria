@@ -17,6 +17,12 @@
   opacity: 1;
   pointer-events: all;
 }
+.modal__content-img{
+  padding: 0;
+  position: relative;
+  transform: scale(0.5);
+  transition: 0.5s;
+}
 .modal__content{
   position: relative;
   padding: 46px 40px;
@@ -26,6 +32,9 @@
   transition: 0.5s;
 }
 .modal__content.active{
+  transform: scale(1);
+}
+.modal__content-img.active{
   transform: scale(1);
 }
 .modal-close{

@@ -14,6 +14,9 @@ const ProductCard = ({ id, onToggleBookMark }) => {
   const [product, setProduct] = useState();
   const [modalPayActive, setModalPayActive] = useState(false);
   const [modalRefundActive, setModalRefundActive] = useState(false);
+  const [modalImgPreview, setModalImgPreview] = useState(false);
+  const [isExpandedLongDescription, setIsExpandedLongDescription] =
+    useState(false);
   useEffect(() => {
     api.goods.getById(id).then((data) => setProduct(data));
   }, []);
@@ -33,8 +36,15 @@ const ProductCard = ({ id, onToggleBookMark }) => {
       );
     return null;
   };
+  const toggleExpansionLongDescription = () => {
+    setIsExpandedLongDescription(!isExpandedLongDescription);
+  };
 
   if (product) {
+    console.log(
+      "product.longDescription.length",
+      product.longDescription.length
+    );
     return (
       <section className="card">
         <div className="container">
@@ -45,6 +55,7 @@ const ProductCard = ({ id, onToggleBookMark }) => {
                 className="card__img"
                 src={process.env.PUBLIC_URL + "/img/" + product.img}
                 alt="clothes"
+                onClick={() => setModalImgPreview(true)}
               />
               <Bookmark
                 className="card-bookMark"
@@ -68,7 +79,7 @@ const ProductCard = ({ id, onToggleBookMark }) => {
               <button className="btn card__content-btn">
                 Добавить в корзину
               </button>
-              <div className="card_content-popup-box">
+              <div className="card__content-popup-box">
                 <button onClick={() => setModalPayActive(true)}>
                   Оплата и доставка
                 </button>
@@ -77,9 +88,31 @@ const ProductCard = ({ id, onToggleBookMark }) => {
                 </button>
               </div>
 
-              <div className="card_content-description">
+              <div className="card__content-description">
                 <h3>Информация о товаре</h3>
-                <p>{product.longDescription}</p>
+                <div
+                  className={`card__content-long-description ${
+                    isExpandedLongDescription ? "expanded" : ""
+                  }`}
+                >
+                  <p>{product.longDescription}</p>
+                  {product.longDescription.length > 104 && (
+                    <div className="bottom"></div>
+                  )}
+                </div>
+                {product.longDescription.length > 104 && (
+                  <>
+                    <button
+                      className="show-more"
+                      onClick={toggleExpansionLongDescription}
+                    >
+                      {isExpandedLongDescription
+                        ? "Свернуть"
+                        : "Показать больше"}
+                    </button>
+                  </>
+                )}
+                
               </div>
             </div>
           </div>
@@ -148,6 +181,17 @@ const ProductCard = ({ id, onToggleBookMark }) => {
               за счет компании.
             </p>
           </div>
+        </Modal>
+        <Modal
+          active={modalImgPreview}
+          setActive={setModalImgPreview}
+          isImg={true}
+        >
+          <img
+            className="card__modal-img"
+            src={process.env.PUBLIC_URL + "/img/" + product.img}
+            alt="clothes"
+          />
         </Modal>
       </section>
     );

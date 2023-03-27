@@ -6,7 +6,7 @@
 }
 .first-slide{
     height: 585px;;
-    background: url(/src/app/assets/slide1.jpg);
+    background: url(/src/app/assets/slide1.webp);
     background-size: cover;
     
     text-align: center;
@@ -47,7 +47,7 @@
 }
 .second-slide{
     height: 585px;;
-    background: url(/src/app/assets/slide2.jpg) no-repeat right;
+    background: url(/src/app/assets/slide2.webp) no-repeat right;
     background-size: contain;
 }
 .second-slide__offer{
@@ -57,7 +57,7 @@
 
 .third-slide{
     height: 585px;;
-    background: url(/src/app/assets/slide3.jpg) no-repeat right;
+    background: url(/src/app/assets/slide3.webp) no-repeat right;
     background-size: cover;
     display: flex;
 }
@@ -66,7 +66,7 @@
 }
 .fouth-slide{
     height: 585px;;
-    background: url(/src/app/assets/slide4.jpg) no-repeat right;
+    background: url(/src/app/assets/slide4.webp) no-repeat right;
     background-size: contain;
     display: flex;
 }

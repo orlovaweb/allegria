@@ -8,6 +8,7 @@ import GoodsTable from "./goodsTable";
 import api from "../api";
 import "./goodsList.css";
 import _ from "lodash";
+import { useMediaQuery } from "react-responsive";
 
 const sortOptions = [
   {
@@ -22,6 +23,11 @@ const Goods = ({ goods, onToggleBookMark }) => {
   const [categories, setСategories] = useState();
   const [selectedCat, setSelectedCat] = useState();
   const [sortBy, setSortBy] = useState(sortOptions[0].value);
+  const [showFiltration, setShowFiltration] = useState(false);
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
+  const isMobile = useMediaQuery({ maxWidth: 700 });
+  const [pageSize, setPageSize] = useState(12);
+  const pageAddition = 12;
 
   useEffect(() => {
     api.categories.fetchAll().then((data) => setСategories(data));
@@ -29,10 +35,17 @@ const Goods = ({ goods, onToggleBookMark }) => {
 
   const handleCategorySelect = (item) => {
     setSelectedCat(item);
+    setShowFiltration(false);
   };
 
   const clearFilter = () => {
     setSelectedCat();
+    setShowFiltration(false);
+  };
+
+  const renderClassNameFilter = () => {
+    if (isDesktopOrLaptop) return "goods__nav-desktop";
+    else return showFiltration ? "goods__nav active-filtration" : "goods__nav";
   };
 
   if (goods) {
@@ -45,15 +58,16 @@ const Goods = ({ goods, onToggleBookMark }) => {
     });
     const sortedGoods = _.orderBy(filteredGoods, [sortBy.name], [sortBy.order]);
     const count = sortedGoods.length;
+    const cropedGoods = [...sortedGoods].splice(0, pageSize);
 
     return (
       <section className="goods">
         <div className="container">
+          <div className="goods__nav-breadcrumbs">
+            <Breadcrumbs selectedPage={selectedCat?.name} />
+          </div>
           <div className="goods-wrapper">
-            <div className="goods__nav">
-              <div className="goods__nav-breadcrumbs">
-                <Breadcrumbs selectedPage={selectedCat?.name} />
-              </div>
+            <div className={renderClassNameFilter()}>
               {categories && (
                 <>
                   <GroupList
@@ -75,25 +89,47 @@ const Goods = ({ goods, onToggleBookMark }) => {
                 <div className="goods__content-count">
                   <DisplayCount length={count} />
                 </div>
-                <div className="goods__content-sort">
-                  <span>Сортировать:</span>
-                  <Select
-                    options={sortOptions}
-                    defaultValue={sortOptions[0]}
-                    onChange={(e) => setSortBy(e.value)}
-                    className="goods__content-sort-select"
-                    classNamePrefix="custom-select"
-                  />
+                <div className="goods__content-right-box">
+                  <div className="goods__content-sort">
+                    {!isMobile && <span>Сортировать:</span>}
+                    <Select
+                      options={sortOptions}
+                      defaultValue={sortOptions[0]}
+                      onChange={(e) => setSortBy(e.value)}
+                      className="goods__content-sort-select"
+                      classNamePrefix="custom-select"
+                    />
+                  </div>
+                  {!isDesktopOrLaptop && (
+                    <button
+                      className="goods__content-filtration"
+                      onClick={() => {
+                        setShowFiltration(!showFiltration);
+                      }}
+                    >
+                      Фильтрация
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="goods__content-list">
                 {count > 0 && (
                   <GoodsTable
-                    items={sortedGoods}
+                    items={cropedGoods}
                     onToggleBookMark={onToggleBookMark}
                   />
                 )}
               </div>
+              {count > pageSize ? (
+                <button
+                  className="btn goods__content-btn"
+                  onClick={() => setPageSize(pageSize + pageAddition)}
+                >
+                  Показать больше
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>

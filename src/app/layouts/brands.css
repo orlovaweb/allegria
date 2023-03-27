@@ -1,6 +1,6 @@
 /* Section brands-AmericanVintage-banner */
 .brands-AmericanVintage-banner{
-    background: url(../assets/brands-banner.jpg) center;
+    background: url(../assets/brands-banner.webp) center;
     background-size: cover;
 }
 .brands-banner{
@@ -42,7 +42,7 @@
     gap: 46px;
 }
 .brands-AmericanVintage-contain__left{
-    background: url("../assets/brands2.jpg") center;
+    background: url("../assets/aboutUs3.webp") center;
     background-size: cover;
     max-width: 400px;
     height: 350px;
@@ -77,7 +77,7 @@
 }
 /* Section brands-Deha-banner */
 .brands-Deha-banner{
-    background: url(../assets/brands4.jpg) center;
+    background: url(../assets/brands4.webp) center;
     background-size: cover;
 }
 .brands-Deha-banner__offer{
@@ -98,7 +98,7 @@
 }
 .brands-Deha-contain__left-img::after{
     content: "";
-    background: url(../assets/brands-decor.svg) center;
+    background: url(../assets/brands-decor.webp) center;
     background-size: contain;
     position: absolute;
     width: 200px;
@@ -113,13 +113,13 @@
     padding-left:15px;
 }
 .brands-Deha-contain__left-img{
-    background: url("../assets/brands6.jpg");
+    background: url("../assets/brands6.webp");
     width: 250px;
     height: 220px;
     position: relative;
 }
 .brands-Deha-contain__right{
-    background: url("../assets/brands5.jpg") top;
+    background: url("../assets/brands5.webp") top;
     background-size: cover;
     max-width: 400px;
     height: 350px;
@@ -131,7 +131,7 @@
 }
 .brands-GeorgeGinaLucy-banner__img{
     height: 600px;
-    background: url(../assets/brands7.jpg) right no-repeat;
+    background: url(../assets/brands7.webp) right no-repeat;
     background-size: cover;
     margin-bottom: 120px;
 }
@@ -144,7 +144,7 @@
 }
 .brands-GeorgeGinaLucy-contain__left{
     margin-right: 70px;
-    background: url(../assets/brands8.jpg) center;
+    background: url(../assets/brands8.webp) center;
     background-size: cover;
     max-width: 261px;
     width: 100%;
@@ -155,7 +155,7 @@
 }
 /* Section brands-Birkenstock-banner */
 .brands-Birkenstock-banner{
-    background: url(../assets/brands9.jpg) center;
+    background: url(../assets/brands9.webp) center;
     background-size: cover;
 }
 .brands-Birkenstock-banner__offer{
@@ -176,7 +176,7 @@
 }
 .brands-Birkenstock-contain__left-img::after{
     content: "";
-    background: url(../assets/brands-decor.svg);
+    background: url(../assets/brands-decor.webp);
     background-size: contain;
     position: absolute;
     width: 200px;
@@ -192,11 +192,11 @@
 .brands-Birkenstock-contain__left-img {
     width: 250px;
     height: 220px;
-    background-image: url(../assets/brands11.jpg);
+    background-image: url(../assets/brands11.webp);
     position: relative;
 }
 .brands-Birkenstock-contain__right{
-    background: url("../assets/brands10.jpg") top;
+    background: url("../assets/brands10.webp") top;
     background-size: cover;
     max-width: 400px;
     height: 350px;
@@ -204,13 +204,13 @@
 }
 @media screen and (max-width: 1380px) {
     .brands-GeorgeGinaLucy-banner__img{
-        background: url(../assets/brands7-1.jpg) right no-repeat;
+        background: url(../assets/brands7-1.webp) right no-repeat;
         background-size: cover;
     }
 }
 @media screen and (max-width: 1050px) {
     .brands-GeorgeGinaLucy-banner__img{
-        background: url(../assets/brands7-2.jpg) right no-repeat;
+        background: url(../assets/brands7-2.webp) right no-repeat;
         background-size: cover;
     }
 }
@@ -303,7 +303,7 @@
         order:1;
     }
     .brands-GeorgeGinaLucy-banner__img{
-        background: url(../assets/brands7-3.jpg) top no-repeat;
+        background: url(../assets/brands7-3.webp) top no-repeat;
         background-size: cover;
         margin-bottom: 70px;
     }

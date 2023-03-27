@@ -1,6 +1,6 @@
 import React from "react";
 import "./brands.css";
-import brands3 from "../assets/brands3.jpg";
+import brands3 from "../assets/brands3.webp";
 
 const Brands = () => {
   return (

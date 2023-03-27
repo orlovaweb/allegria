@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./modal.css";
 
-const Modal = ({ active, setActive, children }) => {
+const Modal = ({ isImg = false, active, setActive, children }) => {
+  const renderClassNameModalContent = () => {
+    if (active) {
+      return isImg ? "modal__content-img active" : "modal__content active";
+    }
+    return "modal__content";
+  };
   return (
     <div
       className={active ? "modal active" : "modal"}
@@ -11,7 +17,7 @@ const Modal = ({ active, setActive, children }) => {
       }}
     >
       <div
-        className={active ? "modal__content active" : "modal__content"}
+        className={renderClassNameModalContent()}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -30,6 +36,7 @@ const Modal = ({ active, setActive, children }) => {
 Modal.propTypes = {
   active: PropTypes.bool.isRequired,
   setActive: PropTypes.func.isRequired,
-  children: PropTypes.elementType
+  children: PropTypes.object,
+  isImg: PropTypes.bool
 };
 export default Modal;

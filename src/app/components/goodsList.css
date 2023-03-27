@@ -1,11 +1,31 @@
+
 .goods-wrapper{
     display: flex;
     margin-bottom: 127px;
+    
 }
 .goods__nav{
+    background-color: var(--light-grey);
+    z-index: 6;
     width: 245px;
-    margin-right: 25px;
+    height: 100vh;
     box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(300px);
+    transition: all 0.5s ease-in;
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+    flex-direction: column;
+}
+.goods__nav.active-filtration{
+    transform: translateX(0);
+}
+.goods__nav-desktop{
+    position: relative;
+    margin-right: 25px;
 }
 .goods__content{
     display: flex;
@@ -22,17 +42,25 @@
 .goods__content-detail-box{
     display: flex;
     justify-content: space-between;
-    max-width: 840px;
+    align-items: center;
+    max-width: 1193px;
     margin-bottom: 33px;
 }
 .goods__content-count{
     opacity: 0.3;
+}
+.goods__content-right-box{
+    display: flex;
+    
 }
 .goods__content-count,.goods__content-sort{
     font-weight: 400;
     font-size: 14px;
     line-height: 170%;
 }
+/* .goods__content-sort{
+    margin-right: 40px;
+} */
 .goods__content-sort span{
     opacity: .3;
     margin-right: 7px;
@@ -71,6 +99,35 @@
 /* Конец кастомизации Select */
 .goods__content-list{
     display: flex;
+    /* justify-content: space-around; */
     flex-wrap: wrap;
     gap: 15px;
+}
+.goods__content-filtration{
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+.goods__content-btn{
+    margin: 50px auto 0;
+    width: 250px;
+}
+
+
+@media screen and (max-width:640px) {
+    .goods__content-right-box{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .goods__content-sort{
+        margin-right: 0px;
+        margin-bottom: 15px;
+    }
+}
+@media screen and (max-width:584px) {
+    .goods__content-list{
+        justify-content: space-around;
+    }
 }

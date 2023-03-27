@@ -22,10 +22,10 @@
     margin-left: 10px;
 }
 .question-btn.closed{
-    background: url(../assets/closed.svg) no-repeat center;
+    background: url(../assets/closed.webp) no-repeat center;
 }
 .question-btn.opened{
-    background: url(../assets/opened.svg) no-repeat center;
+    background: url(../assets/opened.webp) no-repeat center;
 }
 .answer{
     line-height: 17px;

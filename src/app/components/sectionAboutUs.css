@@ -32,7 +32,7 @@
     position: absolute;
     width: 180px;
     height: 265px;
-    background: url(../assets/decor.svg);
+    background: url(../assets/decor.webp);
     background-size: contain;
     top: -52px;
     right: 38%;
@@ -43,7 +43,7 @@
     position: absolute;
     width: 474px;
     height: 543px;
-    background: url(../assets/sectionAboutUs.jpg);
+    background: url(../assets/sectionAboutUs.webp);
     background-size: cover;
     top: 44px;
     right: calc(38% - 400px);

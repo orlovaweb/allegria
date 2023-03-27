@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.webp";
 import "./header.css";
 import NavBar from "./navBar";
-import login from "../assets/login.svg";
-import shopping_cart from "../assets/shopping_cart.svg";
+import login from "../assets/login.webp";
+import shopping_cart from "../assets/shopping_cart.webp";
 import heart from "../assets/heartOff.svg";
 
 const Header = () => {
