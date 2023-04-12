@@ -93,7 +93,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471817",
-        img: "trouses.webp",
+        img: "trouse.webp",
         name: "Брюки",
         category: categories.clothes,
         sizes: [sizesCloth.l, sizesCloth.xl, sizesCloth.xxl],
@@ -173,7 +173,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471822",
-        img: "band.webp",
+        img: "acsessories3.webp",
         name: "Повязка на голову",
         category: categories.acsessories,
         brand: brands.americanVintage,
@@ -227,7 +227,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471827",
-        img: "blouse.webp",
+        img: "blouse2.webp",
         name: "Блузка",
         category: categories.clothes,
         sizes: [sizesCloth.s, sizesCloth.m, sizesCloth.l],
@@ -241,7 +241,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471828",
-        img: "shirt.webp",
+        img: "blouse3.webp",
         name: "Рубашка",
         category: categories.clothes,
         sizes: [sizesCloth.s, sizesCloth.m, sizesCloth.l, sizesCloth.xl, sizesCloth.xxl],
@@ -255,7 +255,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471829",
-        img: "trouses.webp",
+        img: "trouse2.webp",
         name: "Брюки",
         category: categories.clothes,
         sizes: [sizesCloth.l, sizesCloth.xl, sizesCloth.xxl],
@@ -269,7 +269,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471830",
-        img: "sandal.webp",
+        img: "sandal3.webp",
         name: "Сандали",
         category: categories.shoose,
         sizes: [sizesShoes[36], sizesShoes[37], sizesShoes[38]],
@@ -283,7 +283,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471831",
-        img: "sandal2.webp",
+        img: "sandal4.webp",
         name: "Босоножки",
         category: categories.shoose,
         sizes: [sizesShoes[38], sizesShoes[39], sizesShoes[40], sizesShoes[41], sizesShoes[42]],
@@ -297,7 +297,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471832",
-        img: "sneakers.webp",
+        img: "sneakers2.webp",
         name: "Кроссовки",
         category: categories.shoose,
         sizes: [sizesShoes[38], sizesShoes[39], sizesShoes[40], sizesShoes[41], sizesShoes[42]],
@@ -311,7 +311,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471833",
-        img: "bag.webp",
+        img: "bag2.webp",
         name: "Сумка",
         category: categories.bags,
         brand: brands.birkenstock,
@@ -323,7 +323,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471834",
-        img: "acsess.webp",
+        img: "acsessories.webp",
         name: "Украшение на голову",
         category: categories.acsessories,
         brand: brands.deha,
@@ -335,7 +335,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471835",
-        img: "band.webp",
+        img: "acsessories2.webp",
         name: "Повязка на голову",
         category: categories.acsessories,
         brand: brands.americanVintage,
@@ -347,7 +347,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471836",
-        img: "bra.webp",
+        img: "bra2.webp",
         name: "Бюстгальтер",
         category: categories.underwear,
         brand: brands.americanVintage,
@@ -361,7 +361,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471837",
-        img: "set1.webp",
+        img: "set3.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -375,7 +375,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471838",
-        img: "set2.webp",
+        img: "set4.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -389,7 +389,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471839",
-        img: "set1.webp",
+        img: "set5.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -403,7 +403,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471840",
-        img: "set2.webp",
+        img: "set6.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -417,7 +417,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471841",
-        img: "set1.webp",
+        img: "set7.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -431,7 +431,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471842",
-        img: "set2.webp",
+        img: "set8.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -445,7 +445,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471843",
-        img: "set1.webp",
+        img: "set9.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -459,7 +459,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471844",
-        img: "set2.webp",
+        img: "set10.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -473,7 +473,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471845",
-        img: "set1.webp",
+        img: "set11.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -487,7 +487,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471846",
-        img: "set2.webp",
+        img: "set12.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -501,7 +501,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471847",
-        img: "set1.webp",
+        img: "set13.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
@@ -515,7 +515,7 @@ const goods = [
     },
     {
         _id: "67rdca3eeb7f6fgeed471848",
-        img: "set2.webp",
+        img: "set14.webp",
         name: "Комплект нижнего белья",
         category: categories.underwear,
         brand: brands.deha,
