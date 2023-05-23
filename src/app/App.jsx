@@ -5,9 +5,10 @@ import Main from "./layouts/main";
 import AboutUs from "./layouts/aboutUs";
 import Brands from "./layouts/brands";
 import Goods from "./layouts/goods";
-import Header from "./components/header";
-import Faq from "./layouts/faq";
-import Footer from "./components/footer";
+import Header from "./components/ui/header";
+import Faq from "./components/pages/faq";
+import Footer from "./components/ui/footer";
+import RegisterForm from "./components/pages/registerForm/registerForm";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/brands" component={Brands} />
         <Route path="/goods/:productId?" component={Goods} />
         <Route path="/faq" component={Faq} />
+        <Route path="/register" component={RegisterForm} />
         <Redirect to="/goods" />
       </Switch>
       <Footer />

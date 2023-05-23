@@ -1,0 +1,58 @@
+.modal-title-register{
+  margin-top: 45px;
+}
+.form-register-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+}
+.form-register{
+  max-width: 521px;
+width:100%;
+margin-bottom: 119px;
+font-size: 14px;
+}
+.form-register-row{
+  display: flex;
+  gap: 20px;
+  
+}
+.form-register-checks{
+  margin-bottom: 20px;
+}
+.btn-register{
+  width: 250px;
+  height: 50px;
+}
+.go-to-login-back{
+  font-size: 12px;
+}
+.go-to-login-back button{
+  border: none;
+  background:transparent;
+  color: var(--focus);
+}
+.form-register-row-centered{
+  align-items: center;
+}
+.modal-confidential-btn{
+  border: none;
+  background: transparent;
+  color: var(--focus);
+}
+@media screen and (max-width: 600px) {
+  .form-register-row{
+    flex-direction: column;
+    gap:0;
+  }
+  .btn-register{
+    width: 100%;
+  }
+  .form-register-row-centered{
+   gap:35px;
+  }
+  .form-register{
+    margin-bottom: 50px;
+  }
+}
