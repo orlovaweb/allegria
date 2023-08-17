@@ -25,6 +25,12 @@ font-size: 14px;
   width: 250px;
   height: 50px;
 }
+.btn-register:disabled{
+  cursor: auto;
+  background-color: var(--dark-grey);
+  color: #141414;
+}
+
 .go-to-login-back{
   font-size: 12px;
 }
@@ -32,6 +38,7 @@ font-size: 14px;
   border: none;
   background:transparent;
   color: var(--focus);
+  cursor: pointer;
 }
 .form-register-row-centered{
   align-items: center;
@@ -40,6 +47,7 @@ font-size: 14px;
   border: none;
   background: transparent;
   color: var(--focus);
+  cursor: pointer;
 }
 @media screen and (max-width: 600px) {
   .form-register-row{

@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import "./modal.css";
 
 const Modal = ({
@@ -24,19 +24,21 @@ const Modal = ({
         setActive(false);
       }}
     >
-      <div
-        className={renderClassNameModalContent()}
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
+      <div className="modal-wrapper">
         <div
-          className="modal-close"
-          onClick={() => {
-            setActive(false);
+          className={renderClassNameModalContent()}
+          onClick={(e) => {
+            e.stopPropagation();
           }}
-        ></div>
-        {children}
+        >
+          <div
+            className="modal-close"
+            onClick={() => {
+              setActive(false);
+            }}
+          ></div>
+          {children}
+        </div>
       </div>
     </div>
   );
