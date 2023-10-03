@@ -303,12 +303,12 @@ const RegisterForm = () => {
                     <div className="checkbox__checkmark"></div>
                     <div className="checkbox__body">
                       Я согласен с
-                      <button
+                      <span
                         className="modal-confidential-btn"
                         onClick={() => setShowModalConfidential(true)}
                       >
                         политикой конфиденциальности
-                      </button>
+                      </span>
                     </div>
                   </label>
                 )}

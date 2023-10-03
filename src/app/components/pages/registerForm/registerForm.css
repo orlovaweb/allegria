@@ -44,10 +44,9 @@ font-size: 14px;
   align-items: center;
 }
 .modal-confidential-btn{
-  border: none;
-  background: transparent;
-  color: var(--focus);
+  text-decoration: underline;
   cursor: pointer;
+  margin-left: 3px;
 }
 @media screen and (max-width: 600px) {
   .form-register-row{
