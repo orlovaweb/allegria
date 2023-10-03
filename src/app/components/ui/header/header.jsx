@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useHistory, useLocation } from "react-router-dom";
-import NavBar from "../navBar";
+import React, { useEffect, useState } from "react";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
+import heart from "../../../assets/heartOff.svg";
+import login from "../../../assets/login.webp";
+import logo from "../../../assets/logo.webp";
+import shopping_cart from "../../../assets/shopping_cart.webp";
 import Modal from "../../common/modal";
 import LoginForm from "../loginForm";
+import NavBar from "../navBar";
 import "./header.css";
-import logo from "../../../assets/logo.webp";
-import login from "../../../assets/login.webp";
-import shopping_cart from "../../../assets/shopping_cart.webp";
-import heart from "../../../assets/heartOff.svg";
 
 const Header = () => {
   const [modalLogin, setModalLogin] = useState(false);
@@ -23,8 +22,9 @@ const Header = () => {
       history.state = {};
     }
   }, [location.pathname]);
-  const handleCloseModalLogin = () => {
+  const handleCloseModalLogin = (data) => {
     setModalLogin(false);
+    console.log(data);
   };
 
   return (

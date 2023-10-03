@@ -1,87 +1,86 @@
-import React, { useEffect, useState } from "react";
-import TextField from "../common/form/textField";
-import { validator } from "../../utils/validator";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import "../common/form/form.css";
 
 const LoginForm = ({ onSubmit }) => {
-  const [data, setData] = useState({
-    email: "",
-    password: ""
-  });
-  const [errors, setErrors] = useState({});
-  const handleChange = (target) => {
-    setData((prevState) => ({ ...prevState, [target.name]: target.value }));
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid, isDirty },
+    reset
+  } = useForm({ mode: "onTouched" });
+  const submitAction = (data) => {
+    onSubmit(data);
+    reset();
   };
-  const validatorConfig = {
-    email: {
-      isRequired: {
-        message: "Электронная почта обязательна для заполнения "
-      },
-      isEmail: {
-        message: "Email введен некорректно"
-      }
-    },
-    password: {
-      isRequired: {
-        message: "Пароль обязателен для заполнения"
-      },
-      isCapitalSymbol: {
-        message: "Пароль должен содержать хотя бы одну заглавную букву"
-      },
-      isContainDigit: {
-        message: "Пароль должен содержать хотя бы одну цифру"
-      },
-      min: {
-        message: "Пароль должен состоять минимум из 8 символов",
-        value: 8
-      }
-    }
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
-  useEffect(() => {
-    validate();
-  }, [data]);
-  const validate = () => {
-    const errors = validator(data, validatorConfig);
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-  const isValid = Object.keys(errors).length === 0;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const isValid = validate();
-    if (!isValid) return;
-    console.log(data);
-    setData({
-      email: "",
-      password: ""
-    });
-    onSubmit();
-  };
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label=""
-        name="email"
-        value={data.email}
-        onChange={handleChange}
-        error={errors.email}
-        placeholder="E-mail"
-      />
-      <TextField
-        label=""
-        type="password"
-        name="password"
-        value={data.password}
-        onChange={handleChange}
-        error={errors.password}
-        placeholder="Пароль"
-      />
-
-      <button disabled={!isValid} className="btn btn-enter">
-        Войти
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit(submitAction)}>
+        <div className="input-text-wrapper">
+          <input
+            className={
+              errors.login ? "input-text-field is-invalid" : "input-text-field"
+            }
+            placeholder="E-mail"
+            {...register("login", { required: true })}
+          />
+          {errors.login && <p className="invalid-feedback">Введите логин</p>}
+        </div>
+        <div className="input-text-wrapper">
+          <input
+            className={
+              errors.password
+                ? "input-text-field is-invalid"
+                : "input-text-field"
+            }
+            type={showPassword ? "text" : "password"}
+            placeholder="Пароль"
+            {...register("password", { required: true })}
+          />
+          <button
+            className="icon-eye"
+            type="button"
+            onClick={toggleShowPassword}
+          >
+            {!showPassword ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="#B7C1C5"
+                viewBox="0 0 16 16"
+              >
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="#B7C1C5"
+                viewBox="0 0 16 16"
+              >
+                <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+              </svg>
+            )}
+          </button>
+          {errors.password && (
+            <p className="invalid-feedback">Введите пароль</p>
+          )}
+        </div>
+        <button disabled={!isDirty || !isValid} className="btn btn-enter">
+          Войти
+        </button>
+      </form>
+    </>
   );
 };
 LoginForm.propTypes = {

@@ -1,193 +1,331 @@
-import React, { useEffect, useState } from "react";
-import { validator } from "../../../utils/validator";
-import TextField from "../../common/form/textField";
-import CheckBoxField from "../../common/form/checkBoxField";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 import { useHistory } from "react-router-dom";
-import "./registerForm.css";
+import "../../common/form/form.css";
 import Modal from "../../common/modal";
+import "./registerForm.css";
 
 const RegisterForm = () => {
-  const [data, setData] = useState({
-    name: "",
-    surname: "",
-    phone: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-    mailing: false,
-    licence: false
-  });
-  const [errors, setErrors] = useState({});
   const history = useHistory();
   const [showModalConfidential, setShowModalConfidential] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (target) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value
-    }));
-  };
-  const validatorConfig = {
-    name: {
-      isRequired: {
-        message: "Имя обязательно для заполнения"
-      }
-    },
-    surname: {
-      isRequired: {
-        message: "Фамилия обязательна для заполнения"
-      }
-    },
-    phone: {
-      isRequired: {
-        message: "Телефон обязателен для заполнения"
-      }
-    },
-    email: {
-      isRequired: {
-        message: "Электронная почта обязательна для заполнения"
-      },
-      isEmail: {
-        message: "Email введен некорректно"
-      }
-    },
-    password: {
-      isRequired: {
-        message: "Пароль обязателен для заполнения"
-      },
-      isCapitalSymbol: {
-        message: "Пароль должен содержать хотя бы одну заглавную букву"
-      },
-      isContainDigit: {
-        message: "Пароль должен содержать хотя бы одно число"
-      },
-      min: {
-        message: "Пароль должен состоять минимум из 8 символов",
-        value: 8
-      }
-    },
-    repeatPassword: {
-      isRequired: {
-        message: "Введите повторно пароль"
-      },
-      isEqual: {
-        message: "Введенные пароли не совпадают"
-      }
-    },
-    licence: {
-      isRequired: {
-        message:
-          "Вы не можете использовать наш сервис без согласия с политикой конфиденциальности"
-      }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid, isDirty },
+    reset,
+    getValues,
+    control
+  } = useForm({
+    mode: "onTouched",
+    defaultValues: {
+      name: "",
+      surname: "",
+      phone: "",
+      email: "",
+      password: "",
+      repeatPassword: ""
     }
-  };
-  useEffect(() => {
-    validate();
-  }, [data]);
-  const validate = () => {
-    const errors = validator(data, validatorConfig);
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-  const isValid = Object.keys(errors).length === 0;
+  });
+  const submitAction = (data) => {
+    data.phone = data.phone
+      .replace("+7", "8")
+      .replaceAll("-", "")
+      .replace("(", "")
+      .replace(")", "")
+      .replaceAll(" ", "");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const isValid = validate();
-    if (!isValid) return;
-
-    console.log({ data });
+    console.log(data);
+    reset();
+  };
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
   return (
     <>
       <h1 className="modal-title modal-title-register">Регистрация</h1>
       <div className="form-register-wrapper">
-        <form className="form-register" onSubmit={handleSubmit}>
+        <form className="form-register" onSubmit={handleSubmit(submitAction)}>
           <div className="form-register-row">
-            <TextField
-              label=""
-              name="name"
-              value={data.name}
-              onChange={handleChange}
-              error={errors.name}
-              placeholder="Имя"
-            />
-            <TextField
-              label=""
-              name="surname"
-              value={data.surname}
-              onChange={handleChange}
-              error={errors.surname}
-              placeholder="Фамилия"
-            />
+            <div className="input-text-wrapper">
+              <input
+                className={
+                  errors.name
+                    ? "input-text-field is-invalid"
+                    : "input-text-field"
+                }
+                placeholder="Имя"
+                {...register("name", { required: true })}
+              />
+              {errors.name && (
+                <p className="invalid-feedback">
+                  Имя обязательно для заполнения
+                </p>
+              )}
+            </div>
+            <div className="input-text-wrapper">
+              <input
+                className={
+                  errors.surname
+                    ? "input-text-field is-invalid"
+                    : "input-text-field"
+                }
+                placeholder="Фамилия"
+                {...register("surname", { required: true })}
+              />
+              {errors.surname && (
+                <p className="invalid-feedback">
+                  Фамилия обязательна для заполнения
+                </p>
+              )}
+            </div>
           </div>
           <div className="form-register-row">
-            <TextField
-              label=""
-              name="phone"
-              value={data.phone}
-              onChange={handleChange}
-              error={errors.phone}
-              placeholder="Телефон"
-            />
-            <TextField
-              label=""
-              name="email"
-              value={data.email}
-              onChange={handleChange}
-              error={errors.email}
-              placeholder="E-mail"
-            />
+            <div className="input-text-wrapper">
+              <Controller
+                control={control}
+                name="phone"
+                rules={{
+                  required: {
+                    value: true,
+                    message: "Телефон обязателен для заполнения"
+                  },
+                  pattern: {
+                    value: /^([^_]+)$/,
+                    message: "Введите номер телефона полностью"
+                  }
+                }}
+                render={({ field: { onChange, name, value, onBlur } }) => (
+                  <PatternFormat
+                    className={
+                      errors.phone
+                        ? "input-text-field is-invalid"
+                        : "input-text-field"
+                    }
+                    format="+7 (###) ###-##-##"
+                    name={name}
+                    value={value}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    placeholder="+7 (###) ###-##-##"
+                    allowEmptyFormatting
+                    mask="_"
+                  />
+                )}
+              />
+              {errors.phone && (
+                <p className="invalid-feedback">{errors.phone?.message}</p>
+              )}
+            </div>
+            <div className="input-text-wrapper">
+              <input
+                className={
+                  errors.email
+                    ? "input-text-field is-invalid"
+                    : "input-text-field"
+                }
+                placeholder="E-mail"
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Электронная почта обязательна для заполнения"
+                  },
+                  pattern: {
+                    value: /^\S+@\S+\.\S+$/g,
+                    message: "Email введен некорректно"
+                  }
+                })}
+              />
+              {errors.email && (
+                <p className="invalid-feedback">{errors.email?.message}</p>
+              )}
+            </div>
           </div>
           <div className="form-register-row">
-            <TextField
-              label=""
-              name="password"
-              type="password"
-              value={data.password}
-              onChange={handleChange}
-              error={errors.password}
-              placeholder="Пароль"
-            />
-            <TextField
-              label=""
-              type="password"
-              name="repeatPassword"
-              value={data.repeatPassword}
-              onChange={handleChange}
-              error={errors.repeatPassword}
-              placeholder="Повторно пароль"
-            />
+            <div className="input-text-wrapper">
+              <input
+                className={
+                  errors.password
+                    ? "input-text-field is-invalid"
+                    : "input-text-field"
+                }
+                type={showPassword ? "text" : "password"}
+                placeholder="Пароль"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Пароль обязателен для заполнения"
+                  },
+                  pattern: {
+                    value: /(?=.*[0-9])(?=.*[A-Z])/g,
+                    message:
+                      "Пароль должен содержать хотя бы одну заглавную букву и одно число"
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Пароль должен состоять минимум из 8 символов"
+                  }
+                })}
+              />
+              <button
+                className="icon-eye"
+                type="button"
+                onClick={toggleShowPassword}
+              >
+                {!showPassword ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#B7C1C5"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#B7C1C5"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                  </svg>
+                )}
+              </button>
+              {errors.password && (
+                <p className="invalid-feedback">{errors.password?.message}</p>
+              )}
+            </div>
+            <div className="input-text-wrapper">
+              <input
+                className={
+                  errors.repeatPassword
+                    ? "input-text-field is-invalid"
+                    : "input-text-field"
+                }
+                type={showPassword ? "text" : "password"}
+                placeholder="Повторно пароль"
+                {...register("repeatPassword", {
+                  required: {
+                    value: true,
+                    message: "Введите повторно пароль"
+                  },
+                  pattern: {
+                    value: new RegExp(`${getValues("password")}`),
+                    message: "Введенные пароли не совпадают"
+                  }
+                })}
+              />
+              <button
+                className="icon-eye"
+                type="button"
+                onClick={toggleShowPassword}
+              >
+                {!showPassword ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#B7C1C5"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#B7C1C5"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                  </svg>
+                )}
+              </button>
+              {errors.repeatPassword && (
+                <p className="invalid-feedback">
+                  {errors.repeatPassword?.message}
+                </p>
+              )}
+            </div>
           </div>
           <div className="form-register-checks">
-            <CheckBoxField
-              value={data.mailing}
-              onChange={handleChange}
-              name="mailing"
-              error={errors.mailing}
-            >
-              Подписаться на рассылку
-            </CheckBoxField>
-            <CheckBoxField
-              value={data.licence}
-              onChange={handleChange}
-              name="licence"
-              error={errors.licence}
-            >
-              Я согласен с{" "}
-              <button
-                className="modal-confidential-btn"
-                onClick={() => setShowModalConfidential(true)}
-              >
-                политикой конфиденциальности
-              </button>
-            </CheckBoxField>
+            <div className="form-check">
+              <Controller
+                name="mailing"
+                control={control}
+                defaultValue={true}
+                render={({ field }) => (
+                  <>
+                    <label className="checkbox style-c">
+                      <input
+                        defaultChecked="false"
+                        className="checkbox"
+                        type="checkbox"
+                        {...field}
+                      />
+                      <div className="checkbox__checkmark"></div>
+                      <div className="checkbox__body">
+                        Подписаться на рассылку
+                      </div>
+                    </label>
+                  </>
+                )}
+              />
+            </div>
+            <div className="form-check">
+              <Controller
+                name="licence"
+                control={control}
+                defaultValue={true}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <label className="checkbox style-c">
+                    <input
+                      defaultChecked="true"
+                      className={
+                        errors.licence
+                          ? "form-check-input is-invalid checkbox"
+                          : "form-check-input checkbox"
+                      }
+                      type="checkbox"
+                      {...field}
+                    />
+                    <div className="checkbox__checkmark"></div>
+                    <div className="checkbox__body">
+                      Я согласен с
+                      <button
+                        className="modal-confidential-btn"
+                        onClick={() => setShowModalConfidential(true)}
+                      >
+                        политикой конфиденциальности
+                      </button>
+                    </div>
+                  </label>
+                )}
+              />
+              {errors.licence && (
+                <p className="invalid-feedback">
+                  Вы не можете использовать наш сервис без согласия с политикой
+                  конфиденциальности
+                </p>
+              )}
+            </div>
           </div>
           <div className="form-register-row form-register-row-centered ">
             <button
               className="btn btn-register"
               type="submit"
-              disabled={!isValid}
+              disabled={!isDirty || !isValid}
             >
               Зарегистрироваться
             </button>
