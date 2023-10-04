@@ -41,10 +41,6 @@ const ProductCard = ({ id, onToggleBookMark }) => {
   };
 
   if (product) {
-    console.log(
-      "product.longDescription.length",
-      product.longDescription.length
-    );
     return (
       <section className="card">
         <div className="container">

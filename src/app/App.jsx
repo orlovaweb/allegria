@@ -9,6 +9,7 @@ import Header from "./components/ui/header";
 import Faq from "./components/pages/faq";
 import Footer from "./components/ui/footer";
 import RegisterForm from "./components/pages/registerForm/registerForm";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Redirect to="/goods" />
       </Switch>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
