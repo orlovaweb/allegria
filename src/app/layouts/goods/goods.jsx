@@ -38,7 +38,11 @@ const Goods = () => {
       <ProductCard id={productId} onToggleBookMark={handleToggleBookMark} />
     );
   }
-  return <GoodsList goods={goods} onToggleBookMark={handleToggleBookMark} />;
+  return (
+    <>
+      <GoodsList goods={goods} onToggleBookMark={handleToggleBookMark} />;
+    </>
+  );
 };
 
 export default Goods;

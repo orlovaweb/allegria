@@ -9,6 +9,7 @@ import Header from "./components/ui/header";
 import Faq from "./components/pages/faq";
 import Footer from "./components/ui/footer";
 import RegisterForm from "./components/pages/registerForm/registerForm";
+import Admin from "./layouts/admin/admin";
 import { ToastContainer } from "react-toastify";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/goods/:productId?" component={Goods} />
         <Route path="/faq" component={Faq} />
         <Route path="/register" component={RegisterForm} />
+        <Route path="/admin" component={Admin} />
         <Redirect to="/goods" />
       </Switch>
       <Footer />

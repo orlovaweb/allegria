@@ -1,0 +1,11 @@
+.admin__title{
+  font-size: 36px;
+  text-align: center;
+  margin: 40px 0;
+}
+.admin__initial{
+  margin-bottom: 15px;
+}
+.admin li{
+  margin-bottom: 10px;
+}
