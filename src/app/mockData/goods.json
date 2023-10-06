@@ -1,6 +1,7 @@
 [
   {
     "_id": "67rdca3eeb7f6fgeed471815",
+    "lastPrice": 0,
     "img": "blouse.webp",
     "name": "Блузка",
     "category": "67rdca3eeb7f6fgeed471818",
@@ -19,6 +20,7 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471816",
+    "lastPrice": 0,
     "img": "shirt.webp",
     "name": "Рубашка",
     "category": "67rdca3eeb7f6fgeed471818",
@@ -39,6 +41,7 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471817",
+    "lastPrice": 0,
     "img": "trouse.webp",
     "name": "Брюки",
     "category": "67rdca3eeb7f6fgeed471818",
@@ -57,9 +60,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471818",
+    "lastPrice": 0,
     "img": "sandal.webp",
     "name": "Сандали",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471820",
     "sizes": [
       "67rdca3eeb7f6fgeed471104",
       "67rdca3eeb7f6fgeed471105",
@@ -75,9 +79,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471819",
+    "lastPrice": 0,
     "img": "sandal2.webp",
     "name": "Босоножки",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471820",
     "sizes": [
       "67rdca3eeb7f6fgeed471106",
       "67rdca3eeb7f6fgeed471107",
@@ -95,9 +100,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471825",
+    "lastPrice": 0,
     "img": "sneakers.webp",
     "name": "Кроссовки",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471820",
     "sizes": [
       "67rdca3eeb7f6fgeed471106",
       "67rdca3eeb7f6fgeed471107",
@@ -115,9 +121,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471820",
+    "lastPrice": 0,
     "img": "bag.webp",
     "name": "Сумка",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471814",
     "brand": "67rdca3eeb7f6fgeed479827",
     "bookmark": false,
     "shortDescription": "Classic Bag",
@@ -127,9 +134,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471821",
+    "lastPrice": 0,
     "img": "acsess.webp",
     "name": "Украшение на голову",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471822",
     "brand": "67rdca3eeb7f6fgeed479826",
     "bookmark": false,
     "shortDescription": "Head acsessories",
@@ -139,9 +147,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471822",
+    "lastPrice": 0,
     "img": "acsessories3.webp",
     "name": "Повязка на голову",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471822",
     "brand": "67rdca3eeb7f6fgeed479824",
     "bookmark": false,
     "shortDescription": "Head acsessories",
@@ -151,9 +160,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471823",
+    "lastPrice": 0,
     "img": "bra.webp",
     "name": "Бюстгальтер",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479824",
     "sizes": [
       "67rdca3eeb7f6fgeed471101",
@@ -169,9 +179,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471824",
+    "lastPrice": 0,
     "img": "set1.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -187,9 +198,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471826",
+    "lastPrice": 0,
     "img": "set2.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -205,6 +217,7 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471827",
+    "lastPrice": 0,
     "img": "blouse2.webp",
     "name": "Блузка",
     "category": "67rdca3eeb7f6fgeed471818",
@@ -223,6 +236,7 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471828",
+    "lastPrice": 0,
     "img": "blouse3.webp",
     "name": "Рубашка",
     "category": "67rdca3eeb7f6fgeed471818",
@@ -243,6 +257,7 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471829",
+    "lastPrice": 0,
     "img": "trouse2.webp",
     "name": "Брюки",
     "category": "67rdca3eeb7f6fgeed471818",
@@ -261,9 +276,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471830",
+    "lastPrice": 0,
     "img": "sandal3.webp",
     "name": "Сандали",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471820",
     "sizes": [
       "67rdca3eeb7f6fgeed471104",
       "67rdca3eeb7f6fgeed471105",
@@ -279,9 +295,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471831",
+    "lastPrice": 0,
     "img": "sandal4.webp",
     "name": "Босоножки",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471820",
     "sizes": [
       "67rdca3eeb7f6fgeed471106",
       "67rdca3eeb7f6fgeed471107",
@@ -299,9 +316,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471832",
+    "lastPrice": 0,
     "img": "sneakers2.webp",
     "name": "Кроссовки",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471820",
     "sizes": [
       "67rdca3eeb7f6fgeed471106",
       "67rdca3eeb7f6fgeed471107",
@@ -319,9 +337,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471833",
+    "lastPrice": 0,
     "img": "bag2.webp",
     "name": "Сумка",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471814",
     "brand": "67rdca3eeb7f6fgeed479827",
     "bookmark": false,
     "shortDescription": "Classic Bag",
@@ -331,9 +350,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471834",
+    "lastPrice": 0,
     "img": "acsessories.webp",
     "name": "Украшение на голову",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471822",
     "brand": "67rdca3eeb7f6fgeed479826",
     "bookmark": false,
     "shortDescription": "Head acsessories",
@@ -343,9 +363,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471835",
+    "lastPrice": 0,
     "img": "acsessories2.webp",
     "name": "Повязка на голову",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471822",
     "brand": "67rdca3eeb7f6fgeed479824",
     "bookmark": false,
     "shortDescription": "Head acsessories",
@@ -355,9 +376,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471836",
+    "lastPrice": 0,
     "img": "bra2.webp",
     "name": "Бюстгальтер",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479824",
     "sizes": [
       "67rdca3eeb7f6fgeed471101",
@@ -373,9 +395,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471837",
+    "lastPrice": 0,
     "img": "set3.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -391,9 +414,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471838",
+    "lastPrice": 0,
     "img": "set4.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -409,9 +433,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471839",
+    "lastPrice": 0,
     "img": "set5.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -427,9 +452,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471840",
+    "lastPrice": 0,
     "img": "set6.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -445,9 +471,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471841",
+    "lastPrice": 0,
     "img": "set7.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -463,9 +490,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471842",
+    "lastPrice": 0,
     "img": "set8.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -481,9 +509,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471843",
+    "lastPrice": 0,
     "img": "set9.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -499,9 +528,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471844",
+    "lastPrice": 0,
     "img": "set10.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -517,9 +547,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471845",
+    "lastPrice": 0,
     "img": "set11.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -535,9 +566,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471846",
+    "lastPrice": 0,
     "img": "set12.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -553,9 +585,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471847",
+    "lastPrice": 0,
     "img": "set13.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",
@@ -571,9 +604,10 @@
   },
   {
     "_id": "67rdca3eeb7f6fgeed471848",
+    "lastPrice": 0,
     "img": "set14.webp",
     "name": "Комплект нижнего белья",
-    "category": "67rdca3eeb7f6fgeed471818",
+    "category": "67rdca3eeb7f6fgeed471824",
     "brand": "67rdca3eeb7f6fgeed479826",
     "sizes": [
       "67rdca3eeb7f6fgeed471198",

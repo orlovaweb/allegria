@@ -1,10 +1,23 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getGoods, uploadProduct } from "../../store/goods";
 import useMockData from "../../utils/mockData";
 import "./admin.css";
 const Admin = () => {
+  const dispatch = useDispatch();
+  const goods = useSelector(getGoods());
   const { error, initialize, progress, status } = useMockData();
   const handleClick = () => {
     initialize();
+  };
+  const handleRefreshLastPrices = () => {
+    goods.forEach((product) => {
+      const newProduct = {
+        ...product,
+        lastPrice: product.price - (product.discount / 100) * product.price
+      };
+      dispatch(uploadProduct(newProduct));
+    });
   };
 
   return (
@@ -20,6 +33,11 @@ const Admin = () => {
         <button className="btn btn-primary" onClick={handleClick}>
           Инициализировать
         </button>
+        <div className="admin__refresh-last-price">
+          <button className="btn" onClick={handleRefreshLastPrices}>
+            Обновить итоговую цену товаров
+          </button>
+        </div>
       </div>
     </section>
   );

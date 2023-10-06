@@ -1,26 +1,24 @@
-import React from "react";
 import PropTypes from "prop-types";
-import Size from "./size";
-import { sizesCloth } from "../../api/fake.api/product.api";
-import { sizesShoes } from "../../api/fake.api/product.api";
+import React from "react";
+import { useSelector } from "react-redux";
+import { getSizesCloth } from "../../store/sizesCloth";
+import { getSizesShoes } from "../../store/sizesShoes";
+import Size from "./size/size";
 
 const SizesList = ({ flagCloth, sizes }) => {
+  const sizesCloth = useSelector(getSizesCloth());
+  const sizesShoes = useSelector(getSizesShoes());
   if (flagCloth) {
-    return Object.keys(sizesCloth).map((currentSizeKey) => (
-      <Size
-        size={sizesCloth[currentSizeKey]}
-        key={sizesCloth[currentSizeKey]._id}
-        sizes={sizes}
-      />
+    return sizesCloth.map((currentSize) => (
+      <Size size={currentSize} key={currentSize._id} sizes={sizes} />
     ));
   }
-  return Object.keys(sizesShoes).map((currentSizeKey) => (
-    <Size
-      size={sizesShoes[currentSizeKey]}
-      key={sizesShoes[currentSizeKey]._id}
-      sizes={sizes}
-    />
+  return sizesShoes.map((currentSize) => (
+    <Size size={currentSize} key={currentSize._id} sizes={sizes} />
   ));
+  // console.log(sizesCloth);
+  // console.log(sizesShoes);
+  // return "sizes";
 };
 SizesList.propTypes = {
   sizes: PropTypes.array.isRequired,

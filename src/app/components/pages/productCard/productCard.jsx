@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import api from "../../../api";
-import Breadcrumbs from "../../common/breadcrumbs";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getProductById } from "../../../store/goods";
 import Bookmark from "../../common/bookmark/bookmark";
-import "./productCard.css";
+import Breadcrumbs from "../../common/breadcrumbs";
+import Counter from "../../common/counter";
 import Discount from "../../common/discount";
+import Modal from "../../common/modal";
 import Price from "../../common/price";
 import SizesList from "../../ui/sizesList";
-import Counter from "../../common/counter";
-import Modal from "../../common/modal";
+import "./productCard.css";
 
-const ProductCard = ({ id, onToggleBookMark }) => {
-  const [product, setProduct] = useState();
+const ProductCard = ({ onToggleBookMark }) => {
+  const { productId } = useParams();
+  const product = useSelector(getProductById(productId));
   const [modalPayActive, setModalPayActive] = useState(false);
   const [modalRefundActive, setModalRefundActive] = useState(false);
   const [modalImgPreview, setModalImgPreview] = useState(false);
   const [isExpandedLongDescription, setIsExpandedLongDescription] =
     useState(false);
-  useEffect(() => {
-    api.goods.getById(id).then((data) => setProduct(data));
-  }, []);
 
   const renderSizes = (sizes) => {
     if (sizes)

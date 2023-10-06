@@ -4,7 +4,6 @@ const goodEndpoint = "good/";
 const goodService = {
   get: async () => {
     const { data } = await httpService.get(goodEndpoint);
-    console.log(data);
     return data;
   },
   create: async (payload) => {

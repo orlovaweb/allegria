@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
+import _ from "lodash";
 import PropTypes from "prop-types";
-import GroupList from "../groupList/groupList";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+import Select from "react-select";
+import { getCategories } from "../../../../store/categories";
 import Breadcrumbs from "../../../common/breadcrumbs";
 import DisplayCount from "../../displayCount";
 import GoodsTable from "../goodsTable";
-import api from "../../../../api";
+import GroupList from "../groupList/groupList";
 import "./goodsList.css";
-import _ from "lodash";
-import { useMediaQuery } from "react-responsive";
 
 const sortOptions = [
   {
@@ -20,7 +21,7 @@ const sortOptions = [
 ];
 
 const Goods = ({ goods, onToggleBookMark }) => {
-  const [categories, setСategories] = useState();
+  const categories = useSelector(getCategories());
   const [selectedCat, setSelectedCat] = useState();
   const [sortBy, setSortBy] = useState(sortOptions[0].value);
   const [showFiltration, setShowFiltration] = useState(false);
@@ -28,10 +29,6 @@ const Goods = ({ goods, onToggleBookMark }) => {
   const isMobile = useMediaQuery({ maxWidth: 700 });
   const [pageSize, setPageSize] = useState(12);
   const pageAddition = 12;
-
-  useEffect(() => {
-    api.categories.fetchAll().then((data) => setСategories(data));
-  }, []);
 
   useEffect(() => {
     setPageSize(pageAddition);
@@ -51,96 +48,89 @@ const Goods = ({ goods, onToggleBookMark }) => {
     if (isDesktopOrLaptop) return "goods__nav-desktop";
     else return showFiltration ? "goods__nav active-filtration" : "goods__nav";
   };
+  const filteredGoods = selectedCat
+    ? goods.filter((product) => product.category === selectedCat._id)
+    : goods;
 
-  if (goods) {
-    const filteredGoods = selectedCat
-      ? goods.filter((product) => _.isEqual(product.category, selectedCat))
-      : goods;
-    filteredGoods.forEach((product) => {
-      product.lastPrice =
-        product.price - (product.discount / 100) * product.price;
-    });
-    const sortedGoods = _.orderBy(filteredGoods, [sortBy.name], [sortBy.order]);
-    const count = sortedGoods.length;
-    const cropedGoods = [...sortedGoods].splice(0, pageSize);
+  const sortedGoods = _.orderBy(filteredGoods, [sortBy.name], [sortBy.order]);
+  const count = sortedGoods.length;
+  const cropedGoods = [...sortedGoods].splice(0, pageSize);
 
-    return (
-      <section className="goods">
-        <div className="container">
-          <div className="goods__nav-breadcrumbs">
-            <Breadcrumbs selectedPage={selectedCat?.name} />
+  return (
+    <section className="goods">
+      <div className="container">
+        <div className="goods__nav-breadcrumbs">
+          <Breadcrumbs selectedPage={selectedCat?.name} />
+        </div>
+        <div className="goods-wrapper">
+          <div className={renderClassNameFilter()}>
+            {categories && (
+              <>
+                <GroupList
+                  items={categories}
+                  onItemSelect={handleCategorySelect}
+                  selectedItem={selectedCat}
+                />
+                <button className="btn" onClick={clearFilter}>
+                  Все товары
+                </button>
+              </>
+            )}
           </div>
-          <div className="goods-wrapper">
-            <div className={renderClassNameFilter()}>
-              {categories && (
-                <>
-                  <GroupList
-                    items={categories}
-                    onItemSelect={handleCategorySelect}
-                    selectedItem={selectedCat}
-                  />
-                  <button className="btn" onClick={clearFilter}>
-                    Все товары
-                  </button>
-                </>
-              )}
-            </div>
-            <div className="goods__content">
-              <h1 className="goods__content-title">
-                {selectedCat ? selectedCat.name : "Все товары"}
-              </h1>
-              <div className="goods__content-detail-box">
-                <div className="goods__content-count">
-                  <DisplayCount length={count} />
-                </div>
-                <div className="goods__content-right-box">
-                  <div className="goods__content-sort">
-                    {!isMobile && <span>Сортировать:</span>}
-                    <Select
-                      options={sortOptions}
-                      defaultValue={sortOptions[0]}
-                      onChange={(e) => setSortBy(e.value)}
-                      className="goods__content-sort-select"
-                      classNamePrefix="custom-select"
-                    />
-                  </div>
-                  {!isDesktopOrLaptop && (
-                    <button
-                      className="goods__content-filtration"
-                      onClick={() => {
-                        setShowFiltration(!showFiltration);
-                      }}
-                    >
-                      Фильтрация
-                    </button>
-                  )}
-                </div>
+          <div className="goods__content">
+            <h1 className="goods__content-title">
+              {selectedCat ? selectedCat.name : "Все товары"}
+            </h1>
+            <div className="goods__content-detail-box">
+              <div className="goods__content-count">
+                <DisplayCount length={count} />
               </div>
-              <div className="goods__content-list">
-                {count > 0 && (
-                  <GoodsTable
-                    items={cropedGoods}
-                    onToggleBookMark={onToggleBookMark}
+              <div className="goods__content-right-box">
+                <div className="goods__content-sort">
+                  {!isMobile && <span>Сортировать:</span>}
+                  <Select
+                    options={sortOptions}
+                    defaultValue={sortOptions[0]}
+                    onChange={(e) => setSortBy(e.value)}
+                    className="goods__content-sort-select"
+                    classNamePrefix="custom-select"
                   />
+                </div>
+                {!isDesktopOrLaptop && (
+                  <button
+                    className="goods__content-filtration"
+                    onClick={() => {
+                      setShowFiltration(!showFiltration);
+                    }}
+                  >
+                    Фильтрация
+                  </button>
                 )}
               </div>
-              {count > pageSize ? (
-                <button
-                  className="btn goods__content-btn"
-                  onClick={() => setPageSize(pageSize + pageAddition)}
-                >
-                  Показать больше
-                </button>
-              ) : (
-                <></>
+            </div>
+            <div className="goods__content-list">
+              {count > 0 && (
+                <GoodsTable
+                  items={cropedGoods}
+                  onToggleBookMark={onToggleBookMark}
+                />
               )}
             </div>
+            {count > pageSize ? (
+              <button
+                className="btn goods__content-btn"
+                onClick={() => setPageSize(pageSize + pageAddition)}
+              >
+                Показать больше
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
-      </section>
-    );
-  }
-  return "Loading...";
+      </div>
+    </section>
+  );
 };
 Goods.propTypes = {
   goods: PropTypes.array,

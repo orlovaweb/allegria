@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import "./size.css";
 
 const Size = ({ size, sizes }) => {
@@ -9,14 +9,13 @@ const Size = ({ size, sizes }) => {
 
   return (
     <button
-      className={"size" + (sizes.includes(size) ? " size-in-stock" : "")}
+      className={"size" + (sizes.includes(size._id) ? " size-in-stock" : "")}
       onClick={handleClick}
-      disabled={!sizes.includes(size)}
+      disabled={!sizes.includes(size._id)}
     >
       {size.name}
     </button>
   );
-  // return null;
 };
 Size.propTypes = {
   size: PropTypes.object.isRequired,

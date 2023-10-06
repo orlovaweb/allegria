@@ -1,28 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ProductCard from "../../components/pages/productCard/productCard";
 import GoodsList from "../../components/ui/goodsParts/goodsList";
-// import api from "../../api";
-import goodService from "../../services/good.service";
+import GoodsLoader from "../../components/ui/hoc/goodsLoader";
+import { getGoods } from "../../store/goods";
+import ProductCard from "../../components/pages/productCard/productCard";
 
 const Goods = () => {
   const params = useParams();
   const { productId } = params;
-  const [goods, setGoods] = useState();
-
-  useEffect(() => {
-    // api.goods.fetchAll().then((data) => setGoods(data));
-    getGoods();
-  }, []);
-
-  async function getGoods() {
-    try {
-      const { content } = await goodService.get();
-      setGoods(content);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const goods = useSelector(getGoods());
 
   const handleToggleBookMark = (id) => {
     const elementIndex = goods.findIndex((c) => c._id === id);
@@ -30,17 +17,18 @@ const Goods = () => {
     if (newGoods[elementIndex].bookmark) {
       newGoods[elementIndex].bookmark = false;
     } else newGoods[elementIndex].bookmark = true;
-    setGoods(newGoods);
+    console.log(newGoods);
   };
 
-  if (productId) {
-    return (
-      <ProductCard id={productId} onToggleBookMark={handleToggleBookMark} />
-    );
-  }
   return (
     <>
-      <GoodsList goods={goods} onToggleBookMark={handleToggleBookMark} />;
+      <GoodsLoader>
+        {productId ? (
+          <ProductCard id={productId} onToggleBookMark={handleToggleBookMark} />
+        ) : (
+          <GoodsList goods={goods} onToggleBookMark={handleToggleBookMark} />
+        )}
+      </GoodsLoader>
     </>
   );
 };
