@@ -1,20 +1,27 @@
 import React from "react";
-import footerEnter from "../../../assets/footer-enter.svg";
-import "./footer.css";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
+import "./footer.css";
+import GsapEx from "./gsapEx/gsapEx";
 
 const Footer = () => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("submit");
+  // };
   return (
     <footer className="footer">
       <div className="footer-wrapper">
         <div className="footer__title">
           <h2>Будьте в курсе событий</h2>
         </div>
-        <form className="footer__form">
-          <input type="email" placeholder="E-mail" />
-          <input type="image" name="submit" src={footerEnter} alt="enter" />
-        </form>
+        {/* <form className="footer__form"> */}
+        {/* <input type="email" placeholder="E-mail" /> */}
+        {/* <input type="image" name="submit" src={footerEnter} alt="enter" /> */}
+        {/* <button className="btn footer__btn">Отправить</button> */}
+        <GsapEx />
+        {/* </form> */}
+
         <nav className="footer-nav">
           <ul>
             <li>
