@@ -1,18 +1,44 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { getAuthError, getIsLoggedIn, login } from "../../store/users";
 import "../common/form/form.css";
+import { useEffect } from "react";
 
 const LoginForm = ({ onSubmit }) => {
+  const history = useHistory();
+  const loginError = useSelector(getAuthError());
+  const isLoggedIn = useSelector(getIsLoggedIn());
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid, isDirty },
+    formState: { errors },
+    resetField,
     reset
-  } = useForm({ mode: "onTouched" });
+  } = useForm({ mode: "onSubmit", reValidateMode: "onSubmit" });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      reset();
+      onSubmit();
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (loginError) {
+      resetField("password");
+    }
+  }, [loginError]);
+
   const submitAction = (data) => {
-    onSubmit(data);
-    reset();
+    const redirect = history.location.state
+      ? history.location.state.from.pathname
+      : "/";
+    console.log(data);
+    dispatch(login({ payload: data, redirect }));
   };
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
@@ -25,12 +51,12 @@ const LoginForm = ({ onSubmit }) => {
         <div className="input-text-wrapper">
           <input
             className={
-              errors.login ? "input-text-field is-invalid" : "input-text-field"
+              errors.email ? "input-text-field is-invalid" : "input-text-field"
             }
             placeholder="E-mail"
-            {...register("login", { required: true })}
+            {...register("email", { required: true })}
           />
-          {errors.login && <p className="invalid-feedback">Введите логин</p>}
+          {errors.email && <p className="invalid-feedback">Введите логин</p>}
         </div>
         <div className="input-text-wrapper">
           <input
@@ -76,9 +102,10 @@ const LoginForm = ({ onSubmit }) => {
             <p className="invalid-feedback">Введите пароль</p>
           )}
         </div>
-        <button disabled={!isDirty || !isValid} className="btn btn-enter">
-          Войти
-        </button>
+        {loginError && (
+          <p className="invalid-feedback login-error">{loginError}</p>
+        )}
+        <button className="btn btn-enter">Войти</button>
       </form>
     </>
   );

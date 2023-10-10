@@ -22,9 +22,8 @@ const Header = () => {
       history.state = {};
     }
   }, [location.pathname]);
-  const handleCloseModalLogin = (data) => {
+  const handleCloseModalLogin = () => {
     setModalLogin(false);
-    console.log(data);
   };
 
   return (

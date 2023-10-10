@@ -5,9 +5,12 @@ import { useHistory } from "react-router-dom";
 import "../../common/form/form.css";
 import Modal from "../../common/modal";
 import "./registerForm.css";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../../store/users";
 
 const RegisterForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [showModalConfidential, setShowModalConfidential] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,8 +39,15 @@ const RegisterForm = () => {
       .replace("(", "")
       .replace(")", "")
       .replaceAll(" ", "");
-
-    console.log(data);
+    delete data.repeatPassword;
+    // console.log(data);
+    const newData = {
+      ...data,
+      cart: [],
+      favorite: []
+    };
+    console.log("newData  ", newData);
+    dispatch(signUp(newData));
     reset();
   };
   const toggleShowPassword = () => {

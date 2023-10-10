@@ -152,6 +152,10 @@
   line-height: 1.4;
   font-size: 14px;
 }
+.login-error{
+  margin-bottom: 15px;
+  width: 250px;
+}
 @media screen and (max-width: 600px) {
   .input-text-wrapper{
     width: 100%;
