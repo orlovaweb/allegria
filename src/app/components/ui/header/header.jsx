@@ -8,6 +8,8 @@ import Modal from "../../common/modal";
 import LoginForm from "../loginForm";
 import NavBar from "../navBar";
 import "./header.css";
+import { useDispatch } from "react-redux";
+import { removeError } from "../../../store/users";
 
 const Header = () => {
   const [modalLogin, setModalLogin] = useState(false);
@@ -15,6 +17,7 @@ const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (history.state?.from == "registerForm") {
@@ -25,6 +28,11 @@ const Header = () => {
   const handleCloseModalLogin = () => {
     setModalLogin(false);
   };
+  useEffect(() => {
+    if (modalLogin) {
+      dispatch(removeError());
+    }
+  }, [modalLogin]);
 
   return (
     <section className="header">

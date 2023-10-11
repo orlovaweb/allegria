@@ -1,24 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {
+  getAuthError,
+  getIsLoggedIn,
+  removeError,
+  signUp
+} from "../../../store/users";
 import "../../common/form/form.css";
 import Modal from "../../common/modal";
 import "./registerForm.css";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../../store/users";
 
 const RegisterForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [showModalConfidential, setShowModalConfidential] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const registerError = useSelector(getAuthError());
+  const isLoggedIn = useSelector(getIsLoggedIn());
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
     reset,
+    resetField,
     getValues,
     control
   } = useForm({
@@ -32,6 +40,24 @@ const RegisterForm = () => {
       repeatPassword: ""
     }
   });
+
+  useEffect(() => {
+    dispatch(removeError());
+  }, [!isDirty]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      reset();
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (registerError) {
+      resetField("password");
+      resetField("repeatPassword");
+    }
+  }, [registerError]);
+
   const submitAction = (data) => {
     data.phone = data.phone
       .replace("+7", "8")
@@ -40,7 +66,6 @@ const RegisterForm = () => {
       .replace(")", "")
       .replaceAll(" ", "");
     delete data.repeatPassword;
-    // console.log(data);
     const newData = {
       ...data,
       cart: [],
@@ -48,7 +73,6 @@ const RegisterForm = () => {
     };
     console.log("newData  ", newData);
     dispatch(signUp(newData));
-    reset();
   };
   const toggleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -148,8 +172,10 @@ const RegisterForm = () => {
                   }
                 })}
               />
-              {errors.email && (
-                <p className="invalid-feedback">{errors.email?.message}</p>
+              {(errors.email || registerError) && (
+                <p className="invalid-feedback">
+                  {errors.email?.message || registerError}
+                </p>
               )}
             </div>
           </div>
@@ -331,6 +357,9 @@ const RegisterForm = () => {
               )}
             </div>
           </div>
+          {/* {!isDirty&&registerError && (
+            <p className="invalid-feedback register-error">{registerError}</p>
+          )} */}
           <div className="form-register-row form-register-row-centered ">
             <button
               className="btn btn-register"

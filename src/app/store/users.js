@@ -63,17 +63,22 @@ const usersSlice = createSlice({
     },
     authRequested: (state) => {
       state.error = null;
+    },
+    removedError: (state) => {
+      state.error = null;
     }
   }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { usersRequested, usersReceved, usersRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested } = actions;
+const { usersRequested, usersReceved, usersRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError } = actions;
 
 const userCreateRequested = createAction("users/userCreateRequested");
 const userCreateFailed = createAction("users/userCreateFailed");
 const userUploadRequested = createAction("users/userUploadRequested");
 const userUploadFailed = createAction("users/userUploadFailed");
+const removedErrorRequested = createAction("users/removedErrorRequested");
+const removedErrorFailed = createAction("users/removedErrorFailed");
 
 export const login = ({ payload, redirect }) => async (dispatch) => {
   const { email, password } = payload;
@@ -108,7 +113,14 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
       ...rest
     }));
   } catch (error) {
-    dispatch(authRequestFailed(error.message));
+    const { code, message } = error.response.data.error;
+    console.log(code, message);
+    if (code === 400) {
+      const errorMessage = generateAuthError(message);
+      dispatch(authRequestFailed(errorMessage));
+    } else {
+      dispatch(authRequestFailed(error.message));
+    }
   }
 };
 export const logOut = () => (dispatch) => {
@@ -149,6 +161,15 @@ export const loadUsersList = () => async (dispatch) => {
     dispatch(usersReceved(content));
   } catch (error) {
     dispatch(usersRequestField(error.message));
+  }
+};
+export const removeError = () => async (dispatch) => {
+  dispatch(removedErrorRequested());
+  try {
+    // const { content } = await userService.get();
+    dispatch(removedError());
+  } catch (error) {
+    dispatch(removedErrorFailed(error.message));
   }
 };
 
