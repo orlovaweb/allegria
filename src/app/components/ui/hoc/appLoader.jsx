@@ -6,7 +6,7 @@ import { loadCategoriesList } from "../../../store/categories";
 import { loadGoodsList } from "../../../store/goods";
 import { loadSizesClothList } from "../../../store/sizesCloth";
 import { loadSizesShoesList } from "../../../store/sizesShoes";
-import { getIsLoggedIn, loadUsersList } from "../../../store/users";
+import { getIsLoggedIn, loadUser } from "../../../store/users";
 
 const AppLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const AppLoader = ({ children }) => {
     dispatch(loadSizesClothList());
     dispatch(loadSizesShoesList());
     if (isLoggedIn) {
-      dispatch(loadUsersList());
+      dispatch(loadUser());
     }
   }, [isLoggedIn]);
 

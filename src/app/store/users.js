@@ -26,15 +26,15 @@ const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    usersRequested: (state) => {
+    userRequested: (state) => {
       state.isLoading = true;
     },
-    usersReceved: (state, action) => {
+    userReceved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
       state.dataLoaded = true;
     },
-    usersRequestField: (state, action) => {
+    userRequestField: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
     },
@@ -71,7 +71,7 @@ const usersSlice = createSlice({
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { usersRequested, usersReceved, usersRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError } = actions;
+const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError } = actions;
 
 const userCreateRequested = createAction("users/userCreateRequested");
 const userCreateFailed = createAction("users/userCreateFailed");
@@ -154,15 +154,24 @@ export function uploadUser(payload) {
   };
 }
 
-export const loadUsersList = () => async (dispatch) => {
-  dispatch(usersRequested());
+export const loadUser = () => async (dispatch, getState) => {
+  dispatch(userRequested());
   try {
-    const { content } = await userService.get();
-    dispatch(usersReceved(content));
+    const { content } = await userService.getById(getState().users.auth.userId);
+    dispatch(userReceved(content));
   } catch (error) {
-    dispatch(usersRequestField(error.message));
+    dispatch(userRequestField(error.message));
   }
 };
+// export const loadUsersList = () => async (dispatch) => {
+//   dispatch(usersRequested());
+//   try {
+//     const { content } = await userService.get();
+//     dispatch(usersReceved(content));
+//   } catch (error) {
+//     dispatch(usersRequestField(error.message));
+//   }
+// };
 export const removeError = () => async (dispatch) => {
   dispatch(removedErrorRequested());
   try {
