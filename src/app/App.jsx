@@ -12,6 +12,11 @@ import Admin from "./layouts/adminPage/admin";
 import Brands from "./layouts/brands";
 import Goods from "./layouts/goods";
 import Main from "./layouts/main";
+import Account from "./components/pages/account/account";
+import ProtectedRoute from "./components/common/protectedRoute";
+import Favorite from "./components/pages/favorite";
+import ShoppingCart from "./components/pages/shoppingCart";
+import LogOut from "./layouts/logOut";
 
 function App() {
   return (
@@ -25,9 +30,11 @@ function App() {
           <Route path="/faq" component={Faq} />
           <Route path="/register" component={RegisterForm} />
           <Route path="/admin" component={Admin} />
-
+          <ProtectedRoute path="/account" component={Account} />
           <Route path="/goods/:productId?" component={Goods} />
-
+          <Route path="/favorite" component={Favorite} />
+          <Route path="/shoppingCart" component={ShoppingCart} />
+          <Route path="/logout" component={LogOut} />
           <Redirect to="/goods" />
         </Switch>
         <Footer />

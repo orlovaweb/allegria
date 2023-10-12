@@ -1,0 +1,60 @@
+.account__title h2{
+  font-size: 25px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 45px 0 30px;
+  border-bottom: 1px solid #EAE9E8;
+  margin: 0 auto;
+}
+.account-wrapper{
+  display: flex;
+}
+.account__navigation{
+  border-left: 1px solid #EAE9E8;
+  border-right: 1px solid #EAE9E8;
+  padding-bottom: 171px;
+}
+.nav-link{
+  display: flex;
+  align-items: center;
+  padding: 14px 42px 17px 18px;
+  margin-left: -1px;
+  border-left: transparent 1px solid;
+}
+.nav-link.active-link{
+  border-left: #E64926 1px solid;
+}
+.account__navigation span{
+  padding-left: 11px;
+}
+.active-link svg path{
+  fill:#E64926;
+  stroke:#E64926;
+}
+.active-link svg rect{
+  stroke:#E64926;
+}
+.active-link svg circle{
+  stroke:#E64926;
+}
+.active-link svg.icon-person path{
+  fill:#E64926;
+  stroke:none;
+}
+.active-link svg.icon-heart path{
+  fill:none;
+  stroke:#E64926;
+}
+.active-link svg.icon-changePass path{
+  fill:none;
+}
+.active-link svg.icon-history path{
+  fill:none;
+  stroke:#E64926;
+}
+.active-link svg.icon-shoppingCart path{
+  fill:none;
+  stroke:#E64926;
+}
+

@@ -24,11 +24,11 @@
   border: none;
   background: transparent;
 }
-.btn-enter{
+.btn.btn-enter{
   width: 100%;
   margin-bottom: 30px;
 }
-.btn-enter:disabled{
+.btn.btn-enter:disabled{
   cursor: auto;
   background-color: var(--dark-grey);
   color:#141414

@@ -3,8 +3,7 @@ import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import userService from "../services/user.service";
 import { generateAuthError } from "../utils/generateAuthError";
-// import getRandomInt from "../utils/getRandomInt";
-// import history from "../utils/history";
+import history from "../utils/history";
 
 const initialState = localStorageService.getAccessToken() ? {
   entities: null,
@@ -91,7 +90,7 @@ export const login = ({ payload, redirect }) => async (dispatch) => {
     // history.push(redirect);
   } catch (error) {
     const { code, message } = error.response.data.error;
-    console.log(code, message);
+    // console.log(code, message);
     if (code === 400) {
       const errorMessage = generateAuthError(message);
       dispatch(authRequestFailed(errorMessage));
@@ -112,6 +111,8 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
       email,
       ...rest
     }));
+    // history.push("/account")
+
   } catch (error) {
     const { code, message } = error.response.data.error;
     console.log(code, message);
@@ -126,7 +127,7 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
 export const logOut = () => (dispatch) => {
   localStorageService.removeAuthData();
   dispatch(userLoggedOut());
-  // history.push("/");
+  history.push("/");
 };
 
 function createUser(payload) {
@@ -135,7 +136,7 @@ function createUser(payload) {
     try {
       const { content } = await userService.create(payload);
       dispatch(userCreated(content));
-      // history.push("/goods");
+      history.push("/account");
     } catch (error) {
       dispatch(userCreateFailed(error.message));
     }
@@ -175,7 +176,6 @@ export const loadUser = () => async (dispatch, getState) => {
 export const removeError = () => async (dispatch) => {
   dispatch(removedErrorRequested());
   try {
-    // const { content } = await userService.get();
     dispatch(removedError());
   } catch (error) {
     dispatch(removedErrorFailed(error.message));
