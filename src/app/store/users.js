@@ -52,7 +52,7 @@ const usersSlice = createSlice({
       state.entities.push(action.payload);
     },
     userUploaded: (state, action) => {
-      state.entities[state.entities.findIndex(u => u._id === action.payload._id)] = action.payload;
+      state.entities = action.payload;
     },
     userLoggedOut: (state) => {
       state.entities = null;
@@ -88,6 +88,7 @@ export const login = ({ payload, redirect }) => async (dispatch) => {
     localStorageService.setTokens(data);
     console.log(redirect);
     // history.push(redirect);
+    history.push("/account");
   } catch (error) {
     const { code, message } = error.response.data.error;
     // console.log(code, message);
@@ -148,6 +149,7 @@ export function uploadUser(payload) {
     try {
       const { content } = await userService.upload(payload);
       dispatch(userUploaded(content));
+      history.push("/account/adress");
       // history.push(`/users/${content._id}`);
     } catch (error) {
       dispatch(userUploadFailed(error.message));
@@ -186,7 +188,7 @@ export const getUsers = () => (state) => state.users.entities;
 export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
 export const getCurrentUserData = () => (state) => {
   if (state.users.entities) {
-    return state.users.entities.find(u => u._id === state.users.auth.userId);
+    return state.users.entities;
   }
   return null;
 };

@@ -7,8 +7,15 @@ import PersonalAdress from "../../ui/account/personalAdress";
 import PersonalHistory from "../../ui/account/personalHistory";
 import PersonalInfo from "../../ui/account/personalInfo";
 import "./account.css";
+import { useSelector } from "react-redux";
+import { getCurrentUserData } from "../../../store/users";
+import Loader from "../loader/loader";
 
 const Account = () => {
+  const user = useSelector(getCurrentUserData());
+  if (!user) {
+    return <Loader />;
+  }
   return (
     <section className="account">
       <div className="account__title">
@@ -23,7 +30,6 @@ const Account = () => {
             <Switch>
               <Route path="/account/personalInfo" component={PersonalInfo} />
               <Route path="/account/adress" component={PersonalAdress} />
-              {/* <Route path="/account/favorite" component={Favorite} /> */}
               <Route path="/account/history" component={PersonalHistory} />
               <Route
                 path="/account/changePassword"

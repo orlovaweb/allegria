@@ -1,21 +1,21 @@
-.input-text-wrapper{
+.input-text-wrapper {
   margin-bottom: 20px;
   position: relative;
   width: 250px;
 }
-.input-text-field{
+.input-text-field {
   border: none;
   width: 100%;
-  border-bottom: 1px solid var(--basic-dark);
+  border-bottom: 1px solid var(--basic-first);
   padding: 0 0 10px;
 }
-.input-text-field::placeholder{
-  color:#B7C1C5;
+.input-text-field::placeholder {
+  color: #b7c1c5;
 }
-.input-text-field.is-invalid{
+.input-text-field.is-invalid {
   border-bottom: 1px solid var(--focus);
 }
-.icon-eye{
+.icon-eye {
   position: absolute;
   width: 26px;
   height: 26px;
@@ -24,29 +24,29 @@
   border: none;
   background: transparent;
 }
-.btn.btn-enter{
+.btn.btn-enter {
   width: 100%;
   margin-bottom: 30px;
 }
-.btn.btn-enter:disabled{
+.btn.btn-enter:disabled {
   cursor: auto;
   background-color: var(--dark-grey);
-  color:#141414
+  color: #141414;
 }
-.invalid-feedback{
+.invalid-feedback {
   font-size: 13px;
   color: var(--focus);
 }
-.form-check{
+.form-check {
   margin-bottom: 10px;
 }
-.form-check-input{
+.form-check-input {
   margin-right: 5px;
 }
-.form-check-input:checked{
+.form-check-input:checked {
   background-color: var(--dark-grey);
 }
-.form-check-label{
+.form-check-label {
   margin-left: 10px;
   font-size: 12px;
 }
@@ -152,15 +152,15 @@
   line-height: 1.4;
   font-size: 14px;
 }
-.login-error{
+.login-error {
   margin-bottom: 15px;
   width: 250px;
 }
-.register-error{
+.register-error {
   margin-bottom: 15px;
 }
 @media screen and (max-width: 600px) {
-  .input-text-wrapper{
+  .input-text-wrapper {
     width: 100%;
   }
 }

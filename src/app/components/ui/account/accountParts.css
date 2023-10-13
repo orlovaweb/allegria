@@ -1,0 +1,86 @@
+.personal-adress{
+  display: flex;
+  gap: 50px;
+}
+
+.btn-edit-adress:disabled{
+display: none;
+}
+.btn.btn-edit-adress{
+width: 250px;
+}
+.personal-adress__select{
+border: none;
+padding: 0;
+}
+/* Кастомизация Select с префиксом custom-select-adress */
+.custom-select-adress__placeholder{
+  color: #b7c1c5 !important;
+}
+.custom-select-adress__control{
+  border: none !important;
+  border-bottom: 1px solid var(--basic-first) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.custom-select-adress__control--menu-is-open{
+  border-color: var(--basic-dark) !important;
+}
+.custom-select-adress__indicator-separator{
+  width: 0 !important;
+}
+.custom-select-adress__value-container{
+  padding: 0 !important;
+}
+.custom-select-adress__indicator{
+  padding: 0 !important;
+}
+.custom-select-adress__menu{
+  margin: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid var(--basic-dark);
+  border-top: none;
+  border-radius: 0 !important;
+}
+.custom-select-adress__menu-list{
+  margin: 0 !important;
+  background-color: transparent !important;
+}
+.custom-select-adress__option{
+  cursor: pointer !important  ;
+}
+.custom-select-adress__option--is-focused{
+background-color: #fff !important;
+  /* background-color: var(--light-grey) !important; */
+}
+.custom-select-adress__option--is-focused:hover{
+  background-color: var(--light-grey) !important;
+}
+.custom-select-adress__option--is-selected{
+  background-color: var(--basic-dark) !important;
+}
+.custom-select-adress__option--is-selected:hover{
+  background-color: var(--basic-dark) !important;
+}
+/* Конец кастомизации Select */
+
+.input-home-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+.input-home__item{
+  width: 120px;
+}
+.personal-adress__edit{
+  color: var(--focus);
+  cursor: pointer;
+}
+/* .personal-adress__edit:hover{
+  ;
+} */
+@media screen and (max-width: 800px) {
+  .personal-info-row.form-register-row{
+    flex-direction: column;
+    gap:0;
+  }
+}
