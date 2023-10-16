@@ -3,7 +3,9 @@ import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import userService from "../services/user.service";
 import { generateAuthError } from "../utils/generateAuthError";
+import { generateChangePassError } from "../utils/generateChangePassError";
 import history from "../utils/history";
+import { toast } from "react-toastify";
 
 const initialState = localStorageService.getAccessToken() ? {
   entities: null,
@@ -11,14 +13,16 @@ const initialState = localStorageService.getAccessToken() ? {
   error: null,
   auth: { userId: localStorageService.getUserId() },
   isLoggedIn: true,
-  dataLoaded: false
+  dataLoaded: false,
+  emailResetedPassword: null
 } : {
   entities: null,
   isLoading: false,
   error: null,
   auth: null,
   isLoggedIn: false,
-  dataLoaded: false
+  dataLoaded: false,
+  emailResetedPassword: null
 };
 
 const usersSlice = createSlice({
@@ -65,12 +69,15 @@ const usersSlice = createSlice({
     },
     removedError: (state) => {
       state.error = null;
+    },
+    resetPasswordSuccess: (state, action) => {
+      state.emailResetedPassword = action.payload;
     }
   }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError } = actions;
+const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess } = actions;
 
 const userCreateRequested = createAction("users/userCreateRequested");
 const userCreateFailed = createAction("users/userCreateFailed");
@@ -87,11 +94,15 @@ export const login = ({ payload, redirect }) => async (dispatch) => {
     dispatch(authRequestSuccess({ userId: data.localId }));
     localStorageService.setTokens(data);
     console.log(redirect);
+    toast.success("Вы успешно вошли в систему!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
     // history.push(redirect);
-    history.push("/account");
+    // history.push("/account");
   } catch (error) {
     const { code, message } = error.response.data.error;
-    // console.log(code, message);
     if (code === 400) {
       const errorMessage = generateAuthError(message);
       dispatch(authRequestFailed(errorMessage));
@@ -112,7 +123,6 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
       email,
       ...rest
     }));
-    // history.push("/account")
 
   } catch (error) {
     const { code, message } = error.response.data.error;
@@ -125,6 +135,42 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
     }
   }
 };
+export const changePassword = (password) => async (dispatch) => {
+  try {
+    dispatch(authRequested());
+    const data = await authService.changePassword({ password });
+    localStorageService.setTokens(data);
+    dispatch(authRequestSuccess({ userId: data.localId }));
+    toast.success("Пароль был успешно изменен", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      theme: "dark",
+    });
+
+  } catch (error) {
+    const { code, message } = error.response.data.error;
+    console.log(code, message);
+    if (code === 400) {
+      const errorMessage = generateChangePassError(message);
+      dispatch(authRequestFailed(errorMessage));
+    } else {
+      dispatch(authRequestFailed(error.message));
+    }
+  }
+};
+export const resetPassword = (email) => async (dispatch) => {
+  try {
+    dispatch(authRequested());
+    const data = await authService.resetPassword({ email });
+    dispatch(resetPasswordSuccess(data.email));
+
+  } catch (error) {
+    const { code, message } = error.response.data.error;
+    console.log(code, message);
+    dispatch(authRequestFailed(error.message));
+  }
+};
+
 export const logOut = () => (dispatch) => {
   localStorageService.removeAuthData();
   dispatch(userLoggedOut());
@@ -150,6 +196,12 @@ export function uploadUser(payload) {
       const { content } = await userService.upload(payload);
       dispatch(userUploaded(content));
       history.push("/account/adress");
+      toast.success("Данные были успешно обновлены", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: "dark",
+      });
+
       // history.push(`/users/${content._id}`);
     } catch (error) {
       dispatch(userUploadFailed(error.message));
@@ -201,4 +253,6 @@ export const getIsLoggedIn = () => state => state.users.isLoggedIn;
 export const getDataStatus = () => state => state.users.dataLoaded;
 export const getCurrentUserId = () => state => state.users.auth.userId;
 export const getAuthError = () => state => state.users.error;
+export const getEmailResetedPassword = () => state => state.users.emailResetedPassword;
+
 export default usersReducer;

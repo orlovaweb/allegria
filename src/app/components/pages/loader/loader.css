@@ -19,7 +19,7 @@
 .bouncer div {
   width: 20px;
   height: 20px;
-  background-color: blue;
+  background-color: #0F303F;
   border-radius: 50%;
   animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite alternate;
 }

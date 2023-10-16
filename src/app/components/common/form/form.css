@@ -33,6 +33,9 @@
   background-color: var(--dark-grey);
   color: #141414;
 }
+.btn.btn-enter:active {
+  background-color: #081920;
+}
 .invalid-feedback {
   font-size: 13px;
   color: var(--focus);

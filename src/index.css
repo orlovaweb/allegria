@@ -41,6 +41,7 @@ a{
   --focus: #E64926;
   --dark-grey: #CEC6C4;
   --light-grey: #EAE9E8;
+  --toastify-color-dark: #0F303F;
 }
 .active-link{
   color: var(--focus);
@@ -59,7 +60,10 @@ a{
 .btn:hover{
   background-color: #0b222c;
 }
-.btn:active{
+.btn:disabled{
+  background-color: var(--dark-grey);
+}
+/* .btn:active{
   background-color: #081920;
 
-}
+} */

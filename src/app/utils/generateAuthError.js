@@ -1,5 +1,7 @@
 export function generateAuthError(message) {
   switch (message) {
+    case "INVALID_ID_TOKEN":
+      return "Вы давно в системе, зайдите заново.";
     case "INVALID_LOGIN_CREDENTIALS":
     case "INVALID_EMAIL":
     case "EMAIL_NOT_FOUND":

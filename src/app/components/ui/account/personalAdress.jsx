@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserData, uploadUser } from "../../../store/users";
@@ -41,7 +41,7 @@ const PersonalAdress = () => {
     dispatch(uploadUser(newDataUser));
     setShowForm(false);
   };
-  useEffect(() => {}, [showForm]);
+
   if (!user) {
     return <Loader />;
   }

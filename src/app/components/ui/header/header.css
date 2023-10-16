@@ -51,6 +51,7 @@
     cursor: pointer;
 }
 .modal-login{
+    margin: 30px;
     max-width: 250px; 
     width: 100%;
  }
@@ -85,6 +86,9 @@
 }
 .forgot-password:hover,.link-to-register:hover{
     border-bottom: 1px solid var(--focus);
+}
+.forgot-password-title{
+
 }
 @media screen and (max-width:1100px) {
     .search input{

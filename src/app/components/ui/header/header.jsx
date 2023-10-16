@@ -3,11 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import login from "../../../assets/login.webp";
 import logo from "../../../assets/logo.webp";
-import { getIsLoggedIn, removeError } from "../../../store/users";
+import {
+  getEmailResetedPassword,
+  getIsLoggedIn,
+  removeError
+} from "../../../store/users";
 import Modal from "../../common/modal";
 import LoginForm from "../loginForm";
 import NavBar from "../navBar";
 import "./header.css";
+import ForgotPasswordForm from "../forgotPasswordForm";
 
 const Header = () => {
   const [modalLogin, setModalLogin] = useState(false);
@@ -17,6 +22,7 @@ const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const emailResetedPassword = useSelector(getEmailResetedPassword());
 
   useEffect(() => {
     if (history.state?.from == "registerForm") {
@@ -163,10 +169,23 @@ const Header = () => {
           </div>
         </div>
       </Modal>
-      <Modal active={modalForgotPassword} setActive={setModalForgotPassword}>
+      <Modal
+        active={modalForgotPassword}
+        setActive={setModalForgotPassword}
+        isForm={true}
+      >
         <div className=" modal-login">
-          <h1 className="modal-title">Восстановить пароль</h1>
-          <p>Введите вашу почту</p>
+          <h1 className="modal-title forgot-password-title">
+            Восстановить пароль
+          </h1>
+          {emailResetedPassword ? (
+            <div>
+              <p>Ссылка для восстановления пароля отправлена на</p>
+              <span>{emailResetedPassword}</span>
+            </div>
+          ) : (
+            <ForgotPasswordForm />
+          )}
         </div>
       </Modal>
     </section>

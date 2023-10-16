@@ -250,11 +250,15 @@ const RegisterForm = () => {
                 {...register("repeatPassword", {
                   required: {
                     value: true,
-                    message: "Введите повторно пароль"
+                    message: "Пароль обязателен для заполнения"
                   },
                   pattern: {
-                    value: new RegExp(`${getValues("password")}`),
+                    value: new RegExp(`^${getValues("password")}`),
                     message: "Введенные пароли не совпадают"
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Пароль должен состоять минимум из 8 символов"
                   }
                 })}
               />
@@ -357,9 +361,7 @@ const RegisterForm = () => {
               )}
             </div>
           </div>
-          {/* {!isDirty&&registerError && (
-            <p className="invalid-feedback register-error">{registerError}</p>
-          )} */}
+
           <div className="form-register-row form-register-row-centered ">
             <button
               className="btn btn-register"

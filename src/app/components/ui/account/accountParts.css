@@ -1,3 +1,6 @@
+.personal-info,.personal-adress,.change-password{
+ padding: 60px 0 60px 50px;
+}
 .personal-adress{
   display: flex;
   gap: 50px;
@@ -75,9 +78,9 @@ background-color: #fff !important;
   color: var(--focus);
   cursor: pointer;
 }
-/* .personal-adress__edit:hover{
-  ;
-} */
+.personal-adress{
+  border-bottom: 1px solid #EAE9E8;
+}
 @media screen and (max-width: 800px) {
   .personal-info-row.form-register-row{
     flex-direction: column;

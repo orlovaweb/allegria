@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Faq from "./components/pages/faq";
 import RegisterForm from "./components/pages/registerForm/registerForm";
@@ -19,6 +20,7 @@ import ShoppingCart from "./components/pages/shoppingCart";
 import LogOut from "./layouts/logOut";
 
 function App() {
+  const notify = () => toast("Wow so easy!");
   return (
     <div className="page">
       <AppLoader>
@@ -39,7 +41,8 @@ function App() {
         </Switch>
         <Footer />
       </AppLoader>
-      <ToastContainer />
+      <button onClick={notify}>Notify!</button>
+      <ToastContainer transition={Slide} />
     </div>
   );
 }

@@ -33,6 +33,25 @@ const authService = {
       refresh_token: localStorageService.getRefreshToken()
     });
     return data;
+  },
+  changePassword: async ({ password }) => {
+    const { data } = await httpAuth.post(
+      `accounts:update`,
+      {
+        idToken: localStorageService.getAccessToken(),
+        password,
+        returnSecureToken: true
+      });
+    return data;
+  },
+  resetPassword: async ({ email }) => {
+    const { data } = await httpAuth.post(
+      `accounts:sendOobCode`,
+      {
+        requestType: "PASSWORD_RESET",
+        email
+      });
+    return data;
   }
 };
 
