@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { ToastContainer, toast, Slide } from "react-toastify";
+import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Faq from "./components/pages/faq";
@@ -15,12 +15,11 @@ import Goods from "./layouts/goods";
 import Main from "./layouts/main";
 import Account from "./components/pages/account/account";
 import ProtectedRoute from "./components/common/protectedRoute";
-import Favorite from "./components/pages/favorite";
 import ShoppingCart from "./components/pages/shoppingCart";
 import LogOut from "./layouts/logOut";
+import Favorite from "./layouts/favorite";
 
 function App() {
-  const notify = () => toast("Wow so easy!");
   return (
     <div className="page">
       <AppLoader>
@@ -41,7 +40,6 @@ function App() {
         </Switch>
         <Footer />
       </AppLoader>
-      <button onClick={notify}>Notify!</button>
       <ToastContainer transition={Slide} />
     </div>
   );

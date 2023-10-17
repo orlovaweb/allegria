@@ -21,8 +21,9 @@
   object-fit: cover;
 }
 .card-bookMark{
+  position: absolute;
   top: 465px;
-  right: 10px;
+  right: 55px;
 }
 .card__content{
   max-width: 380px;

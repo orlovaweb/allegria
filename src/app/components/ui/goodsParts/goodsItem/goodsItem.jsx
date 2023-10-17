@@ -27,11 +27,9 @@ const GoodsItem = ({ item, onToggleBookMark }) => {
           </div>
         </div>
       </Link>
-      <Bookmark
-        className="product-bookMark"
-        status={item.bookmark}
-        onClick={() => onToggleBookMark(item._id)}
-      />
+      <div className="product-bookMark">
+        <Bookmark productId={item._id} onToggleBookMark={onToggleBookMark} />
+      </div>
     </div>
   );
 };

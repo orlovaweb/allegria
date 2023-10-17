@@ -53,11 +53,12 @@ const ProductCard = ({ onToggleBookMark }) => {
                 alt="clothes"
                 onClick={() => setModalImgPreview(true)}
               />
-              <Bookmark
-                className="card-bookMark"
-                status={product.bookmark}
-                onClick={() => onToggleBookMark(product._id)}
-              />
+              <div className="card-bookMark">
+                <Bookmark
+                  onToggleBookMark={onToggleBookMark}
+                  productId={product._id}
+                />
+              </div>
               <Discount discount={product.discount} />
             </div>
             <div className="card__content">
