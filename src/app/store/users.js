@@ -1,11 +1,11 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import userService from "../services/user.service";
 import { generateAuthError } from "../utils/generateAuthError";
 import { generateChangePassError } from "../utils/generateChangePassError";
 import history from "../utils/history";
-import { toast } from "react-toastify";
 
 const initialState = localStorageService.getAccessToken() ? {
   entities: null,
@@ -72,12 +72,18 @@ const usersSlice = createSlice({
     },
     resetPasswordSuccess: (state, action) => {
       state.emailResetedPassword = action.payload;
+    },
+    favoriteAdded: (state, action) => {
+      state.entities.favorite = action.payload.favorite;
+    },
+    favoriteDeleted: (state, action) => {
+      state.entities.favorite = action.payload.favorite;
     }
   }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess } = actions;
+const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted } = actions;
 
 const userCreateRequested = createAction("users/userCreateRequested");
 const userCreateFailed = createAction("users/userCreateFailed");
@@ -113,8 +119,8 @@ export const login = ({ payload, redirect }) => async (dispatch) => {
 };
 
 export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
+  dispatch(authRequested());
   try {
-    dispatch(authRequested());
     const data = await authService.register({ email, password });
     localStorageService.setTokens(data);
     dispatch(authRequestSuccess({ userId: data.localId }));
@@ -136,8 +142,8 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
   }
 };
 export const changePassword = (password) => async (dispatch) => {
+  dispatch(authRequested());
   try {
-    dispatch(authRequested());
     const data = await authService.changePassword({ password });
     localStorageService.setTokens(data);
     dispatch(authRequestSuccess({ userId: data.localId }));
@@ -159,11 +165,10 @@ export const changePassword = (password) => async (dispatch) => {
   }
 };
 export const resetPassword = (email) => async (dispatch) => {
+  dispatch(authRequested());
   try {
-    dispatch(authRequested());
     const data = await authService.resetPassword({ email });
     dispatch(resetPasswordSuccess(data.email));
-
   } catch (error) {
     const { code, message } = error.response.data.error;
     console.log(code, message);
@@ -201,8 +206,34 @@ export function uploadUser(payload) {
         hideProgressBar: true,
         theme: "dark",
       });
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
 
-      // history.push(`/users/${content._id}`);
+export function addFavorite(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const newfavoriteArray = getState().users.entities.favorite ? [...getState().users.entities.favorite, payload] : [payload];
+      const user = { ...getState().users.entities, favorite: newfavoriteArray };
+      const { content } = await userService.upload(user);
+      dispatch(favoriteAdded(content));
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
+export function removeFavorite(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const newfavoriteArray = getState().users.entities.favorite.filter(f => f !== payload);
+      console.log(newfavoriteArray);
+      const user = { ...getState().users.entities, favorite: newfavoriteArray };
+      const { content } = await userService.upload(user);
+      dispatch(favoriteDeleted(content));
     } catch (error) {
       dispatch(userUploadFailed(error.message));
     }
@@ -254,5 +285,6 @@ export const getDataStatus = () => state => state.users.dataLoaded;
 export const getCurrentUserId = () => state => state.users.auth.userId;
 export const getAuthError = () => state => state.users.error;
 export const getEmailResetedPassword = () => state => state.users.emailResetedPassword;
+export const getFavorite = () => state => state.users.entities?.favorite;
 
 export default usersReducer;

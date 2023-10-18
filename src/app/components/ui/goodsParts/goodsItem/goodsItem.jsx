@@ -6,7 +6,7 @@ import Bookmark from "../../../common/bookmark/bookmark";
 import Discount from "../../../common/discount";
 import Price from "../../../common/price";
 
-const GoodsItem = ({ item, onToggleBookMark }) => {
+const GoodsItem = ({ item }) => {
   return (
     <div className="product-card">
       <Link to={`/goods/${item._id}`}>
@@ -28,14 +28,13 @@ const GoodsItem = ({ item, onToggleBookMark }) => {
         </div>
       </Link>
       <div className="product-bookMark">
-        <Bookmark productId={item._id} onToggleBookMark={onToggleBookMark} />
+        <Bookmark productId={item._id} />
       </div>
     </div>
   );
 };
 
 GoodsItem.propTypes = {
-  item: PropTypes.object.isRequired,
-  onToggleBookMark: PropTypes.func.isRequired
+  item: PropTypes.object.isRequired
 };
 export default GoodsItem;

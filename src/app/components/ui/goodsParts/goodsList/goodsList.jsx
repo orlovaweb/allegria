@@ -20,7 +20,7 @@ const sortOptions = [
   { value: { name: "discount", order: "desc" }, label: "По размеру скидки" }
 ];
 
-const Goods = ({ goods, onToggleBookMark }) => {
+const Goods = ({ goods }) => {
   const categories = useSelector(getCategories());
   const [selectedCat, setSelectedCat] = useState();
   const [sortBy, setSortBy] = useState(sortOptions[0].value);
@@ -109,12 +109,7 @@ const Goods = ({ goods, onToggleBookMark }) => {
               </div>
             </div>
             <div className="goods__content-list">
-              {count > 0 && (
-                <GoodsTable
-                  items={cropedGoods}
-                  onToggleBookMark={onToggleBookMark}
-                />
-              )}
+              {count > 0 && <GoodsTable items={cropedGoods} />}
             </div>
             {count > pageSize ? (
               <button
@@ -133,7 +128,6 @@ const Goods = ({ goods, onToggleBookMark }) => {
   );
 };
 Goods.propTypes = {
-  goods: PropTypes.array,
-  onToggleBookMark: PropTypes.func
+  goods: PropTypes.array
 };
 export default Goods;

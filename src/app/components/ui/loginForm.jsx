@@ -37,7 +37,6 @@ const LoginForm = ({ onSubmit }) => {
     const redirect = history.location.state
       ? history.location.state.from.pathname
       : "/";
-    console.log(data);
     dispatch(login({ payload: data, redirect }));
   };
   const [showPassword, setShowPassword] = useState(false);

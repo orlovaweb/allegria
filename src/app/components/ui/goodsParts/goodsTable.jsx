@@ -2,21 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import GoodsItem from "./goodsItem";
 
-const GoodsList = ({ items, onToggleBookMark }) => {
+const GoodsList = ({ items }) => {
   return (
     <>
       {items.map((item) => (
-        <GoodsItem
-          item={item}
-          onToggleBookMark={onToggleBookMark}
-          key={item._id}
-        />
+        <GoodsItem item={item} key={item._id} />
       ))}
     </>
   );
 };
 GoodsList.propTypes = {
-  items: PropTypes.array.isRequired,
-  onToggleBookMark: PropTypes.func.isRequired
+  items: PropTypes.array.isRequired
 };
 export default GoodsList;

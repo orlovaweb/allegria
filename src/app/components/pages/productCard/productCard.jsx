@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -12,7 +11,7 @@ import Price from "../../common/price";
 import SizesList from "../../ui/sizesList";
 import "./productCard.css";
 
-const ProductCard = ({ onToggleBookMark }) => {
+const ProductCard = () => {
   const { productId } = useParams();
   const product = useSelector(getProductById(productId));
   const [modalPayActive, setModalPayActive] = useState(false);
@@ -54,10 +53,7 @@ const ProductCard = ({ onToggleBookMark }) => {
                 onClick={() => setModalImgPreview(true)}
               />
               <div className="card-bookMark">
-                <Bookmark
-                  onToggleBookMark={onToggleBookMark}
-                  productId={product._id}
-                />
+                <Bookmark productId={product._id} />
               </div>
               <Discount discount={product.discount} />
             </div>
@@ -220,8 +216,5 @@ const ProductCard = ({ onToggleBookMark }) => {
   }
   return <h2>Loading...</h2>;
 };
-ProductCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  onToggleBookMark: PropTypes.func
-};
+
 export default ProductCard;
