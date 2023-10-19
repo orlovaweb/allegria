@@ -99,7 +99,7 @@ const PersonalAdress = () => {
                 <p className="invalid-feedback">Заполните улицу</p>
               )}
             </div>
-            <div className="input-home-wrapper">
+            <div className="input-text-wrapper input-home-wrapper">
               <div className="input-text-wrapper input-home__item">
                 <input
                   className={

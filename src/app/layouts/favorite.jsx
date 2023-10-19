@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import GoodsList from "../components/ui/goodsParts/goodsTable";
 import { getGoods } from "../store/goods";
 import { getFavorite, getIsLoggedIn } from "../store/users";
@@ -21,7 +22,18 @@ const Favorite = () => {
     favoriteGoods = goods.filter((p) => favoriteArrayIds.includes(p._id));
   }
   if (!favoriteGoods.length) {
-    return <h1>Вы еще ничего не добавили в избранное</h1>;
+    return (
+      <section className="no-favorite">
+        <h3>У Вас нет избранных товаров</h3>
+        <p>
+          Добавляйте вещи, которые Вам понравились, в список избранных, чтобы
+          следить за их наличием, ценой, и легко найти.
+        </p>
+        <Link to="/goods">
+          <button className="btn ">Перейти в каталог</button>
+        </Link>
+      </section>
+    );
   }
   return (
     <>
@@ -30,7 +42,6 @@ const Favorite = () => {
       </div>
       <div className="favorite-wrapper">
         <div className=" favorite__list">
-          {/* goods__content-list */}
           <GoodsList items={favoriteGoods} />
         </div>
       </div>

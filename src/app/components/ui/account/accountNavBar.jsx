@@ -1,37 +1,91 @@
-import React from "react";
+import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import Select from "react-select";
+import IconPerson from "../../common/svgs/iconPerson";
+import IconAdress from "../../common/svgs/iconAdress";
+import IconHistory from "../../common/svgs/iconHistory";
+import IconChangePass from "../../common/svgs/iconChangePass";
+import IconLogOut from "../../common/svgs/iconLogOut";
+
+const navOptions = [
+  {
+    value: "personalInfo",
+    label: (
+      <Link to="/account/personalInfo">
+        <IconPerson />
+        <span>Личная информация</span>
+      </Link>
+    )
+  },
+  {
+    value: "adress",
+    label: (
+      <Link to="/account/adress">
+        <IconAdress />
+        <span>Адрес</span>
+      </Link>
+    )
+  },
+  {
+    value: "history",
+    label: (
+      <Link to="/account/history">
+        <IconHistory />
+        <span>История покупок</span>
+      </Link>
+    )
+  },
+  {
+    value: "changePassword",
+    label: (
+      <Link to="/account/changePassword">
+        <IconChangePass />
+        <span>Изменить пароль</span>
+      </Link>
+    )
+  },
+  {
+    value: "logOut",
+    label: (
+      <Link to="/logOut">
+        <IconLogOut />
+        <span>Выйти</span>
+      </Link>
+    )
+  }
+];
 
 const AccountNavBar = () => {
+  const renderCurrentChoise = () => {
+    switch (location.pathname) {
+      case "/account/personalInfo":
+        return navOptions[0];
+      case "/account/adress":
+        return navOptions[1];
+      case "/account/history":
+        return navOptions[2];
+      case "/account/changePassword":
+        return navOptions[3];
+
+      default:
+        return navOptions[0];
+    }
+  };
+  const selectRef = useRef();
+  const handleChangeSelect = () => {
+    console.log(selectRef.current);
+  };
   return (
-    <>
-      <ul>
+    <nav>
+      <ul className="advanced-navigation">
         <li>
           <NavLink
             to="/account/personalInfo"
             activeClassName="active-link"
             className="nav-link"
           >
-            <svg
-              className="icon-person"
-              width="16"
-              height="18"
-              viewBox="0 0 16 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M14.9282 17C14.8452 16.4247 14.6906 15.8607 14.4672 15.3212C14.1154 14.4719 13.5998 13.7003 12.9497 13.0503C12.2997 12.4002 11.5281 11.8846 10.6788 11.5328C9.8295 11.1811 8.91925 11 8 11C7.08075 11 6.17049 11.1811 5.32122 11.5328C4.47194 11.8846 3.70026 12.4002 3.05025 13.0503C2.40024 13.7003 1.88463 14.4719 1.53284 15.3212C1.3094 15.8607 1.15484 16.4247 1.0718 17L14.9282 17ZM15.9373 17C15.8482 16.293 15.6649 15.5996 15.391 14.9385C14.989 13.9679 14.3997 13.086 13.6569 12.3431C12.914 11.6003 12.0321 11.011 11.0615 10.609C10.0909 10.2069 9.05057 10 8 10C6.94942 10 5.90914 10.2069 4.93853 10.609C3.96793 11.011 3.08601 11.6003 2.34315 12.3431C1.60028 13.086 1.011 13.9679 0.608963 14.9385C0.335133 15.5996 0.151816 16.293 0.0627457 17C0.0210429 17.331 0 17.665 0 18L16 18C16 17.665 15.979 17.331 15.9373 17Z"
-                fill="#0F303F"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7ZM8 8C10.2091 8 12 6.20914 12 4C12 1.79086 10.2091 0 8 0C5.79086 0 4 1.79086 4 4C4 6.20914 5.79086 8 8 8Z"
-                fill="#0F303F"
-              />
-            </svg>
+            <IconPerson />
             <span>Личная информация</span>
           </NavLink>
         </li>
@@ -41,27 +95,7 @@ const AccountNavBar = () => {
             activeClassName="active-link"
             className="nav-link"
           >
-            <svg
-              width="17"
-              height="21"
-              viewBox="0 0 17 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <mask id="path-1-inside-1_9992_2" fill="white">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M15.1782 12.0312C15.9139 11.0293 16.275 9.80444 16.275 8.1375C16.275 3.64328 12.6317 0 8.1375 0C3.64328 0 0 3.64328 0 8.1375C0 9.72324 0.392161 10.9852 1.11883 12.0312H1.09071L7.78805 21L14.8662 12.4181C14.9498 12.3233 15.0296 12.2266 15.1057 12.1278L15.1853 12.0312H15.1782Z"
-                />
-              </mask>
-              <path
-                d="M15.1782 12.0312L14.3722 11.4394L13.2034 13.0312H15.1782V12.0312ZM1.11883 12.0312V13.0312H3.03108L1.94012 11.4607L1.11883 12.0312ZM1.09071 12.0312V11.0312H-0.904077L0.28946 12.6296L1.09071 12.0312ZM7.78805 21L6.9868 21.5983L7.74898 22.619L8.55951 21.6363L7.78805 21ZM14.8662 12.4181L14.1162 11.7566L14.1053 11.7691L14.0947 11.7818L14.8662 12.4181ZM15.1057 12.1278L14.3342 11.4915L14.3234 11.5046L14.3131 11.518L15.1057 12.1278ZM15.1853 12.0312L15.9567 12.6675L17.3063 11.0312H15.1853V12.0312ZM15.275 8.1375C15.275 9.64981 14.9512 10.6507 14.3722 11.4394L15.9843 12.6231C16.8765 11.4079 17.275 9.95908 17.275 8.1375H15.275ZM8.1375 1C12.0794 1 15.275 4.19557 15.275 8.1375H17.275C17.275 3.091 13.184 -1 8.1375 -1V1ZM1 8.1375C1 4.19557 4.19557 1 8.1375 1V-1C3.091 -1 -1 3.091 -1 8.1375H1ZM1.94012 11.4607C1.3441 10.6027 1 9.54586 1 8.1375H-1C-1 9.90061 -0.559774 11.3676 0.297539 12.6018L1.94012 11.4607ZM1.11883 11.0312H1.09071V13.0312H1.11883V11.0312ZM0.28946 12.6296L6.9868 21.5983L8.5893 20.4017L1.89196 11.4329L0.28946 12.6296ZM8.55951 21.6363L15.6377 13.0544L14.0947 11.7818L7.01659 20.3637L8.55951 21.6363ZM14.3131 11.518C14.251 11.5987 14.1855 11.6781 14.1162 11.7566L15.6161 13.0796C15.7141 12.9686 15.8082 12.8546 15.8983 12.7375L14.3131 11.518ZM15.8771 12.764L15.9567 12.6675L14.4138 11.395L14.3342 11.4915L15.8771 12.764ZM15.1853 11.0312H15.1782V13.0312H15.1853V11.0312Z"
-                fill="#0F303F"
-                mask="url(#path-1-inside-1_9992_2)"
-              />
-              <circle cx="8" cy="8" r="4.5" stroke="#0F303F" />
-            </svg>
+            <IconAdress />
             <span>Адрес</span>
           </NavLink>
         </li>
@@ -71,26 +105,7 @@ const AccountNavBar = () => {
             activeClassName="active-link"
             className="nav-link"
           >
-            <svg
-              className="icon-history"
-              width="18"
-              height="14"
-              viewBox="0 0 18 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="0.5"
-                y="0.5"
-                width="17"
-                height="12.8125"
-                stroke="#0F303F"
-              />
-              <path
-                d="M14.625 1.78814e-07C14.625 1.69076 14.0324 3.31226 12.9775 4.50781C11.9226 5.70335 10.4918 6.375 9 6.375C7.50816 6.375 6.07742 5.70335 5.02252 4.50781C3.96763 3.31226 3.375 1.69076 3.375 1.28421e-06"
-                stroke="#0F303F"
-              />
-            </svg>
+            <IconHistory />
             <span>История покупок</span>
           </NavLink>
         </li>
@@ -100,53 +115,30 @@ const AccountNavBar = () => {
             activeClassName="active-link"
             className="nav-link"
           >
-            <svg
-              className="icon-changePass"
-              width="16"
-              height="20"
-              viewBox="0 0 16 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="0.5"
-                y="4.92773"
-                width="15"
-                height="13.8571"
-                stroke="#0F303F"
-              />
-              <path
-                d="M11.4284 4.42857C11.4284 3.51926 11.0672 2.64719 10.4242 2.00421C9.78124 1.36122 8.90917 1 7.99986 1C7.09055 1 6.21848 1.36122 5.57549 2.0042C4.93251 2.64719 4.57129 3.51926 4.57129 4.42857"
-                stroke="#0F303F"
-              />
-              <path
-                d="M9.5 12C9.5 12.7435 9.29819 13.394 8.99819 13.844C8.69585 14.2975 8.33309 14.5 8 14.5C7.66691 14.5 7.30415 14.2975 7.00181 13.844C6.70181 13.394 6.5 12.7435 6.5 12C6.5 11.2565 6.70181 10.606 7.00181 10.156C7.30415 9.70253 7.66691 9.5 8 9.5C8.33309 9.5 8.69585 9.70253 8.99819 10.156C9.29819 10.606 9.5 11.2565 9.5 12Z"
-                stroke="#254A5A"
-              />
-            </svg>
+            <IconChangePass />
             <span>Изменить пароль</span>
           </NavLink>
         </li>
         <li>
           <NavLink to="/logOut" className="nav-link">
-            <svg
-              width="16"
-              height="17"
-              viewBox="0 0 16 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M10 1H15V16H10" stroke="#0F303F" />
-              <path
-                d="M11.5 8.54478H1M1 8.54478L4.33333 5M1 8.54478L4.33333 12"
-                stroke="#0F303F"
-              />
-            </svg>
+            <IconLogOut />
             <span>Выйти</span>
           </NavLink>
         </li>
       </ul>
-    </>
+      <div className="mobile-navigation">
+        <form>
+          <Select
+            options={navOptions}
+            className="input-text-field personal-adress__select"
+            classNamePrefix="custom-select-account"
+            defaultValue={renderCurrentChoise()}
+            ref={selectRef}
+            onChange={handleChangeSelect}
+          />
+        </form>
+      </div>
+    </nav>
   );
 };
 

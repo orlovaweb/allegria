@@ -16,6 +16,7 @@ width: 250px;
 border: none;
 padding: 0;
 }
+
 /* Кастомизация Select с префиксом custom-select-adress */
 .custom-select-adress__placeholder{
   color: #b7c1c5 !important;
@@ -38,6 +39,9 @@ padding: 0;
 .custom-select-adress__indicator{
   padding: 0 !important;
 }
+.custom-select-adress__single-value{
+  padding-left: 15px !important;
+}
 .custom-select-adress__menu{
   margin: 0 !important;
   box-shadow: none !important;
@@ -50,11 +54,11 @@ padding: 0;
   background-color: transparent !important;
 }
 .custom-select-adress__option{
-  cursor: pointer !important  ;
+  cursor: pointer !important;
+  padding-left: 15px !important;
 }
 .custom-select-adress__option--is-focused{
 background-color: #fff !important;
-  /* background-color: var(--light-grey) !important; */
 }
 .custom-select-adress__option--is-focused:hover{
   background-color: var(--light-grey) !important;
@@ -67,12 +71,147 @@ background-color: #fff !important;
 }
 /* Конец кастомизации Select */
 
+/* Кастомизация Select с префиксом custom-select-account*/
+.custom-select-account__single-value {
+padding: 9px 10px !important;  
+}
+.custom-select-account__single-value a{
+  display: flex;
+  align-items: center;
+}
+.custom-select-account__control{
+  border: none !important;
+  border: 1px solid var(--light-grey) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.custom-select-account__control--menu-is-open{
+  border-color: var(--light-grey) !important;
+  color: var(--light-grey) !important;
+}
+.custom-select-account__indicator-separator{
+  background-color: transparent !important;
+  width: 0 !important;
+}
+.custom-select-account__value-container{
+  padding: 0 !important;
+}
+.custom-select-account__indicator{
+  padding: 0 !important;
+}
+.custom-select-account__menu{
+  margin: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid var(--light-grey);
+  border-top: none;
+  border-radius: 0 !important;
+  
+}
+.custom-select-account__menu a{
+  color: #B7C1C5 !important;
+  display: flex;
+  align-items: center;
+
+}
+/* .custom-select-account__menu span{
+  margin-left:10px !important;
+
+} */
+.custom-select-account__menu-list{
+  margin: 0 !important;
+  background-color: transparent !important;
+  
+}
+.custom-select-account__option{
+  cursor: pointer !important  ;
+  padding: 15px 10px !important;
+}
+.custom-select-account__option--is-focused{
+background-color: #fff !important;
+  /* background-color: var(--light-grey) !important; */
+}
+.custom-select-account__option--is-focused:hover {
+  background-color: var(--light-grey) !important;
+}
+.custom-select-account__option--is-selected a{
+  color: var(--basic-dark) !important;
+}
+.custom-select-account__option--is-selected {
+  background-color: transparent !important;
+}
+.custom-select-account__option--is-selected:hover{
+  background-color: var(--light-grey) !important;
+}
+.custom-select-account__menu svg path{
+  fill:#B7C1C5;
+  stroke:#B7C1C5;
+}
+.custom-select-account__option--is-selected svg path{
+  fill:var(--basic-dark);
+  stroke:var(--basic-dark);
+}
+.custom-select-account__menu svg rect{
+  stroke:#B7C1C5;
+}
+.custom-select-account__menu svg circle{
+  stroke:#B7C1C5;
+}
+.custom-select-account__menu svg.icon-person path{
+  fill:#B7C1C5;
+  stroke:none;
+}
+.custom-select-account__menu svg.icon-heart path{
+  fill:none;
+  stroke:#B7C1C5;
+}
+.custom-select-account__menu svg.icon-changePass path{
+  fill:none;
+}
+.custom-select-account__menu svg.icon-history path{
+  fill:none;
+  stroke:#B7C1C5;
+}
+.custom-select-account__menu svg.icon-shoppingCart path{
+  fill:none;
+  stroke:#B7C1C5;
+}
+
+
+
+.custom-select-account__option--is-selected svg rect{
+  stroke:var(--basic-dark);
+}
+.custom-select-account__option--is-selected svg circle{
+  stroke:var(--basic-dark);
+}
+.custom-select-account__option--is-selected svg.icon-person path{
+  fill:var(--basic-dark);
+  stroke:none;
+}
+.custom-select-account__option--is-selected svg.icon-heart path{
+  fill:none;
+  stroke:var(--basic-dark);
+}
+.custom-select-account__option--is-selected svg.icon-changePass path{
+  fill:none;
+}
+.custom-select-account__option--is-selected svg.icon-history path{
+  fill:none;
+  stroke:var(--basic-dark);
+}
+.custom-select-account__option--is-selected svg.icon-shoppingCart path{
+  fill:none;
+  stroke:var(--basic-dark);
+}
+/* Конец кастомизации Select */
+
 .input-home-wrapper{
   display: flex;
   justify-content: space-between;
 }
 .input-home__item{
-  width: 120px;
+  /* width: 120px; */
+  width: calc(50% - 5px );
 }
 .personal-adress__edit{
   color: var(--focus);
@@ -81,9 +220,52 @@ background-color: #fff !important;
 .personal-adress{
   border-bottom: 1px solid #EAE9E8;
 }
+.mobile-navigation{
+  display: none;
+  max-width:400px;
+  margin: 20px auto;
+}
+.no-history{
+  margin: 60px 50px;
+  /* padding: 0 15px; */
+  max-width: 400px;
+  margin-bottom: 200px;
+}
+.no-history h3{
+  margin-bottom: 20px;
+}
+.no-history p{
+  margin-bottom: 30px;
+}
 @media screen and (max-width: 800px) {
   .personal-info-row.form-register-row{
     flex-direction: column;
     gap:0;
+  }
+}
+@media screen and (max-width:600px) {
+  .advanced-navigation{
+    display: none;
+  }
+  .mobile-navigation{
+    display: block;
+  }
+  .personal-info,.personal-adress,.change-password{
+    max-width:400px;
+  margin: 20px auto 50px;
+  padding: 0;
+  }
+  .personal-adress{
+    flex-direction: column;
+    gap: 20px;
+    border: none;
+    margin-bottom: 50px;
+  }
+  .btn.btn-edit-adress{
+    width: 100%;
+  }
+  .no-history{
+    margin: 20px auto 50px;
+
   }
 }

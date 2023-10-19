@@ -9,6 +9,7 @@ const Footer = () => {
   //   e.preventDefault();
   //   console.log("submit");
   // };
+
   return (
     <footer className="footer">
       <div className="footer-wrapper">
