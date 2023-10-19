@@ -6,7 +6,11 @@ import { loadCategoriesList } from "../../../store/categories";
 import { loadGoodsList } from "../../../store/goods";
 import { loadSizesClothList } from "../../../store/sizesCloth";
 import { loadSizesShoesList } from "../../../store/sizesShoes";
-import { getIsLoggedIn, loadUser } from "../../../store/users";
+import {
+  getIsLoggedIn,
+  loadUnauthorizedFavorite,
+  loadUser
+} from "../../../store/users";
 
 const AppLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -17,6 +21,7 @@ const AppLoader = ({ children }) => {
     dispatch(loadGoodsList());
     dispatch(loadSizesClothList());
     dispatch(loadSizesShoesList());
+    dispatch(loadUnauthorizedFavorite());
     if (isLoggedIn) {
       dispatch(loadUser());
     }

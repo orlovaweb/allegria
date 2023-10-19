@@ -1,9 +1,13 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import heartOff from "../../../assets/heartOff.svg";
 import heartOn from "../../../assets/heartOn.webp";
-import { getFavorite, getIsLoggedIn } from "../../../store/users";
+import {
+  getFavorite,
+  getIsLoggedIn,
+  getUnauthorizedFavorite
+} from "../../../store/users";
 import useBookmark from "../../ui/hooks/useBookMark";
 import "./bookmark.css";
 
@@ -13,9 +17,9 @@ const renderIcon = (status) => {
 };
 
 const Bookmark = ({ productId }) => {
-  const [status, setStatus] = useState(false);
   const isLoggedIn = useSelector(getIsLoggedIn());
   const favoriteArray = useSelector(getFavorite());
+  const unauthorizedFavoriteArray = useSelector(getUnauthorizedFavorite());
   const onToggleBookmark = useBookmark();
   const getState = () => {
     if (isLoggedIn) {
@@ -25,28 +29,17 @@ const Bookmark = ({ productId }) => {
         return false;
       }
     } else {
-      if (localStorage.favorite) {
-        const favoriteArray = JSON.parse(localStorage.favorite);
-        return favoriteArray.includes(productId);
-      } else {
-        return false;
-      }
+      return unauthorizedFavoriteArray.includes(productId);
     }
   };
 
-  useEffect(() => {
-    const newStatus = getState();
-    setStatus(newStatus);
-  }, []);
-
   const handleClick = () => {
-    setStatus((prevState) => !prevState);
     onToggleBookmark(productId);
   };
   return (
     <div className="bookmark-wrapper" onClick={handleClick}>
       <button>
-        <span className="bookmark-icon">{renderIcon(status)}</span>
+        <span className="bookmark-icon">{renderIcon(getState())}</span>
       </button>
     </div>
   );

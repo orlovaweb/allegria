@@ -1,15 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   addFavorite,
+  addUnauthorizedFavorite,
   getFavorite,
   getIsLoggedIn,
-  removeFavorite
+  getUnauthorizedFavorite,
+  removeFavorite,
+  removeUnauthorizedFavorite
 } from "../../../store/users";
 
 const useBookmark = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
   const favoriteArray = useSelector(getFavorite());
+  const unauthorizedFavoriteArray = useSelector(getUnauthorizedFavorite());
   const onToggleBookmark = (id) => {
     if (isLoggedIn) {
       if (favoriteArray) {
@@ -22,19 +26,10 @@ const useBookmark = () => {
         dispatch(addFavorite(id));
       }
     } else {
-      if (localStorage.favorite) {
-        const favoriteArray = JSON.parse(localStorage.favorite);
-        if (favoriteArray.includes(id)) {
-          const newFavoriteArray = favoriteArray.filter((i) => i !== id);
-          localStorage.favorite = JSON.stringify(newFavoriteArray);
-        } else {
-          favoriteArray.push(id);
-          localStorage.favorite = JSON.stringify(favoriteArray);
-        }
+      if (unauthorizedFavoriteArray.includes(id)) {
+        dispatch(removeUnauthorizedFavorite(id));
       } else {
-        const favoriteArray = [];
-        favoriteArray.push(id);
-        localStorage.favorite = JSON.stringify(favoriteArray);
+        dispatch(addUnauthorizedFavorite(id));
       }
     }
   };

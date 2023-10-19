@@ -3,22 +3,26 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import GoodsList from "../components/ui/goodsParts/goodsTable";
 import { getGoods } from "../store/goods";
-import { getFavorite, getIsLoggedIn } from "../store/users";
+import {
+  getFavorite,
+  getIsLoggedIn,
+  getUnauthorizedFavorite
+} from "../store/users";
 import "./favorite.css";
 
 const Favorite = () => {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const goods = useSelector(getGoods());
   const favoriteArrayGlobal = useSelector(getFavorite());
+  const unauthorizedFavoriteArray = useSelector(getUnauthorizedFavorite());
   let favoriteGoods = [];
   if (goods) {
     const favoriteArrayIds = isLoggedIn
       ? favoriteArrayGlobal
         ? favoriteArrayGlobal
         : []
-      : localStorage.favorite
-      ? JSON.parse(localStorage.favorite)
-      : [];
+      : unauthorizedFavoriteArray;
+
     favoriteGoods = goods.filter((p) => favoriteArrayIds.includes(p._id));
   }
   if (!favoriteGoods.length) {

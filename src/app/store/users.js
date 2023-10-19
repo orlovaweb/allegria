@@ -14,7 +14,9 @@ const initialState = localStorageService.getAccessToken() ? {
   auth: { userId: localStorageService.getUserId() },
   isLoggedIn: true,
   dataLoaded: false,
-  emailResetedPassword: null
+  emailResetedPassword: null,
+  favorite: [],
+  cart: []
 } : {
   entities: null,
   isLoading: false,
@@ -22,7 +24,9 @@ const initialState = localStorageService.getAccessToken() ? {
   auth: null,
   isLoggedIn: false,
   dataLoaded: false,
-  emailResetedPassword: null
+  emailResetedPassword: null,
+  favorite: [],
+  cart: []
 };
 
 const usersSlice = createSlice({
@@ -78,12 +82,15 @@ const usersSlice = createSlice({
     },
     favoriteDeleted: (state, action) => {
       state.entities.favorite = action.payload.favorite;
+    },
+    unauthorizedFavoriteUploaded: (state, action) => {
+      state.favorite = action.payload;
     }
   }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted } = actions;
+const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted, unauthorizedFavoriteUploaded } = actions;
 
 const userCreateRequested = createAction("users/userCreateRequested");
 const userCreateFailed = createAction("users/userCreateFailed");
@@ -91,6 +98,8 @@ const userUploadRequested = createAction("users/userUploadRequested");
 const userUploadFailed = createAction("users/userUploadFailed");
 const removedErrorRequested = createAction("users/removedErrorRequested");
 const removedErrorFailed = createAction("users/removedErrorFailed");
+const userUnauthorizedFavoriteRequested = createAction("users/userUnauthorizedFavoriteRequested");
+const userUnauthorizedFavoriteFailed = createAction("users/userUnauthorizedFavoriteFailed");
 
 export const login = ({ payload, redirect }) => async (dispatch) => {
   const { email, password } = payload;
@@ -225,12 +234,34 @@ export function addFavorite(payload) {
     }
   };
 }
+export function loadUnauthorizedFavorite() {
+  return async function (dispatch) {
+    dispatch(userUnauthorizedFavoriteRequested());
+    try {
+      const favoriteArray = localStorage.favorite ? JSON.parse(localStorage.favorite) : [];
+      dispatch(unauthorizedFavoriteUploaded(favoriteArray));
+    } catch (error) {
+      dispatch(userUnauthorizedFavoriteFailed(error.message));
+    }
+  };
+}
+export function addUnauthorizedFavorite(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUnauthorizedFavoriteRequested());
+    try {
+      const newFavoriteArray = getState().users.favorite ? [...getState().users.favorite, payload] : [payload];
+      localStorage.favorite = JSON.stringify(newFavoriteArray);
+      dispatch(unauthorizedFavoriteUploaded(newFavoriteArray));
+    } catch (error) {
+      dispatch(userUnauthorizedFavoriteFailed(error.message));
+    }
+  };
+}
 export function removeFavorite(payload) {
   return async function (dispatch, getState) {
     dispatch(userUploadRequested());
     try {
       const newfavoriteArray = getState().users.entities.favorite.filter(f => f !== payload);
-      console.log(newfavoriteArray);
       const user = { ...getState().users.entities, favorite: newfavoriteArray };
       const { content } = await userService.upload(user);
       dispatch(favoriteDeleted(content));
@@ -239,7 +270,18 @@ export function removeFavorite(payload) {
     }
   };
 }
-
+export function removeUnauthorizedFavorite(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUnauthorizedFavoriteRequested());
+    try {
+      const newFavoriteArray = getState().users.favorite.filter(f => f !== payload);
+      localStorage.favorite = JSON.stringify(newFavoriteArray);
+      dispatch(unauthorizedFavoriteUploaded(newFavoriteArray));
+    } catch (error) {
+      dispatch(userUnauthorizedFavoriteFailed(error.message));
+    }
+  };
+}
 export const loadUser = () => async (dispatch, getState) => {
   dispatch(userRequested());
   try {
@@ -286,5 +328,7 @@ export const getCurrentUserId = () => state => state.users.auth.userId;
 export const getAuthError = () => state => state.users.error;
 export const getEmailResetedPassword = () => state => state.users.emailResetedPassword;
 export const getFavorite = () => state => state.users.entities?.favorite;
+export const getUnauthorizedFavorite = () => state => state.users.favorite;
+
 
 export default usersReducer;
