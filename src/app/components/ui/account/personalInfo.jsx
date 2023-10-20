@@ -6,29 +6,29 @@ import "./accountParts.css";
 
 const PersonalInfo = () => {
   const user = useSelector(getCurrentUserData());
-  if (user) {
-    return (
-      <section className="personal-info">
-        <div className="form-register-row personal-info-row">
-          <div className="input-text-wrapper">
-            <p className="input-text-field">{user.name}</p>
-          </div>
-          <div className="input-text-wrapper ">
-            <p className="input-text-field">{user.surname}</p>
-          </div>
-        </div>
-        <div className="form-register-row personal-info-row">
-          <div className="input-text-wrapper">
-            <p className="input-text-field">{user.phone}</p>
-          </div>
-          <div className="input-text-wrapper">
-            <p className="input-text-field">{user.email}</p>
-          </div>
-        </div>
-      </section>
-    );
+  if (!user) {
+    return <Loader />;
   }
-  return <Loader />;
+  return (
+    <section className="personal-info">
+      <div className="form-register-row personal-info-row">
+        <div className="input-text-wrapper">
+          <p className="input-text-field">{user.name}</p>
+        </div>
+        <div className="input-text-wrapper ">
+          <p className="input-text-field">{user.surname}</p>
+        </div>
+      </div>
+      <div className="form-register-row personal-info-row">
+        <div className="input-text-wrapper">
+          <p className="input-text-field">{user.phone}</p>
+        </div>
+        <div className="input-text-wrapper">
+          <p className="input-text-field">{user.email}</p>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default PersonalInfo;

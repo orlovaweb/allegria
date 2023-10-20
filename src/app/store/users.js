@@ -54,10 +54,10 @@ const usersSlice = createSlice({
       state.error = action.payload;
     },
     userCreated: (state, action) => {
-      if (!Array.isArray(state.entities)) {
-        state.entities = [];
-      }
-      state.entities.push(action.payload);
+      // if (!Array.isArray(state.entities)) {
+      //   state.entities = [];
+      // }
+      state.entities = action.payload;
     },
     userUploaded: (state, action) => {
       state.entities = action.payload;
@@ -138,7 +138,7 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
       email,
       ...rest
     }));
-
+    history.push("/account");
   } catch (error) {
     const { code, message } = error.response.data.error;
     console.log(code, message);
@@ -197,7 +197,7 @@ function createUser(payload) {
     try {
       const { content } = await userService.create(payload);
       dispatch(userCreated(content));
-      history.push("/account");
+
     } catch (error) {
       dispatch(userCreateFailed(error.message));
     }
@@ -215,6 +215,25 @@ export function uploadUser(payload) {
         hideProgressBar: true,
         theme: "dark",
       });
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
+export function uploadFavorite(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const favoriteArray = getState().users.entities?.favorite ? getState().users.entities.favorite : [];
+      const newFavoriteArray = [...favoriteArray];
+      payload.forEach((f) => {
+        if (!favoriteArray.includes(f)) {
+          newFavoriteArray.push(f);
+        }
+      });
+      const user = { ...getState().users.entities, favorite: newFavoriteArray };
+      const { content } = await userService.upload(user);
+      dispatch(userUploaded(content));
     } catch (error) {
       dispatch(userUploadFailed(error.message));
     }

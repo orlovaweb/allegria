@@ -69,10 +69,11 @@ const RegisterForm = () => {
     const newData = {
       ...data,
       cart: [],
-      favorite: []
+      favorite: localStorage.favorite ? JSON.parse(localStorage.favorite) : []
     };
     console.log("newData  ", newData);
     dispatch(signUp(newData));
+    localStorage.removeItem("favorite");
   };
   const toggleShowPassword = () => {
     setShowPassword((prevState) => !prevState);

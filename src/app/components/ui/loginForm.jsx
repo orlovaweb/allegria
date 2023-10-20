@@ -1,17 +1,23 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getAuthError, getIsLoggedIn, login } from "../../store/users";
+import {
+  getAuthError,
+  getCurrentUserData,
+  getIsLoggedIn,
+  login,
+  uploadFavorite
+} from "../../store/users";
 import "../common/form/form.css";
-import { useEffect } from "react";
 
 const LoginForm = ({ onSubmit }) => {
   const history = useHistory();
   const loginError = useSelector(getAuthError());
   const isLoggedIn = useSelector(getIsLoggedIn());
   const dispatch = useDispatch();
+  const user = useSelector(getCurrentUserData());
   const {
     register,
     handleSubmit,
@@ -19,7 +25,15 @@ const LoginForm = ({ onSubmit }) => {
     resetField,
     reset
   } = useForm({ mode: "onSubmit", reValidateMode: "onSubmit" });
-
+  useEffect(() => {
+    if (isLoggedIn && user) {
+      if (localStorage.favorite) {
+        const localFavorite = JSON.parse(localStorage.favorite);
+        dispatch(uploadFavorite(localFavorite));
+        localStorage.removeItem("favorite");
+      }
+    }
+  }, [user, isLoggedIn]);
   useEffect(() => {
     if (isLoggedIn) {
       reset();
