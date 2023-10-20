@@ -22,14 +22,9 @@ const RegisterForm = () => {
   const registerError = useSelector(getAuthError());
   const isLoggedIn = useSelector(getIsLoggedIn());
   const subscriptionObj = useSelector(getSubscription());
-  console.log(subscriptionObj);
   const subscriptionArray = subscriptionObj
     ? subscriptionObj.map((s) => s.email)
     : [];
-  // if (subscriptionObj) {
-  //   const subscriptionArray = subscriptionObj.map((s) => s.email);
-  // }
-  console.log("subscriptionArray = ", subscriptionArray);
 
   const {
     register,

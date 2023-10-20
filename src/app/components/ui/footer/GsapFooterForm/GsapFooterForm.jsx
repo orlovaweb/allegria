@@ -1,14 +1,33 @@
 import { gsap } from "gsap";
 import React, { useRef } from "react";
+import { useForm } from "react-hook-form";
 import "./GsapFooterForm.scss";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addSubscription,
+  getSubscription
+} from "../../../../store/subscription";
 
 const GsapFooterForm = () => {
   const ref = useRef(null);
-  const inputRef = useRef();
+  const subscriptionObj = useSelector(getSubscription());
+  const dispatch = useDispatch();
+  const subscriptionArray = subscriptionObj
+    ? subscriptionObj.map((s) => s.email)
+    : [];
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset
+  } = useForm({ mode: "onTouched" });
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log(inputRef.current.value);
+  const submitAction = (data) => {
+    console.log(data.email);
+    if (subscriptionArray && !subscriptionArray.includes(data.email)) {
+      dispatch(addSubscription(data.email));
+    }
+    reset();
     gsap.to(".gsapBtn", {
       keyframes: [
         {
@@ -136,9 +155,26 @@ const GsapFooterForm = () => {
   return (
     <>
       <div className="box-wrap" ref={ref}>
-        <form className="footer__form">
-          <input type="email" placeholder="E-mail" ref={inputRef} />
-          <button onClick={handleClick} className="gsapBtn active">
+        <form className="footer__form" onSubmit={handleSubmit(submitAction)}>
+          <div>
+            <input
+              placeholder="E-mail"
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Заполните почту"
+                },
+                pattern: {
+                  value: /^\S+@\S+\.\S+$/g,
+                  message: "E-mail введен некорректно"
+                }
+              })}
+            />
+            {errors.email && (
+              <p className="invalid-feedback">{errors.email?.message}</p>
+            )}
+          </div>
+          <button className="gsapBtn active" type="submit" disabled={!isValid}>
             <span className="default">Отправить</span>
             <span className="success">
               <svg viewBox="0 0 16 16">
