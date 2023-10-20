@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { addSubscription, getSubscription } from "../../../store/subscription";
 import {
   getAuthError,
   getIsLoggedIn,
@@ -20,6 +21,15 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const registerError = useSelector(getAuthError());
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const subscriptionObj = useSelector(getSubscription());
+  console.log(subscriptionObj);
+  const subscriptionArray = subscriptionObj
+    ? subscriptionObj.map((s) => s.email)
+    : [];
+  // if (subscriptionObj) {
+  //   const subscriptionArray = subscriptionObj.map((s) => s.email);
+  // }
+  console.log("subscriptionArray = ", subscriptionArray);
 
   const {
     register,
@@ -71,6 +81,14 @@ const RegisterForm = () => {
       cart: [],
       favorite: localStorage.favorite ? JSON.parse(localStorage.favorite) : []
     };
+    delete newData.licence;
+    if (newData.mailing) {
+      if (subscriptionArray && !subscriptionArray.includes(newData.email)) {
+        dispatch(addSubscription(newData.email));
+      }
+    }
+    delete newData.mailing;
+
     console.log("newData  ", newData);
     dispatch(signUp(newData));
     localStorage.removeItem("favorite");

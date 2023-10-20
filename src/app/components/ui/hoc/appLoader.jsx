@@ -11,6 +11,7 @@ import {
   loadUnauthorizedFavorite,
   loadUser
 } from "../../../store/users";
+import { loadSubscriptionList } from "../../../store/subscription";
 
 const AppLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -21,9 +22,11 @@ const AppLoader = ({ children }) => {
     dispatch(loadGoodsList());
     dispatch(loadSizesClothList());
     dispatch(loadSizesShoesList());
-    dispatch(loadUnauthorizedFavorite());
+    dispatch(loadSubscriptionList());
     if (isLoggedIn) {
       dispatch(loadUser());
+    } else {
+      dispatch(loadUnauthorizedFavorite());
     }
   }, [isLoggedIn]);
 

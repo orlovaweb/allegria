@@ -1,9 +1,8 @@
 import { gsap } from "gsap";
 import React, { useRef } from "react";
-import "./gsapEx.scss";
+import "./GsapFooterForm.scss";
 
-const GsapEx = () => {
-  // const [clicked, setClicked] = useState(false);
+const GsapFooterForm = () => {
   const ref = useRef(null);
   const inputRef = useRef();
 
@@ -140,7 +139,7 @@ const GsapEx = () => {
         <form className="footer__form">
           <input type="email" placeholder="E-mail" ref={inputRef} />
           <button onClick={handleClick} className="gsapBtn active">
-            <span className="default">Subscribe</span>
+            <span className="default">Отправить</span>
             <span className="success">
               <svg viewBox="0 0 16 16">
                 <polyline points="3.75 9 7 12 13 5"></polyline>
@@ -162,4 +161,4 @@ const GsapEx = () => {
   );
 };
 
-export default GsapEx;
+export default GsapFooterForm;
