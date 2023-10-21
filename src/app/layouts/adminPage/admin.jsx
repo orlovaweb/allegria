@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGoods, uploadProduct } from "../../store/goods";
 import useMockData from "../../utils/mockData";
 import "./admin.css";
+import LetterList from "../../components/ui/letterList";
 const Admin = () => {
   const dispatch = useDispatch();
   const goods = useSelector(getGoods());
   const { error, initialize, progress, status } = useMockData();
+  
+
   const handleClick = () => {
     initialize();
   };
@@ -23,7 +26,7 @@ const Admin = () => {
   return (
     <section className="admin">
       <h1 className="admin__title"> Панель администратора</h1>
-      <div className="container mt-5">
+      <div className="container">
         <h3 className="admin__initial">Инициализация данных в FireBase</h3>
         <ul>
           <li>Status:{status}</li>
@@ -38,6 +41,8 @@ const Admin = () => {
             Обновить итоговую цену товаров
           </button>
         </div>
+
+        <LetterList />
       </div>
     </section>
   );

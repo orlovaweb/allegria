@@ -4,7 +4,10 @@
   margin: 40px 0;
 }
 .admin__initial{
-  margin-bottom: 15px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30px 0;
 }
 .admin li{
   margin-bottom: 10px;

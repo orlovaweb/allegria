@@ -53,6 +53,10 @@
     width: 100%;
     padding-bottom: 5px;
 }
+.faq-form input.is-invalid{
+    border-bottom: 1px solid var(--focus);
+    margin-bottom: 5px;
+}
 .faq-form input::placeholder{
     opacity: 0.5;
 }
@@ -86,6 +90,67 @@
     text-transform: uppercase;
     text-align: center;
 }
+.faq-form .invalid-feedback{
+    margin-bottom: 10px;
+}
+
+/* Кастомизация Select с префиксом custom-select-faq */
+.custom-select-faq__placeholder{
+    color: #b7c1c5 !important;
+  }
+  .custom-select-faq__control{
+    border: none !important;
+    border-bottom: 1px solid var(--basic-first) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+  }
+  .custom-select-faq__control--menu-is-open{
+    border-color: var(--basic-dark) !important;
+  }
+  .custom-select-faq__indicator-separator{
+    width: 0 !important;
+  }
+  .custom-select-faq__value-container{
+    padding: 0 !important;
+  }
+  .custom-select-faq__indicator{
+    padding: 0 !important;
+  }
+  .custom-select-faq__single-value{
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+  }
+ 
+  .custom-select-faq__menu{
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid var(--basic-dark);
+    border-top: none;
+    border-radius: 0 !important;
+    background-color: var(--light-grey) !important;
+  }
+  .custom-select-faq__menu-list{
+    margin: 0 !important;
+  }
+  .custom-select-faq__option{
+    cursor: pointer !important;
+    padding-left: 5px !important;
+  }
+  .custom-select-faq__option--is-focused{
+    background-color:transparent !important;
+  }
+  .custom-select-faq__option--is-focused:hover{
+    background-color: #f7f7f7 !important;
+  }
+  .custom-select-faq__option--is-selected{
+    background-color: var(--basic-dark) !important;
+  }
+  .custom-select-faq__option--is-selected:hover{
+    background-color: var(--basic-dark) !important;
+  }
+  /* Конец кастомизации Select */
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

@@ -67,10 +67,5 @@ export function addSubscription(payload) {
 
 export const getSubscription = () => (state) => state.subscription.entities;
 export const getSubscriptionLoadingStatus = () => (state) => state.subscription.isLoading;
-// export const getSubscriptionArray = () => (state) => {
-//   const subscriptionArrayOfObjects = state.subscription.entities;
-//   return subscriptionArrayOfObjects.map(s => s.email);
-//   // return subscriptionArrayOfObjects ? subscriptionArrayOfObjects.map(s => s.email) : [];
-// };
 
 export default subscriptionReducer;

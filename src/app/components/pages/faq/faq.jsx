@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QuestionList from "../../ui/questionList";
 import "./faq.css";
+import FaqForm from "./faqForm";
 
 const Faq = () => {
   const [selectedQuestionPurchases, setSelectedQuestionPurchases] = useState(0);
@@ -43,24 +44,7 @@ const Faq = () => {
             />
           </div>
         </div>
-        <div className="faq-form">
-          <h4>Есть вопросы или предложения? Напишите нам</h4>
-          <form>
-            <input type="text" name="name" placeholder="Имя" required />
-            <input type="email" name="email" placeholder="E-mail" required />
-            <label htmlFor="type">Что Вас интересует:</label>
-            <select name="type">
-              <option value="Вопрос">Вопрос</option>
-              <option value="Предложение">Предложение</option>
-            </select>
-            <textarea
-              name="text"
-              placeholder="Текст сообщения"
-              required
-            ></textarea>
-            <button type="submit">Отправить</button>
-          </form>
-        </div>
+        <FaqForm />
       </div>
     </section>
   );

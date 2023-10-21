@@ -12,6 +12,7 @@ import {
   loadUser
 } from "../../../store/users";
 import { loadSubscriptionList } from "../../../store/subscription";
+import { loadLettersList } from "../../../store/letters";
 
 const AppLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const AppLoader = ({ children }) => {
     dispatch(loadSizesClothList());
     dispatch(loadSizesShoesList());
     dispatch(loadSubscriptionList());
+    dispatch(loadLettersList());
     if (isLoggedIn) {
       dispatch(loadUser());
     } else {

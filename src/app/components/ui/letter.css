@@ -1,0 +1,63 @@
+.letters-title{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30px 0;
+}
+.letter-table{
+  display: flex;
+  flex-wrap: wrap;
+  gap:30px;
+  margin-bottom: 20px ;
+}
+.letter{
+  padding-top: 20px;
+  border: 1px solid var(--light-grey);
+  max-width: 300px;
+  width: 100%;
+  position: relative;
+}
+.letter-content{
+  padding-bottom: 40px;
+}
+.letter div{
+  margin: 5px;
+}
+.letter span{
+  font-weight: bold;
+}
+.letter-bage{
+  position: absolute;
+  top: -19px;
+  right: 0;
+  font-weight: bold;
+  color:var(--focus);
+}
+.letter .letter-mail{
+  padding: 5px;
+  /* margin: 20px 5px; */
+  background-color: var(--basic-dark);
+  width: 150px;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+}
+.letter .letter-mail a{
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+.letter-close{
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top:5px;
+  right: 5px;
+  cursor: pointer;
+  background-image: url(../../assets/close.svg);
+  background-size: contain;
+}
+.no-letters{
+  text-align: center;
+  margin-bottom: 30px;
+}
