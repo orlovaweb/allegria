@@ -76,6 +76,9 @@ const AccountNavBar = () => {
   const handleChangeSelect = () => {
     console.log(selectRef.current);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <nav>
       <ul className="advanced-navigation">
@@ -127,7 +130,7 @@ const AccountNavBar = () => {
         </li>
       </ul>
       <div className="mobile-navigation">
-        <form>
+        <form onSubmit={handleSubmit}>
           <Select
             options={navOptions}
             className="input-text-field personal-adress__select"

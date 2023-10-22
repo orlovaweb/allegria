@@ -2,11 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removeLetter } from "../../store/letters";
+import displayDate from "../../utils/displayDate";
 import "./letter.css";
 
 const Letter = ({ letter }) => {
   const dispatch = useDispatch();
-  const { name, email, text, type, _id } = letter;
+  const { name, email, text, type, _id, date } = letter;
   const handleDelete = () => {
     dispatch(removeLetter(_id));
   };
@@ -14,6 +15,9 @@ const Letter = ({ letter }) => {
     <>
       <div className="letter">
         <div className="letter-content">
+          <div>
+            <p className="letter-date">{displayDate(date)}</p>
+          </div>
           <div>
             <p>
               <span>Имя: </span> {name}

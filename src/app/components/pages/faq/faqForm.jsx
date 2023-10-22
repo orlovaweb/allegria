@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import "./faq.css";
-import { useDispatch } from "react-redux";
-import { addLetter } from "../../../store/letters";
+import { useDispatch, useSelector } from "react-redux";
+import { addLetter, getLetterSendingStatus } from "../../../store/letters";
 
 const faqOptions = [
   {
@@ -15,6 +15,7 @@ const faqOptions = [
 
 const FaqForm = () => {
   const dispatch = useDispatch();
+  const isSent = useSelector(getLetterSendingStatus());
   const {
     register,
     handleSubmit,
@@ -24,11 +25,16 @@ const FaqForm = () => {
   } = useForm({
     mode: "onTouched"
   });
+
+  useEffect(() => {
+    if (isSent) {
+      reset();
+    }
+  }, [isSent]);
   const submitAction = (data) => {
-    const newData = { ...data, type: data.type.value };
+    const newData = { ...data, type: data.type.value, date: Date.now() };
     console.log(newData);
     dispatch(addLetter(newData));
-    reset();
   };
   return (
     <div className="faq-form">

@@ -10,7 +10,8 @@ const lettersSlice = createSlice({
     entities: null,
     isLoading: true,
     error: null,
-    lastFetch: null
+    lastFetch: null,
+    isSent: false
   },
   reducers: {
     lettersRequested: (state) => {
@@ -25,11 +26,15 @@ const lettersSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+    addLetterRequested: (state) => {
+      state.isSent = false;
+    },
     letterCreated: (state, action) => {
       if (!Array.isArray(state.entities)) {
         state.entities = [];
       }
       state.entities.push(action.payload);
+      state.isSent = true;
     },
     letterDeleted: (state, action) => {
       state.entities = state.entities.filter((c) => c._id !== action.payload);
@@ -38,9 +43,8 @@ const lettersSlice = createSlice({
 });
 
 const { reducer: lettersReducer, actions } = lettersSlice;
-const { lettersRequested, lettersReceived, lettersRequestFailed, letterCreated, letterDeleted } = actions;
+const { lettersRequested, lettersReceived, lettersRequestFailed, letterCreated, letterDeleted, addLetterRequested } = actions;
 
-const addLetterRequested = createAction("letters/addLetterRequested");
 const addLetterFailed = createAction("letters/addLetterFailed");
 const removeLetterRequested = createAction("letters/removeLetterRequested");
 const removeLetterFailed = createAction("letters/removeLetterFailed");
@@ -106,5 +110,6 @@ export function removeLetter(payload) {
 
 export const getLetters = () => (state) => state.letters.entities;
 export const getLettersLoadingStatus = () => (state) => state.letters.isLoading;
+export const getLetterSendingStatus = () => (state) => state.letters.isSent;
 
 export default lettersReducer;

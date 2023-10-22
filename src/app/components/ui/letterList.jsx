@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getLetters } from "../../store/letters";
@@ -6,6 +7,7 @@ import "./letter.css";
 const LetterList = () => {
   const letters = useSelector(getLetters()) || [];
   if (letters) {
+    const sortedLetters = _.orderBy(letters, "date", "asc");
     return (
       <>
         <h3 className="letters-title">Вопросы и предложения</h3>
@@ -16,7 +18,7 @@ const LetterList = () => {
           </p>
         ) : (
           <div className="letter-table">
-            {letters.map((letter) => (
+            {sortedLetters.map((letter) => (
               <Letter letter={letter} key={letter._id} />
             ))}
           </div>
