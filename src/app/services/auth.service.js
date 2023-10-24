@@ -52,6 +52,23 @@ const authService = {
         email
       });
     return data;
+  },
+  verifyEmail: async (idToken) => {
+    const { data } = await httpAuth.post(
+      `accounts:sendOobCode`,
+      {
+        requestType: "VERIFY_EMAIL",
+        idToken
+      });
+    return data;
+  },
+  getIsVerified: async (idToken) => {
+    const { data } = await httpAuth.post(
+      `accounts:lookup`,
+      {
+        idToken
+      });
+    return data;
   }
 };
 

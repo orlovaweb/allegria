@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import Select from "react-select";
 import { getCategories } from "../../../../store/categories";
+import { getSearchItem } from "../../../../store/goods";
 import Breadcrumbs from "../../../common/breadcrumbs";
 import DisplayCount from "../../displayCount";
 import GoodsTable from "../goodsTable";
@@ -28,6 +29,7 @@ const Goods = ({ goods }) => {
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
   const isMobile = useMediaQuery({ maxWidth: 700 });
   const [pageSize, setPageSize] = useState(12);
+  const searchText = useSelector(getSearchItem());
   const pageAddition = 12;
 
   useEffect(() => {
@@ -48,10 +50,30 @@ const Goods = ({ goods }) => {
     if (isDesktopOrLaptop) return "goods__nav-desktop";
     else return showFiltration ? "goods__nav active-filtration" : "goods__nav";
   };
-  const filteredGoods = selectedCat
-    ? goods.filter((product) => product.category === selectedCat._id)
-    : goods;
-
+  const getSearchRegExp = (searchText) => {
+    const searchArray = searchText.split(" ");
+    let reg = "(";
+    searchArray.forEach((e) => (reg = reg + e + "|"));
+    reg = reg.slice(0, -1);
+    reg = reg + ")";
+    const newRegExp = new RegExp(`${reg.toLowerCase()}`);
+    return newRegExp;
+  };
+  const getFilteredGoods = (goods) => {
+    const filteredGoods = searchText
+      ? goods.filter((product) =>
+          getSearchRegExp(searchText).test(
+            product.name.toLowerCase() +
+              product.longDescription.toLowerCase() +
+              product.shortDescription.toLowerCase()
+          )
+        )
+      : selectedCat
+      ? goods.filter((product) => product.category === selectedCat._id)
+      : goods;
+    return filteredGoods;
+  };
+  const filteredGoods = getFilteredGoods(goods);
   const sortedGoods = _.orderBy(filteredGoods, [sortBy.name], [sortBy.order]);
   const count = sortedGoods.length;
   const cropedGoods = [...sortedGoods].splice(0, pageSize);
@@ -79,7 +101,11 @@ const Goods = ({ goods }) => {
           </div>
           <div className="goods__content">
             <h1 className="goods__content-title">
-              {selectedCat ? selectedCat.name : "Все товары"}
+              {searchText
+                ? "Поиск"
+                : selectedCat
+                ? selectedCat.name
+                : "Все товары"}
             </h1>
             <div className="goods__content-detail-box">
               <div className="goods__content-count">
@@ -110,6 +136,9 @@ const Goods = ({ goods }) => {
             </div>
             <div className="goods__content-list">
               {count > 0 && <GoodsTable items={cropedGoods} />}
+              {count === 0 && (
+                <div className="on-searched-items">Ничего не нашлось</div>
+              )}
             </div>
             {count > pageSize ? (
               <button

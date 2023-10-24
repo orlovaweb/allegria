@@ -30,12 +30,10 @@
   position: absolute;
   top: -19px;
   right: 0;
-  /* font-weight: bold; */
   color:var(--focus);
 }
 .letter .letter-mail{
   padding: 5px;
-  /* margin: 20px 5px; */
   background-color: var(--basic-dark);
   width: 150px;
   position: absolute;

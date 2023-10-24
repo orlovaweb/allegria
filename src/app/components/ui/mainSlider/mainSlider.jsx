@@ -1,8 +1,9 @@
-import "./mainSlider.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "./mainSlider.css";
+import { Link } from "react-router-dom";
 
 const MainSlider = () => {
   const settings = {
@@ -30,7 +31,7 @@ const MainSlider = () => {
             <div className="offer first-slide__offer">
               <p>Бренд</p>
               <h2>American vintage</h2>
-              <a href="/">Смотреть коллекцию</a>
+              <Link to="/goods">Смотреть товары</Link>
             </div>
           </div>
         </div>
@@ -40,7 +41,7 @@ const MainSlider = () => {
               <div className="second-slide__offer offer">
                 <p>Бренд</p>
                 <h2>George Gina Lucy</h2>
-                <a href="/">Смотреть коллекцию</a>
+                <Link to="/goods">Смотреть товары</Link>
               </div>
             </div>
           </div>
@@ -51,7 +52,7 @@ const MainSlider = () => {
               <div className="third-slide__offer offer">
                 <p>Бренд</p>
                 <h2>Deha</h2>
-                <a href="/">Смотреть коллекцию</a>
+                <Link to="/goods">Смотреть товары</Link>
               </div>
             </div>
           </div>
@@ -62,7 +63,7 @@ const MainSlider = () => {
               <div className="fouth-slide__offer offer">
                 <p>Бренд</p>
                 <h2>Birkenstock</h2>
-                <a href="/">Смотреть коллекцию</a>
+                <Link to="/goods">Смотреть товары</Link>
               </div>
             </div>
           </div>

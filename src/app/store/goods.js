@@ -1,6 +1,7 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import isOutdated from "../utils/isOutdated";
 import goodService from "../services/good.service";
+import history from "../utils/history";
+import isOutdated from "../utils/isOutdated";
 
 const goodsSlice = createSlice({
   name: "goods",
@@ -8,7 +9,8 @@ const goodsSlice = createSlice({
     entities: null,
     isLoading: true,
     error: null,
-    lastFetch: null
+    lastFetch: null,
+    searchItem: null
   },
   reducers: {
     goodsRequested: (state) => {
@@ -25,12 +27,18 @@ const goodsSlice = createSlice({
     },
     productUploaded: (state, action) => {
       state.entities[state.entities.findIndex(u => u._id === action.payload._id)] = action.payload;
+    },
+    searchItemIsSet: (state, action) => {
+      state.searchItem = action.payload;
+    },
+    searchItemIsCleared: (state) => {
+      state.searchItem = null;
     }
   }
 });
 
 const { reducer: goodsReducer, actions } = goodsSlice;
-const { goodsRequested, goodsReceived, goodsRequestFailed, productUploaded } = actions;
+const { goodsRequested, goodsReceived, goodsRequestFailed, productUploaded, searchItemIsSet, searchItemIsCleared } = actions;
 
 const productUploadRequested = createAction("goods/productUploadRequested");
 const productUploadFailed = createAction("goods/productUploadFailed");
@@ -58,7 +66,13 @@ export function uploadProduct(payload) {
     }
   };
 }
-
+export const setSearchItem = (payload) => dispatch => {
+  dispatch(searchItemIsSet(payload));
+  history.push("/goods");
+};
+export const clearSearchItem = () => dispatch => {
+  dispatch(searchItemIsCleared());
+};
 export const getProductById = (productId) => state => {
   if (state.goods.entities) {
     return state.goods.entities.find(u => u._id === productId);
@@ -67,5 +81,6 @@ export const getProductById = (productId) => state => {
 
 export const getGoods = () => (state) => state.goods.entities;
 export const getGoodsLoadingStatus = () => (state) => state.goods.isLoading;
+export const getSearchItem = () => (state) => state.goods.searchItem;
 
 export default goodsReducer;

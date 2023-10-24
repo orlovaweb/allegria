@@ -5,6 +5,7 @@ import "./modal.css";
 const Modal = ({
   isImg = false,
   isForm = false,
+  isVerify = false,
   active,
   setActive,
   children
@@ -19,7 +20,15 @@ const Modal = ({
   };
   return (
     <div
-      className={active ? "modal active" : "modal"}
+      className={
+        active
+          ? isVerify
+            ? "modal active verify"
+            : "modal active"
+          : isVerify
+          ? "modal verify"
+          : "modal"
+      }
       onClick={() => {
         setActive(false);
       }}
@@ -48,6 +57,7 @@ Modal.propTypes = {
   setActive: PropTypes.func.isRequired,
   children: PropTypes.object,
   isImg: PropTypes.bool,
-  isForm: PropTypes.bool
+  isForm: PropTypes.bool,
+  isVerify: PropTypes.bool
 };
 export default Modal;

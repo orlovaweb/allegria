@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import GoodsList from "../components/ui/goodsParts/goodsTable";
 import { getGoods } from "../store/goods";
 import {

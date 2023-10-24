@@ -48,6 +48,12 @@ font-size: 14px;
   cursor: pointer;
   margin-left: 3px;
 }
+.verify-modal p{
+  text-align: center;
+}
+.modal-title.verify-modal__title{
+  margin-bottom: 15px;
+}
 @media screen and (max-width: 600px) {
   .form-register-row{
     flex-direction: column;
@@ -61,5 +67,22 @@ font-size: 14px;
   }
   .form-register{
     margin-bottom: 50px;
+  }
+  .verify .modal-wrapper{
+    height: 100%;
+    
+  }
+  .verify .modal__content-text{
+    height: 100%;
+  }
+  .verify .modal__inner-content{
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .modal-title.verify-modal__title{
+    margin-bottom: 30px;
   }
 }

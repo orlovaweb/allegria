@@ -13,8 +13,12 @@ const initialState = localStorageService.getAccessToken() ? {
   error: null,
   auth: { userId: localStorageService.getUserId() },
   isLoggedIn: true,
+  isVerified: true,
+  isCreated: false,
   dataLoaded: false,
   emailResetedPassword: null,
+  verifyEmailIsSentTo: null,
+  wasShownVerify: false,
   favorite: [],
   cart: []
 } : {
@@ -23,8 +27,12 @@ const initialState = localStorageService.getAccessToken() ? {
   error: null,
   auth: null,
   isLoggedIn: false,
+  isVerified: true,
+  isCreated: false,
   dataLoaded: false,
   emailResetedPassword: null,
+  verifyEmailIsSentTo: null,
+  wasShownVerify: false,
   favorite: [],
   cart: []
 };
@@ -53,11 +61,8 @@ const usersSlice = createSlice({
     authRequestFailed: (state, action) => {
       state.error = action.payload;
     },
-    userCreated: (state, action) => {
-      // if (!Array.isArray(state.entities)) {
-      //   state.entities = [];
-      // }
-      state.entities = action.payload;
+    userCreated: (state) => {
+      state.isCreated = true;
     },
     userUploaded: (state, action) => {
       state.entities = action.payload;
@@ -85,14 +90,28 @@ const usersSlice = createSlice({
     },
     unauthorizedFavoriteUploaded: (state, action) => {
       state.favorite = action.payload;
+    },
+    userCreateRequested: (state) => {
+      state.isCreated = false;
+    },
+    sendVerifyEmailRequested: (state) => {
+      state.verifyEmailIsSentTo = null;
+    },
+    verifyEmailIsSent: (state, action) => {
+      state.verifyEmailIsSentTo = action.payload;
+    },
+    verifyModalWasShown: (state) => {
+      state.wasShownVerify = true;
+    },
+    setIsVerified: (state, action) => {
+      state.isVerified = action.payload;
     }
   }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted, unauthorizedFavoriteUploaded } = actions;
+const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted, unauthorizedFavoriteUploaded, userCreateRequested, sendVerifyEmailRequested, verifyEmailIsSent, verifyModalWasShown, setIsVerified } = actions;
 
-const userCreateRequested = createAction("users/userCreateRequested");
 const userCreateFailed = createAction("users/userCreateFailed");
 const userUploadRequested = createAction("users/userUploadRequested");
 const userUploadFailed = createAction("users/userUploadFailed");
@@ -100,20 +119,30 @@ const removedErrorRequested = createAction("users/removedErrorRequested");
 const removedErrorFailed = createAction("users/removedErrorFailed");
 const userUnauthorizedFavoriteRequested = createAction("users/userUnauthorizedFavoriteRequested");
 const userUnauthorizedFavoriteFailed = createAction("users/userUnauthorizedFavoriteFailed");
+const sendVerifyEmailFailed = createAction("users/sendVerifyEmailFailed");
+const resetVerifyEmailRequested = createAction("users/resetVerifyEmailRequested");
+const resetVerifyEmailFailed = createAction("users/resetVerifyEmailFailed");
 
 export const login = ({ payload, redirect }) => async (dispatch) => {
   const { email, password } = payload;
   dispatch(authRequested());
   try {
     const data = await authService.login({ email, password });
-    dispatch(authRequestSuccess({ userId: data.localId }));
-    localStorageService.setTokens(data);
-    console.log(redirect);
-    toast.success("Вы успешно вошли в систему!", {
-      autoClose: 2000,
-      hideProgressBar: true,
-      theme: "dark",
-    });
+    const content = await authService.getIsVerified(data.idToken);
+    const emailVerified = content.users[0].emailVerified;
+    dispatch(setIsVerified(emailVerified));
+    if (emailVerified) {
+      dispatch(authRequestSuccess({ userId: data.localId }));
+      localStorageService.setTokens(data);
+      console.log(redirect);
+      toast.success("Вы успешно вошли в систему!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: "dark",
+      });
+    } else {
+      console.log("Подтвердите почту!");
+    }
     // history.push(redirect);
     // history.push("/account");
   } catch (error) {
@@ -131,14 +160,13 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
   dispatch(authRequested());
   try {
     const data = await authService.register({ email, password });
-    localStorageService.setTokens(data);
-    dispatch(authRequestSuccess({ userId: data.localId }));
     dispatch(createUser({
       _id: data.localId,
       email,
       ...rest
     }));
-    history.push("/account");
+    dispatch(sendVerifyEmail(data.idToken));
+
   } catch (error) {
     const { code, message } = error.response.data.error;
     console.log(code, message);
@@ -150,6 +178,30 @@ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
     }
   }
 };
+function createUser(payload) {
+  return async function (dispatch) {
+    dispatch(userCreateRequested());
+    try {
+      await userService.create(payload);
+      dispatch(userCreated());
+
+    } catch (error) {
+      dispatch(userCreateFailed(error.message));
+    }
+  };
+}
+function sendVerifyEmail(payload) {
+  return async function (dispatch) {
+    dispatch(sendVerifyEmailRequested());
+    try {
+      const { email } = await authService.verifyEmail(payload);
+      dispatch(verifyEmailIsSent(email));
+
+    } catch (error) {
+      dispatch(sendVerifyEmailFailed(error.message));
+    }
+  };
+}
 export const changePassword = (password) => async (dispatch) => {
   dispatch(authRequested());
   try {
@@ -191,18 +243,7 @@ export const logOut = () => (dispatch) => {
   history.push("/");
 };
 
-function createUser(payload) {
-  return async function (dispatch) {
-    dispatch(userCreateRequested());
-    try {
-      const { content } = await userService.create(payload);
-      dispatch(userCreated(content));
 
-    } catch (error) {
-      dispatch(userCreateFailed(error.message));
-    }
-  };
-}
 export function uploadUser(payload) {
   return async function (dispatch) {
     dispatch(userUploadRequested());
@@ -327,6 +368,14 @@ export const removeError = () => async (dispatch) => {
     dispatch(removedErrorFailed(error.message));
   }
 };
+export const resetVerifyEmail = () => async (dispatch) => {
+  dispatch(resetVerifyEmailRequested());
+  try {
+    dispatch(verifyModalWasShown());
+  } catch (error) {
+    dispatch(resetVerifyEmailFailed(error.message));
+  }
+};
 
 export const getUsers = () => (state) => state.users.entities;
 export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
@@ -348,6 +397,10 @@ export const getAuthError = () => state => state.users.error;
 export const getEmailResetedPassword = () => state => state.users.emailResetedPassword;
 export const getFavorite = () => state => state.users.entities?.favorite;
 export const getUnauthorizedFavorite = () => state => state.users.favorite;
+export const getIsVerified = () => state => state.users.isVerified;
+export const getIsCreated = () => state => state.users.isCreated;
+export const getVerifyEmail = () => state => state.users.verifyEmailIsSentTo;
+export const getWasShownVerify = () => state => state.users.wasShownVerify;
 
 
 export default usersReducer;
