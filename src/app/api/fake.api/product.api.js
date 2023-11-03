@@ -7,7 +7,7 @@ const brands = {
 };
 export const sizesCloth = {
     xs: {
-        _id: "67rdca3eeb7f6fgeed471198",
+        _id: "67rdca3eeb7f6fgeed471098",
         name: "XS"
     },
     s: {
@@ -15,7 +15,7 @@ export const sizesCloth = {
         name: "S"
     },
     m: {
-        _id: "67rdca3eeb7f6fgeed4711012",
+        _id: "67rdca3eeb7f6fgeed471099",
         name: "M"
     },
     l: {

@@ -1,0 +1,61 @@
+
+.order-form{
+  border-left: 1px solid var(--dark-grey);
+  max-width: 420px;
+  margin-left: auto;
+  height: 100%;
+  padding: 30px 15px 0 30px;
+}
+.order-form__edit{
+  color: var(--focus);
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+.order-form h4{
+ text-transform: uppercase;
+ margin-bottom: 10px;
+ font-weight: 500;
+}
+.order-form__delivery{
+  margin-bottom: 10px;
+}
+.btn.order-form__btn{
+  width: 250px;
+	margin-bottom: 30px;
+}
+.order-form__radio{
+  margin-bottom: 15px;
+}
+.order-form__radio + .order-form__radio{
+  margin-bottom: 30px;
+}
+.order-form__radio input[type=radio] {
+	display: none;
+}
+.order-form__radio label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 0;
+	line-height: 18px;
+	user-select: none;
+}
+.order-form__radio label:before {
+	content: "";
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--dark-grey);
+	left: 0;
+	bottom: 3px;
+	background-color: transparent;
+}
+.order-form__radio input[type=radio]:checked + label:before {
+	background-color: var(--focus);
+}
+.order-form__radio label:hover {
+	filter: brightness(105%);
+}

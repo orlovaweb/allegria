@@ -8,6 +8,7 @@ import { loadSizesClothList } from "../../../store/sizesCloth";
 import { loadSizesShoesList } from "../../../store/sizesShoes";
 import {
   getIsLoggedIn,
+  loadUnauthorizedCart,
   loadUnauthorizedFavorite,
   loadUser
 } from "../../../store/users";
@@ -29,6 +30,7 @@ const AppLoader = ({ children }) => {
       dispatch(loadUser());
     } else {
       dispatch(loadUnauthorizedFavorite());
+      dispatch(loadUnauthorizedCart());
     }
   }, [isLoggedIn]);
 

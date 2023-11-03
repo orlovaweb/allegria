@@ -5,8 +5,18 @@ import "./goodsItem.css";
 import Bookmark from "../../../common/bookmark/bookmark";
 import Discount from "../../../common/discount";
 import Price from "../../../common/price";
+import { useSelector } from "react-redux";
+import { getBrands } from "../../../../store/brands";
 
 const GoodsItem = ({ item }) => {
+  const brands = useSelector(getBrands());
+  const getBrandName = (id) => {
+    const brandIndex = brands.findIndex((el) => {
+      return el._id === id;
+    });
+
+    return brands[brandIndex].name;
+  };
   return (
     <div className="product-card">
       <Link to={`/goods/${item._id}`}>
@@ -18,7 +28,9 @@ const GoodsItem = ({ item }) => {
           <Discount discount={item.discount} />
         </div>
         <div className="product-description">
-          <p className="product-description__brand">{item.brand.name}</p>
+          <p className="product-description__brand">
+            {getBrandName(item.brand)}
+          </p>
           <p className="product-description__shortDescription">
             {item.shortDescription}
           </p>

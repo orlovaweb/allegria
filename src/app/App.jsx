@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,15 +15,16 @@ import Goods from "./layouts/goods";
 import Main from "./layouts/main";
 import Account from "./components/pages/account/account";
 import ProtectedRoute from "./components/common/protectedRoute";
-import ShoppingCart from "./components/pages/shoppingCart";
 import LogOut from "./layouts/logOut";
 import Favorite from "./layouts/favorite";
+import ShoppingCart from "./layouts/shoppingCart";
 
 function App() {
+  const [modalLogin, setModalLogin] = useState(false);
   return (
     <div className="page">
       <AppLoader>
-        <Header />
+        <Header modalLogin={modalLogin} setModalLogin={setModalLogin} />
         <Switch>
           <Route path="/" exact component={Main} />
           <Route path="/aboutUs" component={AboutUs} />
@@ -34,7 +35,12 @@ function App() {
           <ProtectedRoute path="/account" component={Account} />
           <Route path="/goods/:productId?" component={Goods} />
           <Route path="/favorite" component={Favorite} />
-          <Route path="/shoppingCart" component={ShoppingCart} />
+          <Route
+            path="/shoppingCart"
+            render={(props) => (
+              <ShoppingCart {...props} setModalLogin={setModalLogin} />
+            )}
+          />
           <Route path="/logout" component={LogOut} />
           <Redirect to="/goods" />
         </Switch>

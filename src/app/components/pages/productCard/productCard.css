@@ -28,6 +28,9 @@
 .card__content{
   max-width: 380px;
 }
+.card__content .invalid-feedback{
+  margin-bottom: 15px;
+}
 .card__content-brand{
   text-transform: uppercase;
   font-size: 25px;

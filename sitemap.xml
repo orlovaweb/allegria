@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://orlovaweb.ru/</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/aboutUs</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/faq</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/brands</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/goods</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/account</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/favorite</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/shoppingCart</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/register</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/goods/</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/account/personalInfo</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/account/adress</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/account/history</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/account/changePassword</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/logOut</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://orlovaweb.ru/admin</loc>
+	<lastmod>2023-10-29T00:25:54+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+</urlset>

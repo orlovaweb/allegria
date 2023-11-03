@@ -10,9 +10,14 @@
   font-size: 40px;
   background-color: transparent;
   padding:0;
+  cursor: pointer;
+
 }
 .counter__btn:disabled{
   background-color: var(--light-grey);
+  cursor: auto;
+}
+.counter__btn:disabled p{
   color: var(--dark-grey);
 }
 .counter__btn:hover{
@@ -20,6 +25,9 @@
 }
 .counter__btn:active{
   border-color: var(--focus);
+}
+.counter__btn:disabled:active{
+  border-color: transparent;
 }
 .counter__btn p{
   font-weight: 300;

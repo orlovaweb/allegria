@@ -105,12 +105,18 @@ const usersSlice = createSlice({
     },
     setIsVerified: (state, action) => {
       state.isVerified = action.payload;
+    },
+    toCartAdded: (state, action) => {
+      state.entities.cart = action.payload.cart;
+    },
+    unauthorizedCartIsUploaded: (state, action) => {
+      state.cart = action.payload;
     }
   }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
-const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted, unauthorizedFavoriteUploaded, userCreateRequested, sendVerifyEmailRequested, verifyEmailIsSent, verifyModalWasShown, setIsVerified } = actions;
+const { userRequested, userReceved, userRequestField, authRequestSuccess, authRequestFailed, userCreated, userLoggedOut, userUploaded, authRequested, removedError, resetPasswordSuccess, favoriteAdded, favoriteDeleted, unauthorizedFavoriteUploaded, userCreateRequested, sendVerifyEmailRequested, verifyEmailIsSent, verifyModalWasShown, setIsVerified, toCartAdded, unauthorizedCartIsUploaded } = actions;
 
 const userCreateFailed = createAction("users/userCreateFailed");
 const userUploadRequested = createAction("users/userUploadRequested");
@@ -119,9 +125,12 @@ const removedErrorRequested = createAction("users/removedErrorRequested");
 const removedErrorFailed = createAction("users/removedErrorFailed");
 const userUnauthorizedFavoriteRequested = createAction("users/userUnauthorizedFavoriteRequested");
 const userUnauthorizedFavoriteFailed = createAction("users/userUnauthorizedFavoriteFailed");
+const userUnauthorizedCartRequested = createAction("users/userUnauthorizedCartRequested");
+const userUnauthorizedCartFailed = createAction("users/userUnauthorizedCartFailed");
 const sendVerifyEmailFailed = createAction("users/sendVerifyEmailFailed");
 const resetVerifyEmailRequested = createAction("users/resetVerifyEmailRequested");
 const resetVerifyEmailFailed = createAction("users/resetVerifyEmailFailed");
+const isAlreadyInCart = createAction("users/isAlreadyInCart");
 
 export const login = ({ payload, redirect }) => async (dispatch) => {
   const { email, password } = payload;
@@ -144,7 +153,7 @@ export const login = ({ payload, redirect }) => async (dispatch) => {
       console.log("Подтвердите почту!");
     }
     // history.push(redirect);
-    // history.push("/account");
+    history.push("/account");
   } catch (error) {
     const { code, message } = error.response.data.error;
     if (code === 400) {
@@ -244,13 +253,13 @@ export const logOut = () => (dispatch) => {
 };
 
 
-export function uploadUser(payload) {
+export function uploadUser(payload, redirect) {
   return async function (dispatch) {
     dispatch(userUploadRequested());
     try {
       const { content } = await userService.upload(payload);
       dispatch(userUploaded(content));
-      history.push("/account/adress");
+      history.push(redirect);
       toast.success("Данные были успешно обновлены", {
         autoClose: 2000,
         hideProgressBar: true,
@@ -261,6 +270,42 @@ export function uploadUser(payload) {
     }
   };
 }
+export const loadUser = () => async (dispatch, getState) => {
+  dispatch(userRequested());
+  try {
+    const { content } = await userService.getById(getState().users.auth.userId);
+    dispatch(userReceved(content));
+  } catch (error) {
+    dispatch(userRequestField(error.message));
+  }
+};
+// export const loadUsersList = () => async (dispatch) => {
+//   dispatch(usersRequested());
+//   try {
+//     const { content } = await userService.get();
+//     dispatch(usersReceved(content));
+//   } catch (error) {
+//     dispatch(usersRequestField(error.message));
+//   }
+// };
+export const removeError = () => async (dispatch) => {
+  dispatch(removedErrorRequested());
+  try {
+    dispatch(removedError());
+  } catch (error) {
+    dispatch(removedErrorFailed(error.message));
+  }
+};
+export const resetVerifyEmail = () => async (dispatch) => {
+  dispatch(resetVerifyEmailRequested());
+  try {
+    dispatch(verifyModalWasShown());
+  } catch (error) {
+    dispatch(resetVerifyEmailFailed(error.message));
+  }
+};
+
+// Favorite
 export function uploadFavorite(payload) {
   return async function (dispatch, getState) {
     dispatch(userUploadRequested());
@@ -280,7 +325,6 @@ export function uploadFavorite(payload) {
     }
   };
 }
-
 export function addFavorite(payload) {
   return async function (dispatch, getState) {
     dispatch(userUploadRequested());
@@ -342,40 +386,169 @@ export function removeUnauthorizedFavorite(payload) {
     }
   };
 }
-export const loadUser = () => async (dispatch, getState) => {
-  dispatch(userRequested());
-  try {
-    const { content } = await userService.getById(getState().users.auth.userId);
-    dispatch(userReceved(content));
-  } catch (error) {
-    dispatch(userRequestField(error.message));
-  }
-};
-// export const loadUsersList = () => async (dispatch) => {
-//   dispatch(usersRequested());
-//   try {
-//     const { content } = await userService.get();
-//     dispatch(usersReceved(content));
-//   } catch (error) {
-//     dispatch(usersRequestField(error.message));
-//   }
-// };
-export const removeError = () => async (dispatch) => {
-  dispatch(removedErrorRequested());
-  try {
-    dispatch(removedError());
-  } catch (error) {
-    dispatch(removedErrorFailed(error.message));
-  }
-};
-export const resetVerifyEmail = () => async (dispatch) => {
-  dispatch(resetVerifyEmailRequested());
-  try {
-    dispatch(verifyModalWasShown());
-  } catch (error) {
-    dispatch(resetVerifyEmailFailed(error.message));
-  }
-};
+// Shopping cart
+export function uploadCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const cartArray = getState().users.entities?.cart ? getState().users.entities.cart : [];
+      const newCartArray = [...cartArray];
+      payload.forEach((localArrayItem) => {
+        let isAdded = false;
+        newCartArray.forEach((newCartItem) => {
+          if (newCartItem.productId === localArrayItem.productId && newCartItem.size === localArrayItem.size) {
+            isAdded = true;
+          }
+
+        });
+        if (!isAdded) {
+          newCartArray.push(localArrayItem);
+        }
+      });
+      const user = { ...getState().users.entities, cart: newCartArray };
+      const { content } = await userService.upload(user);
+      dispatch(userUploaded(content));
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
+export function uploadCountInCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const cartArray = getState().users.entities?.cart ? getState().users.entities.cart : [];
+      const index = cartArray.findIndex((obj) => obj.productId === payload.productId && obj.size === payload.size);
+      const newCartArray = [...cartArray];
+      newCartArray[index] = payload;
+      const user = { ...getState().users.entities, cart: newCartArray };
+      const { content } = await userService.upload(user);
+      dispatch(userUploaded(content));
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
+export function uploadCountInUnauthorizedCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUnauthorizedCartRequested());
+    try {
+      const cartArray = getState().users.cart ? getState().users.cart : [];
+      const index = cartArray.findIndex((obj) => obj.productId === payload.productId && obj.size === payload.size);
+      const newCartArray = [...cartArray];
+      newCartArray[index] = payload;
+      localStorage.cart = JSON.stringify(newCartArray);
+      dispatch(unauthorizedCartIsUploaded(newCartArray));
+    } catch (error) {
+      dispatch(userUnauthorizedCartFailed(error.message));
+    }
+  };
+}
+export function addToCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const newCartArray = getState().users.entities.cart ? [...getState().users.entities.cart] : [];
+      const index = newCartArray.findIndex((obj) => obj.productId === payload.productId && obj.size === payload.size);
+      if (index > 0) {
+        toast.success("Товар уже есть в корзине. Перейдите к заказу!", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "dark",
+        });
+        dispatch(isAlreadyInCart());
+      } else {
+        newCartArray.push(payload);
+        const user = { ...getState().users.entities, cart: newCartArray };
+        const { content } = await userService.upload(user);
+        dispatch(toCartAdded(content));
+        toast.success("Товар добавлен в корзину!", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "dark",
+        });
+      }
+
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
+export function loadUnauthorizedCart() {
+  return async function (dispatch) {
+    dispatch(userUnauthorizedCartRequested());
+    try {
+      const cartArray = localStorage.cart ? JSON.parse(localStorage.cart) : [];
+      dispatch(unauthorizedCartIsUploaded(cartArray));
+    } catch (error) {
+      dispatch(userUnauthorizedCartFailed(error.message));
+    }
+  };
+}
+
+export function addUnauthorizedToCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUnauthorizedCartRequested());
+    try {
+      const newCartArray = getState().users.cart ? [...getState().users.cart] : [];
+      let isAdded = false;
+      newCartArray.forEach(cartObj => {
+        if (cartObj.productId === payload.productId && cartObj.size === payload.size) {
+          // cartObj.count++;
+          isAdded = true;
+          console.log(cartObj, payload);
+          toast.success("Товар уже есть в корзине. Перейдите к заказу!", {
+            autoClose: 2000,
+            hideProgressBar: true,
+            theme: "dark",
+          });
+        }
+      });
+      if (!isAdded) {
+        newCartArray.push(payload);
+        localStorage.cart = JSON.stringify(newCartArray);
+        dispatch(unauthorizedCartIsUploaded(newCartArray));
+        toast.success("Товар добавлен в корзину!", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "dark",
+        });
+      }
+
+    } catch (error) {
+      dispatch(userUnauthorizedCartFailed(error.message));
+    }
+  };
+}
+export function removeFromCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUploadRequested());
+    try {
+      const cartArray = getState().users.entities?.cart ? getState().users.entities.cart : [];
+      const newCartArray = cartArray.filter((obj) => (obj.productId !== payload.productId || obj.size !== payload.size));
+      const user = { ...getState().users.entities, cart: newCartArray };
+      const { content } = await userService.upload(user);
+      dispatch(userUploaded(content));
+    } catch (error) {
+      dispatch(userUploadFailed(error.message));
+    }
+  };
+}
+export function removeFromUnauthorizedCart(payload) {
+  return async function (dispatch, getState) {
+    dispatch(userUnauthorizedCartRequested());
+    try {
+      const cartArray = getState().users.cart ? getState().users.cart : [];
+      const newCartArray = cartArray.filter((obj) => obj.productId !== payload.productId || obj.size !== payload.size);
+      localStorage.cart = JSON.stringify(newCartArray);
+      dispatch(unauthorizedCartIsUploaded(newCartArray));
+    } catch (error) {
+      dispatch(userUnauthorizedCartFailed(error.message));
+    }
+  };
+}
+
+
 
 export const getUsers = () => (state) => state.users.entities;
 export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
@@ -396,7 +569,9 @@ export const getCurrentUserId = () => state => state.users.auth.userId;
 export const getAuthError = () => state => state.users.error;
 export const getEmailResetedPassword = () => state => state.users.emailResetedPassword;
 export const getFavorite = () => state => state.users.entities?.favorite;
+export const getCart = () => state => state.users.entities?.cart;
 export const getUnauthorizedFavorite = () => state => state.users.favorite;
+export const getUnauthorizedCart = () => state => state.users.cart;
 export const getIsVerified = () => state => state.users.isVerified;
 export const getIsCreated = () => state => state.users.isCreated;
 export const getVerifyEmail = () => state => state.users.verifyEmailIsSentTo;

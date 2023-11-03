@@ -7,18 +7,23 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+.size-wrapper input[type=radio] {
+	display: none;
 }
 .size p{
   display: block;
 }
 .size-in-stock{
   color: var(--basic-dark);
+  background-color: transparent;
   cursor: pointer;
 }
-.size:disabled{
-  background-color: var(--light-grey);
-  color: var(--dark-grey);
-}
-.size:active{
+input[type=radio]:checked+p.size {
   border-color: var(--focus);
 }
+/* .size:active{
+  border-color: var(--focus);
+} */

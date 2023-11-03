@@ -2,23 +2,30 @@ import PropTypes from "prop-types";
 import React from "react";
 import "./size.css";
 
-const Size = ({ size, sizes }) => {
-  const handleClick = () => {
-    console.log("click");
-  };
-
+const Size = ({ size, sizes, register }) => {
   return (
-    <button
-      className={"size" + (sizes.includes(size._id) ? " size-in-stock" : "")}
-      onClick={handleClick}
-      disabled={!sizes.includes(size._id)}
-    >
-      {size.name}
-    </button>
+    <>
+      <label className="size-wrapper">
+        <input
+          type="radio"
+          value={size.name}
+          {...register("size", { required: true })}
+          disabled={!sizes.includes(size._id)}
+        />
+        <p
+          className={
+            "size" + (sizes.includes(size._id) ? " size-in-stock" : "")
+          }
+        >
+          {size.name}
+        </p>
+      </label>
+    </>
   );
 };
 Size.propTypes = {
   size: PropTypes.object.isRequired,
-  sizes: PropTypes.array
+  sizes: PropTypes.array,
+  register: PropTypes.func
 };
 export default Size;

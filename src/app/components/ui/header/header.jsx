@@ -18,9 +18,10 @@ import LoginForm from "../loginForm";
 import NavBar from "../navBar";
 import "./header.css";
 import SearchForm from "./searchForm";
+import PropTypes from "prop-types";
 
-const Header = () => {
-  const [modalLogin, setModalLogin] = useState(false);
+const Header = ({ modalLogin, setModalLogin }) => {
+  // const [modalLogin, setModalLogin] = useState(false);
   const [modalForgotPassword, setModalForgotPassword] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
   const history = useHistory();
@@ -29,7 +30,6 @@ const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const user = useSelector(getCurrentUserData());
   const emailResetedPassword = useSelector(getEmailResetedPassword());
-
   useEffect(() => {
     if (history.state?.from == "registerForm") {
       setModalLogin(true);
@@ -142,5 +142,8 @@ const Header = () => {
     </section>
   );
 };
-
+Header.propTypes = {
+  modalLogin: PropTypes.bool,
+  setModalLogin: PropTypes.func
+};
 export default Header;

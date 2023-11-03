@@ -61,6 +61,8 @@ const RegisterForm = () => {
   useEffect(() => {
     if (isCreated) {
       reset();
+      localStorage.removeItem("favorite");
+      localStorage.removeItem("cart");
     }
   }, [isCreated]);
 
@@ -80,15 +82,18 @@ const RegisterForm = () => {
 
   const submitAction = (data) => {
     data.phone = data.phone
-      .replace("+7", "8")
+      // .replace("+7", "8")
+      .slice(2)
       .replaceAll("-", "")
       .replace("(", "")
       .replace(")", "")
       .replaceAll(" ", "");
+    data.name = data.name.trim();
+    data.surname = data.surname.trim();
     delete data.repeatPassword;
     const newData = {
       ...data,
-      cart: [],
+      cart: localStorage.cart ? JSON.parse(localStorage.cart) : [],
       favorite: localStorage.favorite ? JSON.parse(localStorage.favorite) : []
     };
     delete newData.licence;
@@ -99,7 +104,6 @@ const RegisterForm = () => {
     }
     delete newData.mailing;
     dispatch(signUp(newData));
-    localStorage.removeItem("favorite");
   };
   const toggleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -118,12 +122,19 @@ const RegisterForm = () => {
                     : "input-text-field"
                 }
                 placeholder="Имя"
-                {...register("name", { required: true })}
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Имя обязательно для заполнения"
+                  },
+                  pattern: {
+                    value: /^[A-Za-zА-Яа-я-']+$/g,
+                    message: "Некорректное имя"
+                  }
+                })}
               />
               {errors.name && (
-                <p className="invalid-feedback">
-                  Имя обязательно для заполнения
-                </p>
+                <p className="invalid-feedback">{errors.name.message}</p>
               )}
             </div>
             <div className="input-text-wrapper">
@@ -134,12 +145,19 @@ const RegisterForm = () => {
                     : "input-text-field"
                 }
                 placeholder="Фамилия"
-                {...register("surname", { required: true })}
+                {...register("surname", {
+                  required: {
+                    value: true,
+                    message: "Фамилия обязательна для заполнения"
+                  },
+                  pattern: {
+                    value: /^[A-Za-zА-Яа-я-']+$/g,
+                    message: "Некорректная фамилия"
+                  }
+                })}
               />
               {errors.surname && (
-                <p className="invalid-feedback">
-                  Фамилия обязательна для заполнения
-                </p>
+                <p className="invalid-feedback">{errors.surname.message}</p>
               )}
             </div>
           </div>
@@ -194,7 +212,7 @@ const RegisterForm = () => {
                     message: "Электронная почта обязательна для заполнения"
                   },
                   pattern: {
-                    value: /^\S+@\S+\.\S+$/g,
+                    value: /^[A-Za-z-_.0-9]+@[a-z]+\.[a-z]+$/g,
                     message: "Email введен некорректно"
                   }
                 })}
@@ -272,11 +290,7 @@ const RegisterForm = () => {
                 type="button"
                 onClick={toggleShowPassword}
               >
-                {!showPassword ? (
-                  <IconEye />
-                ) : (
-                  <IconCrossedEye/>
-                )}
+                {!showPassword ? <IconEye /> : <IconCrossedEye />}
               </button>
               {errors.repeatPassword && (
                 <p className="invalid-feedback">

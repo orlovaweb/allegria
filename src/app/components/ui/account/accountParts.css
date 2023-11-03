@@ -1,6 +1,46 @@
 .personal-info,.personal-adress,.change-password{
  padding: 60px 0 60px 50px;
 }
+
+.personal-info__email-wrapper{
+  position: relative;
+  display: inline-block;
+}
+
+
+.personal-info__email-wrapper .tooltiptext {
+  visibility: hidden;
+  /* width: 220px; */
+  width: 90%;
+  background-color: var(--basic-dark);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  /* left: 74px; */
+  left: 5%;
+  /* margin-left: -60px; */
+  font-size: 14px;
+}
+
+.personal-info__email-wrapper .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--basic-dark) transparent transparent transparent;
+  transform: rotate(180deg);
+}
+
+.personal-info__email-wrapper:hover .tooltiptext {
+  visibility: visible;
+}
 .personal-adress{
   display: flex;
   gap: 50px;
@@ -40,7 +80,8 @@ padding: 0;
   padding: 0 !important;
 }
 .custom-select-adress__single-value{
-  padding-left: 15px !important;
+  padding-left: 3px !important;
+  /* padding-left: 15px !important; */
 }
 .custom-select-adress__menu{
   margin: 0 !important;
@@ -113,10 +154,6 @@ padding: 9px 10px !important;
   align-items: center;
 
 }
-/* .custom-select-account__menu span{
-  margin-left:10px !important;
-
-} */
 .custom-select-account__menu-list{
   margin: 0 !important;
   background-color: transparent !important;
@@ -128,7 +165,6 @@ padding: 9px 10px !important;
 }
 .custom-select-account__option--is-focused{
 background-color: #fff !important;
-  /* background-color: var(--light-grey) !important; */
 }
 .custom-select-account__option--is-focused:hover {
   background-color: var(--light-grey) !important;
@@ -210,7 +246,6 @@ background-color: #fff !important;
   justify-content: space-between;
 }
 .input-home__item{
-  /* width: 120px; */
   width: calc(50% - 5px );
 }
 .personal-adress__edit{

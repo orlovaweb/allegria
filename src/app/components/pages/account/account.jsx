@@ -2,7 +2,6 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import AccountNavBar from "../../ui/account/accountNavBar";
 import ChangePassword from "../../ui/account/changePassword";
-// import Favorite from "../favorite";
 import PersonalAdress from "../../ui/account/personalAdress";
 import PersonalHistory from "../../ui/account/personalHistory";
 import PersonalInfo from "../../ui/account/personalInfo";

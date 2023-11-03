@@ -9,6 +9,7 @@ import {
   getIsLoggedIn,
   getIsVerified,
   login,
+  uploadCart,
   uploadFavorite
 } from "../../store/users";
 import "../common/form/form.css";
@@ -35,6 +36,11 @@ const LoginForm = ({ onSubmit }) => {
         const localFavorite = JSON.parse(localStorage.favorite);
         dispatch(uploadFavorite(localFavorite));
         localStorage.removeItem("favorite");
+      }
+      if (localStorage.cart) {
+        const localCart = JSON.parse(localStorage.cart);
+        dispatch(uploadCart(localCart));
+        localStorage.removeItem("cart");
       }
     }
   }, [user, isLoggedIn]);
@@ -91,11 +97,7 @@ const LoginForm = ({ onSubmit }) => {
             type="button"
             onClick={toggleShowPassword}
           >
-            {!showPassword ? (
-              <IconEye/>
-            ) : (
-             <IconCrossedEye/>
-            )}
+            {!showPassword ? <IconEye /> : <IconCrossedEye />}
           </button>
           {errors.password && (
             <p className="invalid-feedback">Введите пароль</p>

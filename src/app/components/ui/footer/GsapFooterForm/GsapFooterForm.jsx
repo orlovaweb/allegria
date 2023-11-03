@@ -165,7 +165,7 @@ const GsapFooterForm = () => {
                   message: "Заполните почту"
                 },
                 pattern: {
-                  value: /^\S+@\S+\.\S+$/g,
+                  value: /^[A-Za-z-_.0-9]+@[a-z]+\.[a-z]+$/g,
                   message: "E-mail введен некорректно"
                 }
               })}

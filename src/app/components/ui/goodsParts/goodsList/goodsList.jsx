@@ -1,11 +1,11 @@
 import _ from "lodash";
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import Select from "react-select";
 import { getCategories } from "../../../../store/categories";
-import { getSearchItem } from "../../../../store/goods";
+import { clearSearchItem, getSearchItem } from "../../../../store/goods";
 import Breadcrumbs from "../../../common/breadcrumbs";
 import DisplayCount from "../../displayCount";
 import GoodsTable from "../goodsTable";
@@ -21,29 +21,35 @@ const sortOptions = [
   { value: { name: "discount", order: "desc" }, label: "По размеру скидки" }
 ];
 
-const Goods = ({ goods }) => {
+const Goods = ({
+  goods,
+  setSortBy,
+  setSelectedCat,
+  selectedCat,
+  sortBy,
+  pageSize,
+  setPageSize,
+  showFiltration,
+  setShowFiltration
+}) => {
   const categories = useSelector(getCategories());
-  const [selectedCat, setSelectedCat] = useState();
-  const [sortBy, setSortBy] = useState(sortOptions[0].value);
-  const [showFiltration, setShowFiltration] = useState(false);
+
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
   const isMobile = useMediaQuery({ maxWidth: 700 });
-  const [pageSize, setPageSize] = useState(12);
   const searchText = useSelector(getSearchItem());
+  const dispatch = useDispatch();
   const pageAddition = 12;
-
-  useEffect(() => {
-    setPageSize(pageAddition);
-  }, [selectedCat, sortBy, showFiltration]);
 
   const handleCategorySelect = (item) => {
     setSelectedCat(item);
     setShowFiltration(false);
+    dispatch(clearSearchItem());
   };
 
   const clearFilter = () => {
     setSelectedCat();
     setShowFiltration(false);
+    dispatch(clearSearchItem());
   };
 
   const renderClassNameFilter = () => {
@@ -157,6 +163,14 @@ const Goods = ({ goods }) => {
   );
 };
 Goods.propTypes = {
-  goods: PropTypes.array
+  goods: PropTypes.array,
+  setSelectedCat: PropTypes.func,
+  setSortBy: PropTypes.func,
+  selectedCat: PropTypes.object,
+  sortBy: PropTypes.object,
+  pageSize: PropTypes.number,
+  setPageSize: PropTypes.func,
+  showFiltration: PropTypes.bool,
+  setShowFiltration: PropTypes.func
 };
 export default Goods;

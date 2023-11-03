@@ -38,7 +38,7 @@ const PersonalAdress = () => {
   };
   const submitAction = (data) => {
     const newDataUser = { ...user, adress: data };
-    dispatch(uploadUser(newDataUser));
+    dispatch(uploadUser(newDataUser, "/account/adress"));
     setShowForm(false);
   };
 
@@ -79,10 +79,19 @@ const PersonalAdress = () => {
                     : "input-text-field"
                 }
                 placeholder="Город"
-                {...register("town", { required: true })}
+                {...register("town", {
+                  required: {
+                    value: true,
+                    message: "Заполните город"
+                  },
+                  pattern: {
+                    value: /^[A-Za-zА-Яа-я-']+$/g,
+                    message: "Некорректный город"
+                  }
+                })}
               />
               {errors.town && (
-                <p className="invalid-feedback">Заполните город</p>
+                <p className="invalid-feedback">{errors.town.message}</p>
               )}
             </div>
             <div className="input-text-wrapper">
@@ -93,10 +102,19 @@ const PersonalAdress = () => {
                     : "input-text-field"
                 }
                 placeholder="Улица"
-                {...register("street", { required: true })}
+                {...register("street", {
+                  required: {
+                    value: true,
+                    message: "Заполните улицу"
+                  },
+                  pattern: {
+                    value: /^[A-Za-zА-Яа-я-']+$/g,
+                    message: "Некорректная улица"
+                  }
+                })}
               />
               {errors.street && (
-                <p className="invalid-feedback">Заполните улицу</p>
+                <p className="invalid-feedback">{errors.street.message}</p>
               )}
             </div>
             <div className="input-text-wrapper input-home-wrapper">
@@ -108,18 +126,35 @@ const PersonalAdress = () => {
                       : "input-text-field"
                   }
                   placeholder="Дом"
-                  {...register("house", { required: true })}
+                  {...register("house", {
+                    required: {
+                      value: true,
+                      message: "Заполните номер дома"
+                    },
+                    pattern: {
+                      value: /^[1-9][0-9]{1,2}([a-z]|[а-я]|(\/[1-9][0-9]*))?$/i,
+                      message: "Некорректный номер дома"
+                    }
+                  })}
                 />
                 {errors.house && (
-                  <p className="invalid-feedback">Заполните дом</p>
+                  <p className="invalid-feedback">{errors.house.message}</p>
                 )}
               </div>
               <div className="input-text-wrapper input-home__item">
                 <input
                   className="input-text-field"
                   placeholder="Квартира"
-                  {...register("flat")}
+                  {...register("flat", {
+                    pattern: {
+                      value: /^[1-9][0-9]{0,2}$/i,
+                      message: "Некорректный номер квартиры"
+                    }
+                  })}
                 />
+                {errors.flat && (
+                  <p className="invalid-feedback">{errors.flat.message}</p>
+                )}
               </div>
             </div>
             <button

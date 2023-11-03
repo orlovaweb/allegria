@@ -44,10 +44,19 @@ const FaqForm = () => {
           className={errors.name ? "is-invalid" : ""}
           type="text"
           placeholder="Имя"
-          {...register("name", { required: true })}
+          {...register("name", {
+            required: {
+              value: true,
+              message: "Имя обязательно для заполнения"
+            },
+            pattern: {
+              value: /^[A-Za-zА-Яа-я-']+$/g,
+              message: "Некорректное имя"
+            }
+          })}
         />
         {errors.name && (
-          <p className="invalid-feedback">Имя обязательно для заполнения</p>
+          <p className="invalid-feedback">{errors.name.message}</p>
         )}
         <input
           className={errors.email ? "is-invalid" : ""}
@@ -59,7 +68,7 @@ const FaqForm = () => {
               message: "Электронная почта обязательна для заполнения"
             },
             pattern: {
-              value: /^\S+@\S+\.\S+$/g,
+              value: /^[A-Za-z-_.0-9]+@[a-z]+\.[a-z]+$/g,
               message: "Email введен некорректно"
             }
           })}
