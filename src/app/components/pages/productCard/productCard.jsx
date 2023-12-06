@@ -1,9 +1,9 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getBrands } from "../../../store/brands";
-import { getProductById } from "../../../store/goods";
 import {
   addToCart,
   addUnauthorizedToCart,
@@ -18,9 +18,11 @@ import Price from "../../common/price";
 import SizesList from "../../ui/sizesList";
 import "./productCard.css";
 
-const ProductCard = () => {
+const ProductCard = ({ goods }) => {
   const { productId } = useParams();
-  const product = useSelector(getProductById(productId));
+  const product = goods.find((p) => {
+    return p.art === productId;
+  });
   const brands = useSelector(getBrands());
   const [modalPayActive, setModalPayActive] = useState(false);
   const [modalRefundActive, setModalRefundActive] = useState(false);
@@ -95,15 +97,11 @@ const ProductCard = () => {
                 <Price price={product.price} discount={product.discount} />
               </div>
               <form onSubmit={handleSubmit(submitAction)}>
-                {product.sizes && (
+                {product.size && (
                   <div className="card__content-sizes">
                     <p>Размеры</p>
                     <div className="card__content-sizes-box">
-                      <SizesList
-                        register={register}
-                        sizes={product.sizes}
-                        flagCloth={Boolean(product.cloth)}
-                      />
+                      <SizesList register={register} sizes={product.size} />
                     </div>
                   </div>
                 )}
@@ -265,5 +263,7 @@ const ProductCard = () => {
   }
   return <h2>Loading...</h2>;
 };
-
+ProductCard.propTypes = {
+  goods: PropTypes.array
+};
 export default ProductCard;

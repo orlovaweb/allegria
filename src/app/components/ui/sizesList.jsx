@@ -5,10 +5,14 @@ import { getSizesCloth } from "../../store/sizesCloth";
 import { getSizesShoes } from "../../store/sizesShoes";
 import Size from "./size/size";
 
-const SizesList = ({ flagCloth, sizes, register }) => {
+const SizesList = ({ sizes, register }) => {
   const sizesCloth = useSelector(getSizesCloth());
   const sizesShoes = useSelector(getSizesShoes());
   if (sizesCloth && sizesShoes) {
+    const flagCloth = sizesCloth.some((s) => {
+      return s._id === sizes[0];
+    });
+
     if (flagCloth) {
       return sizesCloth.map((currentSize) => (
         <Size
@@ -32,7 +36,6 @@ const SizesList = ({ flagCloth, sizes, register }) => {
 };
 SizesList.propTypes = {
   sizes: PropTypes.array.isRequired,
-  flagCloth: PropTypes.bool.isRequired,
   register: PropTypes.func.isRequired
 };
 export default SizesList;

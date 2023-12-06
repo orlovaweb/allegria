@@ -19,7 +19,7 @@ const GoodsItem = ({ item }) => {
   };
   return (
     <div className="product-card">
-      <Link to={`/goods/${item._id}`}>
+      <Link to={`/goods/${item.art}`}>
         <div className="product-img">
           <img
             src={process.env.PUBLIC_URL + "/img/" + item.img}

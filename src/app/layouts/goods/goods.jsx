@@ -5,6 +5,7 @@ import ProductCard from "../../components/pages/productCard/productCard";
 import GoodsList from "../../components/ui/goodsParts/goodsList";
 import GoodsLoader from "../../components/ui/hoc/goodsLoader";
 import { getGoods } from "../../store/goods";
+import { transformGoods } from "../../utils/transformGoods";
 
 const Goods = () => {
   const defaultPageSize = 12;
@@ -15,6 +16,7 @@ const Goods = () => {
   const [sortBy, setSortBy] = useState({ name: "lastPrice", order: "asc" });
   const [pageSize, setPageSize] = useState(defaultPageSize);
   const [showFiltration, setShowFiltration] = useState(false);
+  const artgoods = goods ? transformGoods(goods) : [];
 
   useEffect(() => {
     setPageSize(defaultPageSize);
@@ -24,10 +26,10 @@ const Goods = () => {
     <>
       <GoodsLoader>
         {productId ? (
-          <ProductCard />
+          <ProductCard goods={artgoods} />
         ) : (
           <GoodsList
-            goods={goods}
+            goods={artgoods}
             setSelectedCat={setSelectedCat}
             setSortBy={setSortBy}
             selectedCat={selectedCat}
