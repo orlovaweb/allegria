@@ -1,169 +1,205 @@
-.faq-container{
-    max-width: 870px;
-    padding: 0 15px;
-    margin: 45px auto 100px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    font-size: 14px;
-    gap: 50px;
-    flex-wrap: wrap;
-    
-}
-.faq-questions{
-    max-width: 470px;
-    padding-right: 15px;
-    width: 100%;
-}
-.faq-questions__title{
-    text-transform: uppercase;
-    font-size: 25px;
-    font-weight: 500;
-    margin-bottom: 40px;
-}
-.faq-questions__purchases-title,.faq-questions__refund-title{
-    text-transform: uppercase;
-    padding-bottom: 17px;
-    border-bottom: 1px solid var(--light-grey);
-}
-.faq-questions__purchases{
-    margin-bottom: 40px;
-    width: 100%;
+.faq {
+  border-top: 1px solid #EAE9E8;
+  margin-top: 62px;
 }
 
-.faq-form{
-    margin-top: 100px;
-    width: 300px;
-    background-color: var(--light-grey);
-    padding: 28px 25px;
-    font-size: 14px;
+.faq-container {
+  max-width: 870px;
+  padding: 0 15px;
+  margin: 45px auto 100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 14px;
+  gap: 50px;
+  flex-wrap: wrap;
+
+
 }
-.faq-form h4{
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 32px;
+
+.faq-questions {
+  max-width: 470px;
+  padding-right: 15px;
+  width: 100%;
 }
-.faq-form input{
-    border: none;
-    border-bottom: 1px solid var(--basic-first);
-    background-color: transparent;
-    margin-bottom: 15px;
-    display: block;
-    width: 100%;
-    padding-bottom: 5px;
+
+.faq-questions__title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 40px;
 }
-.faq-form input.is-invalid{
-    border-bottom: 1px solid var(--focus);
-    margin-bottom: 5px;
+
+.faq-questions__purchases-title,
+.faq-questions__refund-title {
+  text-transform: uppercase;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--light-grey);
 }
-.faq-form input::placeholder{
-    opacity: 0.5;
+
+.faq-questions__purchases {
+  margin-bottom: 40px;
+  width: 100%;
 }
-.faq-form label{
-    opacity: 0.5;
-    
+
+.faq-form {
+  margin-top: 100px;
+  width: 300px;
+  background-color: var(--light-grey);
+  padding: 28px 25px;
+  font-size: 14px;
 }
-.faq-form select{
-    background-color: transparent;
-    border: none;
-    width: 80px;
+
+.faq-form h4 {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 32px;
 }
-.faq-form textarea{
-    background-color: transparent;
-    border-color: var(--basic-first);
-    display: block;
-    margin: 15px 0 8px;
-    width: 250px;
-    height: 100px;
-    padding: 5px 10px;
+
+.faq-form input {
+  border: none;
+  border-bottom: 1px solid var(--basic-first);
+  background-color: transparent;
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  padding-bottom: 5px;
 }
-.faq-form textarea::placeholder{
-    opacity: 0.5;
+
+.faq-form input.is-invalid {
+  border-bottom: 1px solid var(--focus);
+  margin-bottom: 5px;
 }
-.faq-form button{
-    background-color: var(--focus);
-    border: none;
-    padding: 15px 0;
-    width: 100%;
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
+
+.faq-form input::placeholder {
+  opacity: 0.5;
 }
-.faq-form .invalid-feedback{
-    margin-bottom: 10px;
+
+.faq-form label {
+  opacity: 0.5;
+
+}
+
+.faq-form select {
+  background-color: transparent;
+  border: none;
+  width: 80px;
+}
+
+.faq-form textarea {
+  background-color: transparent;
+  border-color: var(--basic-first);
+  display: block;
+  margin: 15px 0 8px;
+  width: 250px;
+  height: 100px;
+  padding: 5px 10px;
+}
+
+.faq-form textarea::placeholder {
+  opacity: 0.5;
+}
+
+.faq-form button {
+  background-color: var(--focus);
+  border: none;
+  padding: 15px 0;
+  width: 100%;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.faq-form .invalid-feedback {
+  margin-bottom: 10px;
 }
 
 /* Кастомизация Select с префиксом custom-select-faq */
-.custom-select-faq__placeholder{
-    color: #b7c1c5 !important;
-  }
-  .custom-select-faq__control{
-    border: none !important;
-    border-bottom: 1px solid var(--basic-first) !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-  }
-  .custom-select-faq__control--menu-is-open{
-    border-color: var(--basic-dark) !important;
-  }
-  .custom-select-faq__indicator-separator{
-    width: 0 !important;
-  }
-  .custom-select-faq__value-container{
-    padding: 0 !important;
-  }
-  .custom-select-faq__indicator{
-    padding: 0 !important;
-  }
-  .custom-select-faq__single-value{
-    padding-left: 0px !important;
-    margin-left: 0px !important;
-  }
- 
-  .custom-select-faq__menu{
-    margin: 0 !important;
-    box-shadow: none !important;
-    border: 1px solid var(--basic-dark);
-    border-top: none;
-    border-radius: 0 !important;
-    background-color: var(--light-grey) !important;
-  }
-  .custom-select-faq__menu-list{
-    margin: 0 !important;
-  }
-  .custom-select-faq__option{
-    cursor: pointer !important;
-    padding-left: 5px !important;
-  }
-  .custom-select-faq__option--is-focused{
-    background-color:transparent !important;
-  }
-  .custom-select-faq__option--is-focused:hover{
-    background-color: #f7f7f7 !important;
-  }
-  .custom-select-faq__option--is-selected{
-    background-color: var(--basic-dark) !important;
-  }
-  .custom-select-faq__option--is-selected:hover{
-    background-color: var(--basic-dark) !important;
-  }
-  /* Конец кастомизации Select */
+.custom-select-faq__placeholder {
+  color: #b7c1c5 !important;
+}
+
+.custom-select-faq__control {
+  border: none !important;
+  border-bottom: 1px solid var(--basic-first) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.custom-select-faq__control--menu-is-open {
+  border-color: var(--basic-dark) !important;
+}
+
+.custom-select-faq__indicator-separator {
+  width: 0 !important;
+}
+
+.custom-select-faq__value-container {
+  padding: 0 !important;
+}
+
+.custom-select-faq__indicator {
+  padding: 0 !important;
+}
+
+.custom-select-faq__single-value {
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+}
+
+.custom-select-faq__menu {
+  margin: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid var(--basic-dark);
+  border-top: none;
+  border-radius: 0 !important;
+  background-color: var(--light-grey) !important;
+}
+
+.custom-select-faq__menu-list {
+  margin: 0 !important;
+}
+
+.custom-select-faq__option {
+  cursor: pointer !important;
+  padding-left: 5px !important;
+}
+
+.custom-select-faq__option--is-focused {
+  background-color: transparent !important;
+}
+
+.custom-select-faq__option--is-focused:hover {
+  background-color: #f7f7f7 !important;
+}
+
+.custom-select-faq__option--is-selected {
+  background-color: var(--basic-dark) !important;
+}
+
+.custom-select-faq__option--is-selected:hover {
+  background-color: var(--basic-dark) !important;
+}
+
+/* Конец кастомизации Select */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 
 }
+
 @media screen and (max-width: 849px) {
-    .faq-container{
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    .faq-form{
-        margin-top: 0px;
-    }
+  .faq-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .faq-form {
+    margin-top: 0px;
+  }
 }

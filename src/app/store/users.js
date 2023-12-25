@@ -65,7 +65,9 @@ const usersSlice = createSlice({
       state.isCreated = true;
     },
     userUploaded: (state, action) => {
-      state.entities = action.payload;
+      state.entities = {
+        ...state.entities, ...action.payload
+      };
     },
     userLoggedOut: (state) => {
       state.entities = null;
@@ -396,7 +398,7 @@ export function uploadCart(payload) {
       payload.forEach((localArrayItem) => {
         let isAdded = false;
         newCartArray.forEach((newCartItem) => {
-          if (newCartItem.productId === localArrayItem.productId && newCartItem.size === localArrayItem.size) {
+          if (newCartItem.productId === localArrayItem.productId) {
             isAdded = true;
           }
 
@@ -418,7 +420,7 @@ export function uploadCountInCart(payload) {
     dispatch(userUploadRequested());
     try {
       const cartArray = getState().users.entities?.cart ? getState().users.entities.cart : [];
-      const index = cartArray.findIndex((obj) => obj.productId === payload.productId && obj.size === payload.size);
+      const index = cartArray.findIndex((obj) => obj.productId === payload.productId);
       const newCartArray = [...cartArray];
       newCartArray[index] = payload;
       const user = { ...getState().users.entities, cart: newCartArray };
@@ -434,7 +436,7 @@ export function uploadCountInUnauthorizedCart(payload) {
     dispatch(userUnauthorizedCartRequested());
     try {
       const cartArray = getState().users.cart ? getState().users.cart : [];
-      const index = cartArray.findIndex((obj) => obj.productId === payload.productId && obj.size === payload.size);
+      const index = cartArray.findIndex((obj) => obj.productId === payload.productId);
       const newCartArray = [...cartArray];
       newCartArray[index] = payload;
       localStorage.cart = JSON.stringify(newCartArray);
@@ -449,7 +451,7 @@ export function addToCart(payload) {
     dispatch(userUploadRequested());
     try {
       const newCartArray = getState().users.entities.cart ? [...getState().users.entities.cart] : [];
-      const index = newCartArray.findIndex((obj) => obj.productId === payload.productId && obj.size === payload.size);
+      const index = newCartArray.findIndex((obj) => obj.productId === payload.productId);
       if (index > 0) {
         toast.success("Товар уже есть в корзине. Перейдите к заказу!", {
           autoClose: 2000,
@@ -493,7 +495,7 @@ export function addUnauthorizedToCart(payload) {
       const newCartArray = getState().users.cart ? [...getState().users.cart] : [];
       let isAdded = false;
       newCartArray.forEach(cartObj => {
-        if (cartObj.productId === payload.productId && cartObj.size === payload.size) {
+        if (cartObj.productId === payload.productId) {
           // cartObj.count++;
           isAdded = true;
           console.log(cartObj, payload);
@@ -525,7 +527,7 @@ export function removeFromCart(payload) {
     dispatch(userUploadRequested());
     try {
       const cartArray = getState().users.entities?.cart ? getState().users.entities.cart : [];
-      const newCartArray = cartArray.filter((obj) => (obj.productId !== payload.productId || obj.size !== payload.size));
+      const newCartArray = cartArray.filter((obj) => (obj.productId !== payload.productId));
       const user = { ...getState().users.entities, cart: newCartArray };
       const { content } = await userService.upload(user);
       dispatch(userUploaded(content));
@@ -539,7 +541,7 @@ export function removeFromUnauthorizedCart(payload) {
     dispatch(userUnauthorizedCartRequested());
     try {
       const cartArray = getState().users.cart ? getState().users.cart : [];
-      const newCartArray = cartArray.filter((obj) => obj.productId !== payload.productId || obj.size !== payload.size);
+      const newCartArray = cartArray.filter((obj) => obj.productId !== payload.productId);
       localStorage.cart = JSON.stringify(newCartArray);
       dispatch(unauthorizedCartIsUploaded(newCartArray));
     } catch (error) {

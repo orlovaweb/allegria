@@ -1,42 +1,52 @@
-.counter{
+.counter {
   display: flex;
   align-items: center;
   gap: 24px;
 }
-.counter__btn{
+
+.counter__btn {
   width: 35px;
   height: 35px;
   border: 1px solid var(--light-grey);
   font-size: 40px;
   background-color: transparent;
-  padding:0;
+  padding: 0;
   cursor: pointer;
 
 }
-.counter__btn:disabled{
+
+.counter__btn--disabled,
+.counter__btn:disabled {
   background-color: var(--light-grey);
   cursor: auto;
 }
-.counter__btn:disabled p{
+
+.counter__btn:disabled p,
+.counter__btn--disabled p {
   color: var(--dark-grey);
 }
-.counter__btn:hover{
+
+.counter__btn:hover {
   background-color: var(--light-grey);
 }
-.counter__btn:active{
+
+.counter__btn:active {
   border-color: var(--focus);
 }
-.counter__btn:disabled:active{
+
+.counter__btn:disabled:active {
   border-color: transparent;
 }
-.counter__btn p{
+
+.counter__btn p {
   font-weight: 300;
   color: var(--basic-dark);
   margin-bottom: 5px;
   display: block;
   line-height: 75%;
 }
-.counter span{
+
+.counter span {
   font-size: 15px;
   font-weight: 500;
 }

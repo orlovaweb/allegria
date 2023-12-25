@@ -10,7 +10,7 @@ import { transformGoods } from "../../utils/transformGoods";
 const Goods = () => {
   const defaultPageSize = 12;
   const params = useParams();
-  const { productId } = params;
+  const { productArt } = params;
   const goods = useSelector(getGoods());
   const [selectedCat, setSelectedCat] = useState();
   const [sortBy, setSortBy] = useState({ name: "lastPrice", order: "asc" });
@@ -25,7 +25,7 @@ const Goods = () => {
   return (
     <>
       <GoodsLoader>
-        {productId ? (
+        {productArt ? (
           <ProductCard goods={artgoods} />
         ) : (
           <GoodsList

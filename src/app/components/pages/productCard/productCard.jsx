@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getBrands } from "../../../store/brands";
+import { getGoods } from "../../../store/goods";
 import {
   addToCart,
   addUnauthorizedToCart,
@@ -17,12 +18,14 @@ import Modal from "../../common/modal";
 import Price from "../../common/price";
 import SizesList from "../../ui/sizesList";
 import "./productCard.css";
+// import { getProductByArtSize } from "../../../store/goods";
 
 const ProductCard = ({ goods }) => {
-  const { productId } = useParams();
+  const { productArt } = useParams();
   const product = goods.find((p) => {
-    return p.art === productId;
+    return p.art === productArt;
   });
+  const artGoods = useSelector(getGoods());
   const brands = useSelector(getBrands());
   const [modalPayActive, setModalPayActive] = useState(false);
   const [modalRefundActive, setModalRefundActive] = useState(false);
@@ -49,11 +52,17 @@ const ProductCard = ({ goods }) => {
   };
 
   const submitAction = (data) => {
-    const choiсeObj = { productId, count, size: data.size };
-    if (isLoggedIn) {
-      dispatch(addToCart(choiсeObj));
-    } else {
-      dispatch(addUnauthorizedToCart(choiсeObj));
+    if (artGoods) {
+      const choiceProduct = artGoods.find((p) => {
+        return p.art === productArt && p.size === data.size;
+      });
+
+      const choiсeObj = { productId: choiceProduct._id, count };
+      if (isLoggedIn) {
+        dispatch(addToCart(choiсeObj));
+      } else {
+        dispatch(addUnauthorizedToCart(choiсeObj));
+      }
     }
   };
 
@@ -82,7 +91,7 @@ const ProductCard = ({ goods }) => {
                 onClick={() => setModalImgPreview(true)}
               />
               <div className="card-bookMark">
-                <Bookmark productId={product._id} />
+                <Bookmark productArt={product.art} />
               </div>
               <Discount discount={product.discount} />
             </div>

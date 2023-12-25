@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./goodsItem.css";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getBrands } from "../../../../store/brands";
 import Bookmark from "../../../common/bookmark/bookmark";
 import Discount from "../../../common/discount";
 import Price from "../../../common/price";
-import { useSelector } from "react-redux";
-import { getBrands } from "../../../../store/brands";
+import "./goodsItem.css";
 
 const GoodsItem = ({ item }) => {
   const brands = useSelector(getBrands());
@@ -40,7 +40,7 @@ const GoodsItem = ({ item }) => {
         </div>
       </Link>
       <div className="product-bookMark">
-        <Bookmark productId={item._id} />
+        <Bookmark productArt={item.art} />
       </div>
     </div>
   );

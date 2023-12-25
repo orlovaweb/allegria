@@ -4,9 +4,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getBrands } from "../../store/brands";
-import CounterSubmit from "../common/counter/counterSubmit";
-import Price from "../common/price";
-import "./cartItem.css";
 import {
   getIsLoggedIn,
   removeFromCart,
@@ -14,12 +11,26 @@ import {
   uploadCountInCart,
   uploadCountInUnauthorizedCart
 } from "../../store/users";
+import CounterSubmit from "../common/counter/counterSubmit";
+import Price from "../common/price";
+import "./cartItem.css";
+import SizeShoppingCart from "./sizeShoppingCart";
 
 const CartItem = ({ item }) => {
-  const { _id, brand, shortDescription, img, price, discount, size, count } =
-    item;
+  const {
+    _id,
+    brand,
+    shortDescription,
+    img,
+    price,
+    discount,
+    size,
+    count,
+    orderCount,
+    art
+  } = item;
   const brands = useSelector(getBrands());
-  const [newCount, setNewCount] = useState(count);
+  const [newCount, setNewCount] = useState(orderCount);
   const { handleSubmit } = useForm();
   const isLoggedIn = useSelector(getIsLoggedIn());
   const dispatch = useDispatch();
@@ -35,10 +46,10 @@ const CartItem = ({ item }) => {
   };
   const submitCount = () => {
     if (isLoggedIn) {
-      dispatch(uploadCountInCart({ productId: _id, size, count: newCount }));
+      dispatch(uploadCountInCart({ productId: _id, count: newCount }));
     } else {
       dispatch(
-        uploadCountInUnauthorizedCart({ productId: _id, size, count: newCount })
+        uploadCountInUnauthorizedCart({ productId: _id, count: newCount })
       );
     }
   };
@@ -52,16 +63,14 @@ const CartItem = ({ item }) => {
   };
   const handleDelete = () => {
     if (isLoggedIn) {
-      dispatch(removeFromCart({ productId: _id, size, count: newCount }));
+      dispatch(removeFromCart({ productId: _id, count: newCount }));
     } else {
-      dispatch(
-        removeFromUnauthorizedCart({ productId: _id, size, count: newCount })
-      );
+      dispatch(removeFromUnauthorizedCart({ productId: _id, count: newCount }));
     }
   };
   return (
     <div className="cart-item">
-      <Link to={`/goods/${_id}`}>
+      <Link to={`/goods/${art}`}>
         <div className="cart-item__img">
           <img src={process.env.PUBLIC_URL + "/img/" + img} alt="clothes" />
         </div>
@@ -77,10 +86,22 @@ const CartItem = ({ item }) => {
         {size && (
           <div className="cart-item__description-size">
             <p>
-              Размер <span>{size}</span>
+              Размер{" "}
+              <span>
+                <SizeShoppingCart size={size} />
+              </span>
             </p>
           </div>
         )}
+        <div
+          className={
+            count < 5
+              ? "cart-item__description-count tiny-count"
+              : "cart-item__description-count"
+          }
+        >
+          <span>Осталось {count} шт.</span>
+        </div>
         <form onSubmit={handleSubmit(submitCount)}>
           <CounterSubmit
             count={newCount}

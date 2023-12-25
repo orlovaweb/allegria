@@ -8,7 +8,7 @@ const CounterSubmit = ({ onDecrement, onIncrement, count }) => {
       <button
         className="counter__btn counter__btn-decrement"
         onClick={onDecrement}
-        disabled={count === 1}
+        // disabled={disableBtn}
       >
         <p>-</p>
       </button>

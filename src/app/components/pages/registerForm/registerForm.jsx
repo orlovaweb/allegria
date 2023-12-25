@@ -109,7 +109,7 @@ const RegisterForm = () => {
     setShowPassword((prevState) => !prevState);
   };
   return (
-    <>
+    <section className="register">
       <h1 className="modal-title modal-title-register">Регистрация</h1>
       <div className="form-register-wrapper">
         <form className="form-register" onSubmit={handleSubmit(submitAction)}>
@@ -452,7 +452,7 @@ const RegisterForm = () => {
           </div>
         </div>
       </Modal>
-    </>
+    </section>
   );
 };
 

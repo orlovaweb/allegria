@@ -1,88 +1,112 @@
-.modal-title-register{
+.register {
+  margin-top: 62px;
+  border-top: 1px solid #EAE9E8;
+}
+
+.modal-title-register {
   margin-top: 45px;
 }
-.form-register-wrapper{
+
+.form-register-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 15px;
 }
-.form-register{
+
+.form-register {
   max-width: 521px;
-width:100%;
-margin-bottom: 119px;
-font-size: 14px;
+  width: 100%;
+  margin-bottom: 119px;
+  font-size: 14px;
 }
-.form-register-row{
+
+.form-register-row {
   display: flex;
   gap: 20px;
-  
+
 }
-.form-register-checks{
+
+.form-register-checks {
   margin-bottom: 20px;
 }
-.btn-register{
+
+.btn-register {
   width: 250px;
   height: 50px;
 }
-.btn-register:disabled{
+
+.btn-register:disabled {
   cursor: auto;
   background-color: var(--dark-grey);
   color: #141414;
 }
 
-.go-to-login-back{
+.go-to-login-back {
   font-size: 12px;
 }
-.go-to-login-back button{
+
+.go-to-login-back button {
   border: none;
-  background:transparent;
+  background: transparent;
   color: var(--focus);
   cursor: pointer;
 }
-.form-register-row-centered{
+
+.form-register-row-centered {
   align-items: center;
 }
-.modal-confidential-btn{
+
+.modal-confidential-btn {
   text-decoration: underline;
   cursor: pointer;
   margin-left: 3px;
 }
-.verify-modal p{
+
+.verify-modal p {
   text-align: center;
 }
-.modal-title.verify-modal__title{
+
+.modal-title.verify-modal__title {
   margin-bottom: 15px;
 }
+
 @media screen and (max-width: 600px) {
-  .form-register-row{
+  .form-register-row {
     flex-direction: column;
-    gap:0;
+    gap: 0;
   }
-  .btn-register{
+
+  .btn-register {
     width: 100%;
   }
-  .form-register-row-centered{
-   gap:35px;
+
+  .form-register-row-centered {
+    gap: 35px;
   }
-  .form-register{
+
+  .form-register {
     margin-bottom: 50px;
   }
-  .verify .modal-wrapper{
+
+  .verify .modal-wrapper {
     height: 100%;
-    
+
   }
-  .verify .modal__content-text{
+
+  .verify .modal__content-text {
     height: 100%;
   }
-  .verify .modal__inner-content{
-  
+
+  .verify .modal__inner-content {
+
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
   }
-  .modal-title.verify-modal__title{
+
+  .modal-title.verify-modal__title {
     margin-bottom: 30px;
   }
 }

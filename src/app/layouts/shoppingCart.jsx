@@ -1,8 +1,10 @@
 import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "../components/ui/cartItem";
+import OrderForm from "../components/ui/orderForm";
 import { getGoods } from "../store/goods";
 import {
   getCart,
@@ -11,8 +13,6 @@ import {
   getUnauthorizedCart
 } from "../store/users";
 import "./shoppingCart.css";
-import OrderForm from "../components/ui/orderForm";
-import PropTypes from "prop-types";
 
 const ShoppingCart = ({ setModalLogin }) => {
   const isLoggedIn = useSelector(getIsLoggedIn());
@@ -28,31 +28,11 @@ const ShoppingCart = ({ setModalLogin }) => {
         ? cartArrayGlobal
         : []
       : unauthorizedCartArray;
+
     chosenObjectArray.forEach((obj) => {
       goods.forEach((product) => {
         if (obj.productId === product._id) {
-          const {
-            _id,
-            brand,
-            shortDescription,
-            img,
-            price,
-            discount,
-            lastPrice
-          } = product;
-          const cartObj = {
-            _id,
-            brand,
-            shortDescription,
-            img,
-            price,
-            discount,
-            lastPrice,
-            count: obj.count
-          };
-          if (obj.size) {
-            cartObj.size = obj.size;
-          }
+          const cartObj = { ...product, orderCount: obj.count };
           shoppingCart.push(cartObj);
         }
       });
@@ -61,21 +41,23 @@ const ShoppingCart = ({ setModalLogin }) => {
   if (!shoppingCart.length) {
     return (
       <section className="empty-cart">
-        <h3>Ваша корзина пуста</h3>
-        <div className="empty-cart__img"></div>
-        <p>
-          Добавьте что-то, чтобы сэкономить время и сделать шопинг еще более
-          приятным.
-        </p>
-        <Link to="/goods">
-          <button className="btn ">Перейти в каталог</button>
-        </Link>
+        <div className="empty-cart-wrapper">
+          <h3>Ваша корзина пуста</h3>
+          <div className="empty-cart__img"></div>
+          <p>
+            Добавьте что-то, чтобы сэкономить время и сделать шопинг еще более
+            приятным.
+          </p>
+          <Link to="/goods">
+            <button className="btn ">Перейти в каталог</button>
+          </Link>
+        </div>
       </section>
     );
   } else {
     const totalPrice = () => {
       return shoppingCart.reduce((sum, item) => {
-        return sum + item.lastPrice * item.count;
+        return sum + item.lastPrice * item.orderCount;
       }, 0);
     };
     return (

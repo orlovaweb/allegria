@@ -33,7 +33,7 @@ function App() {
           <Route path="/register" component={RegisterForm} />
           <Route path="/admin" component={Admin} />
           <ProtectedRoute path="/account" component={Account} />
-          <Route path="/goods/:productId?" component={Goods} />
+          <Route path="/goods/:productArt?" component={Goods} />
           <Route path="/favorite" component={Favorite} />
           <Route
             path="/shoppingCart"

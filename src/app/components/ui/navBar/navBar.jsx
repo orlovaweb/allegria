@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
+import { animateScroll as scroll } from "react-scroll";
 
 const NavBar = ({ burgerActive, setBurgerActive }) => {
   return (
@@ -14,6 +15,7 @@ const NavBar = ({ burgerActive, setBurgerActive }) => {
               activeClassName="active-link"
               onClick={() => {
                 if (burgerActive) setBurgerActive(false);
+                scroll.scrollToTop();
               }}
             >
               Главная
@@ -25,6 +27,7 @@ const NavBar = ({ burgerActive, setBurgerActive }) => {
               activeClassName="active-link"
               onClick={() => {
                 if (burgerActive) setBurgerActive(false);
+                scroll.scrollToTop();
               }}
             >
               О нас
@@ -36,6 +39,7 @@ const NavBar = ({ burgerActive, setBurgerActive }) => {
               activeClassName="active-link"
               onClick={() => {
                 if (burgerActive) setBurgerActive(false);
+                scroll.scrollToTop();
               }}
             >
               Бренды
@@ -47,6 +51,7 @@ const NavBar = ({ burgerActive, setBurgerActive }) => {
               activeClassName="active-link"
               onClick={() => {
                 if (burgerActive) setBurgerActive(false);
+                scroll.scrollToTop();
               }}
             >
               Товары
@@ -62,6 +67,7 @@ const NavBar = ({ burgerActive, setBurgerActive }) => {
             to="/brands"
             onClick={() => {
               if (burgerActive) setBurgerActive(false);
+              scroll.scrollToTop();
             }}
           >
             <ul>

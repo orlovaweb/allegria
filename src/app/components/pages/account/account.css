@@ -1,4 +1,9 @@
-.account__title h2{
+.account {
+  border-top: 1px solid #EAE9E8;
+  margin-top: 62px;
+}
+
+.account__title h2 {
   font-size: 25px;
   font-weight: 500;
   text-transform: uppercase;
@@ -7,10 +12,12 @@
   border-bottom: 1px solid #EAE9E8;
   margin: 0 auto;
 }
-.account-wrapper{
+
+.account-wrapper {
   display: flex;
 }
-.account__navigation{
+
+.account__navigation {
   border-left: 1px solid #EAE9E8;
   border-right: 1px solid #EAE9E8;
   padding-bottom: 171px;
@@ -19,62 +26,74 @@
   font-size: 14px;
   font-weight: 600;
 }
-.nav-link{
+
+.nav-link {
   display: flex;
   align-items: center;
   padding: 14px 42px 17px 18px;
   margin-left: -1px;
   border-left: transparent 1px solid;
 }
-.nav-link.active-link{
+
+.nav-link.active-link {
   border-left: #E64926 1px solid;
 }
-.account__navigation span{
+
+.account__navigation span {
   padding-left: 11px;
 }
-.active-link svg path{
-  fill:#E64926;
-  stroke:#E64926;
+
+.active-link svg path {
+  fill: #E64926;
+  stroke: #E64926;
 }
-.active-link svg rect{
-  stroke:#E64926;
+
+.active-link svg rect {
+  stroke: #E64926;
 }
-.active-link svg circle{
-  stroke:#E64926;
+
+.active-link svg circle {
+  stroke: #E64926;
 }
-.active-link svg.icon-person path{
-  fill:#E64926;
-  stroke:none;
+
+.active-link svg.icon-person path {
+  fill: #E64926;
+  stroke: none;
 }
-.active-link svg.icon-heart path{
-  fill:none;
-  stroke:#E64926;
+
+.active-link svg.icon-heart path {
+  fill: none;
+  stroke: #E64926;
 }
-.active-link svg.icon-changePass path{
-  fill:none;
+
+.active-link svg.icon-changePass path {
+  fill: none;
 }
-.active-link svg.icon-history path{
-  fill:none;
-  stroke:#E64926;
+
+.active-link svg.icon-history path {
+  fill: none;
+  stroke: #E64926;
 }
-.active-link svg.icon-shoppingCart path{
-  fill:none;
-  stroke:#E64926;
+
+.active-link svg.icon-shoppingCart path {
+  fill: none;
+  stroke: #E64926;
 }
 
 /* .account__content{
   margin: 60px 0 0 50px;
 } */
 @media screen and (max-width:600px) {
-  .account-wrapper{
+  .account-wrapper {
     flex-direction: column;
   }
-  .account__navigation{
+
+  .account__navigation {
     /* border-left: 1px solid #EAE9E8;
   border-right: 1px solid #EAE9E8; */
-  border: none;
-  padding-bottom: 0px;
-  width: 100%;
-  max-width: 100%;
+    border: none;
+    padding-bottom: 0px;
+    width: 100%;
+    max-width: 100%;
   }
 }

@@ -16,7 +16,7 @@ const renderIcon = (status) => {
   else return <img src={heartOff} alt="heart" />;
 };
 
-const Bookmark = ({ productId }) => {
+const Bookmark = ({ productArt }) => {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const favoriteArray = useSelector(getFavorite());
   const unauthorizedFavoriteArray = useSelector(getUnauthorizedFavorite());
@@ -24,17 +24,17 @@ const Bookmark = ({ productId }) => {
   const getState = () => {
     if (isLoggedIn) {
       if (favoriteArray) {
-        return favoriteArray.includes(productId);
+        return favoriteArray.includes(productArt);
       } else {
         return false;
       }
     } else {
-      return unauthorizedFavoriteArray.includes(productId);
+      return unauthorizedFavoriteArray.includes(productArt);
     }
   };
 
   const handleClick = () => {
-    onToggleBookmark(productId);
+    onToggleBookmark(productArt);
   };
   return (
     <div className="bookmark-wrapper" onClick={handleClick}>
@@ -45,6 +45,6 @@ const Bookmark = ({ productId }) => {
   );
 };
 Bookmark.propTypes = {
-  productId: PropTypes.string
+  productArt: PropTypes.string
 };
 export default Bookmark;

@@ -8,7 +8,7 @@ const Size = ({ size, sizes, register }) => {
       <label className="size-wrapper">
         <input
           type="radio"
-          value={size.name}
+          value={size._id}
           {...register("size", { required: true })}
           disabled={!sizes.includes(size._id)}
         />

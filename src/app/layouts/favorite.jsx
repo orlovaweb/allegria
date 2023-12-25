@@ -8,6 +8,7 @@ import {
   getIsLoggedIn,
   getUnauthorizedFavorite
 } from "../store/users";
+import { transformGoods } from "../utils/transformGoods";
 import "./favorite.css";
 
 const Favorite = () => {
@@ -15,6 +16,7 @@ const Favorite = () => {
   const goods = useSelector(getGoods());
   const favoriteArrayGlobal = useSelector(getFavorite());
   const unauthorizedFavoriteArray = useSelector(getUnauthorizedFavorite());
+  const artGoods = goods ? transformGoods(goods) : [];
   let favoriteGoods = [];
   if (goods) {
     const favoriteArrayIds = isLoggedIn
@@ -23,24 +25,26 @@ const Favorite = () => {
         : []
       : unauthorizedFavoriteArray;
 
-    favoriteGoods = goods.filter((p) => favoriteArrayIds.includes(p._id));
+    favoriteGoods = artGoods.filter((p) => favoriteArrayIds.includes(p.art));
   }
   if (!favoriteGoods.length) {
     return (
       <section className="no-favorite">
-        <h3>У Вас нет избранных товаров</h3>
-        <p>
-          Добавляйте вещи, которые Вам понравились, в список избранных, чтобы
-          следить за их наличием, ценой, и легко найти.
-        </p>
-        <Link to="/goods">
-          <button className="btn ">Перейти в каталог</button>
-        </Link>
+        <div className="no-favorite-wrapper">
+          <h3>У Вас нет избранных товаров</h3>
+          <p>
+            Добавляйте вещи, которые Вам понравились, в список избранных, чтобы
+            следить за их наличием, ценой, и легко найти.
+          </p>
+          <Link to="/goods">
+            <button className="btn ">Перейти в каталог</button>
+          </Link>
+        </div>
       </section>
     );
   }
   return (
-    <>
+    <section className="favorite-section">
       <div className="account__title">
         <h2>Избранное</h2>
       </div>
@@ -49,7 +53,7 @@ const Favorite = () => {
           <GoodsList items={favoriteGoods} />
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

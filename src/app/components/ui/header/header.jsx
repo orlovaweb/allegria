@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 import logo from "../../../assets/logo.webp";
 import {
+  getCart,
   getCurrentUserData,
   getEmailResetedPassword,
+  getFavorite,
   getIsLoggedIn,
+  getUnauthorizedCart,
+  getUnauthorizedFavorite,
   removeError
 } from "../../../store/users";
 import Modal from "../../common/modal";
@@ -18,7 +24,6 @@ import LoginForm from "../loginForm";
 import NavBar from "../navBar";
 import "./header.css";
 import SearchForm from "./searchForm";
-import PropTypes from "prop-types";
 
 const Header = ({ modalLogin, setModalLogin }) => {
   // const [modalLogin, setModalLogin] = useState(false);
@@ -30,6 +35,22 @@ const Header = ({ modalLogin, setModalLogin }) => {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const user = useSelector(getCurrentUserData());
   const emailResetedPassword = useSelector(getEmailResetedPassword());
+  const cartArrayGlobal = useSelector(getCart());
+  const unauthorizedCartArray = useSelector(getUnauthorizedCart());
+  const favoriteArrayGlobal = useSelector(getFavorite());
+  const unauthorizedFavoriteArray = useSelector(getUnauthorizedFavorite());
+  const cartArray = isLoggedIn
+    ? cartArrayGlobal
+      ? cartArrayGlobal
+      : []
+    : unauthorizedCartArray;
+  const favoriteArray = isLoggedIn
+    ? favoriteArrayGlobal
+      ? favoriteArrayGlobal
+      : []
+    : unauthorizedFavoriteArray;
+  const countCart = cartArray.length;
+  const countFavorite = favoriteArray.length;
   useEffect(() => {
     if (history.state?.from == "registerForm") {
       setModalLogin(true);
@@ -50,7 +71,7 @@ const Header = ({ modalLogin, setModalLogin }) => {
       <div className="container">
         <div className="header-wrapper">
           <div className="logo">
-            <NavLink to="/">
+            <NavLink to="/" onClick={scroll.scrollToTop}>
               <img src={logo} alt="Allegria" />
             </NavLink>
           </div>
@@ -86,11 +107,19 @@ const Header = ({ modalLogin, setModalLogin }) => {
               <NavLink to="/favorite" activeClassName="active-link">
                 <IconHeart />
               </NavLink>
+              {countFavorite > 0 && (
+                <div className="favorite__bage">{countFavorite}</div>
+                // <div className="favorite__bage"></div>
+              )}
             </div>
             <div className="shopping-cart">
               <NavLink to="/shoppingCart" activeClassName="active-link">
                 <IconCart />
               </NavLink>
+              {countCart > 0 && (
+                <div className="shopping-cart__bage">{countCart}</div>
+                // <div className="shopping-cart__bage"></div>
+              )}
             </div>
           </div>
         </div>
