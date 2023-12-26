@@ -62,17 +62,21 @@
 
 .icon-box {
     display: flex;
-    gap: 19px;
+    gap: 9px;
 }
 
 .brands-in-menu {
     display: none;
 }
 
+.header-link {
+    padding: 0 5px;
+}
+
 .sign-in button {
     border: none;
     background-color: transparent;
-    padding: 0;
+    /* padding: 0; */
     cursor: pointer;
 }
 
@@ -165,21 +169,17 @@
 .favorite__bage {
     position: absolute;
     top: -5px;
-    left: 10px;
+    left: 16px;
     background-color: var(--focus);
     color: #fff;
     border-radius: 5px;
     padding: 2px 3px;
     font-size: 12px;
-    /* font-weight: 600; */
-    /* width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    top: -3px; */
+
 }
 
 .favorite__bage {
-    left: 15px;
+    left: 21px;
 }
 
 @media screen and (max-width:1100px) {
@@ -267,8 +267,8 @@
         height: 200vh;
         position: absolute;
         background-color: #fff;
-        top: 55px;
-        left: 0;
+        top: 41px;
+        left: -15px;
         z-index: 6;
         color: var(--basic-dark);
         opacity: 1;
@@ -301,7 +301,7 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        z-index: 6;
+        z-index: 8;
         opacity: 1;
         transition: all 0.8s;
     }
