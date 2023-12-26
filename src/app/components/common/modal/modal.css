@@ -1,11 +1,11 @@
-.modal{
+.modal {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
-  z-index: 6;
+  z-index: 100;
   display: flex;
   align-items: center;
   opacity: 0;
@@ -13,26 +13,29 @@
   pointer-events: none;
   overflow: auto;
 }
-.modal-wrapper{
- 
+
+.modal-wrapper {
+
   width: fit-content;
   height: fit-content;
   display: block;
   margin: auto;
 }
 
-.modal.active{
+.modal.active {
   opacity: 1;
   pointer-events: all;
 }
-.modal__content-img{
+
+.modal__content-img {
   margin: auto;
   padding: 0;
   position: relative;
   transform: scale(0.5);
   transition: 0.5s;
 }
-.modal__content-form{
+
+.modal__content-form {
   position: relative;
   padding: 46px 40px;
   background-color: #fff;
@@ -44,7 +47,8 @@
   align-items: flex-start;
   justify-content: center;
 }
-.modal__content-text{
+
+.modal__content-text {
   position: relative;
   padding: 46px 40px;
   background-color: #fff;
@@ -56,30 +60,36 @@
   align-items: flex-start;
   justify-content: center;
 }
-.modal__content-text.active{
+
+.modal__content-text.active {
   transform: scale(1);
 }
-.modal__content-form.active{
+
+.modal__content-form.active {
   transform: scale(1);
 }
-.modal__content-img.active{
+
+.modal__content-img.active {
   transform: scale(1);
 }
-.modal-close{
+
+.modal-close {
   position: absolute;
   width: 20px;
   height: 20px;
-  top:30px;
+  top: 30px;
   right: 30px;
   cursor: pointer;
   background-image: url(../../../assets/close.svg);
 }
+
 @media screen and (max-width: 600px) {
-  .modal__content{
+  .modal__content {
     width: 100%;
     height: 100%;
   }
-  .modal__content-form{
+
+  .modal__content-form {
     padding: 46px 30px;
   }
 }

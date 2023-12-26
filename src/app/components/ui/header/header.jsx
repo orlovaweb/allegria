@@ -12,29 +12,29 @@ import {
   getFavorite,
   getIsLoggedIn,
   getUnauthorizedCart,
-  getUnauthorizedFavorite,
-  removeError
+  getUnauthorizedFavorite
+  // removeError
 } from "../../../store/users";
-import Modal from "../../common/modal";
+// import Modal from "../../common/modal";
 import IconCart from "../../common/svgs/iconCart";
 import IconHeart from "../../common/svgs/iconHeart";
 import IconPerson from "../../common/svgs/iconPerson";
-import ForgotPasswordForm from "../forgotPasswordForm";
-import LoginForm from "../loginForm";
+// import ForgotPasswordForm from "../forgotPasswordForm";
+// import LoginForm from "../loginForm";
 import NavBar from "../navBar";
 import "./header.css";
 import SearchForm from "./searchForm";
 
 const Header = ({ modalLogin, setModalLogin }) => {
   // const [modalLogin, setModalLogin] = useState(false);
-  const [modalForgotPassword, setModalForgotPassword] = useState(false);
+  // const [modalForgotPassword, setModalForgotPassword] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
-  const history = useHistory();
-  const location = useLocation();
-  const dispatch = useDispatch();
+  // const history = useHistory();
+  // const location = useLocation();
+  // const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
   const user = useSelector(getCurrentUserData());
-  const emailResetedPassword = useSelector(getEmailResetedPassword());
+  // const emailResetedPassword = useSelector(getEmailResetedPassword());
   const cartArrayGlobal = useSelector(getCart());
   const unauthorizedCartArray = useSelector(getUnauthorizedCart());
   const favoriteArrayGlobal = useSelector(getFavorite());
@@ -51,20 +51,20 @@ const Header = ({ modalLogin, setModalLogin }) => {
     : unauthorizedFavoriteArray;
   const countCart = cartArray.length;
   const countFavorite = favoriteArray.length;
-  useEffect(() => {
-    if (history.state?.from == "registerForm") {
-      setModalLogin(true);
-      history.state = {};
-    }
-  }, [location.pathname]);
-  const handleCloseModalLogin = () => {
-    setModalLogin(false);
-  };
-  useEffect(() => {
-    if (modalLogin) {
-      dispatch(removeError());
-    }
-  }, [modalLogin]);
+  // useEffect(() => {
+  //   if (history.state?.from == "registerForm") {
+  //     setModalLogin(true);
+  //     history.state = {};
+  //   }
+  // }, [location.pathname]);
+  // const handleCloseModalLogin = () => {
+  //   setModalLogin(false);
+  // };
+  // useEffect(() => {
+  //   if (modalLogin) {
+  //     dispatch(removeError());
+  //   }
+  // }, [modalLogin]);
 
   return (
     <section className="header">
@@ -124,7 +124,7 @@ const Header = ({ modalLogin, setModalLogin }) => {
           </div>
         </div>
       </div>
-      <Modal active={modalLogin} setActive={setModalLogin} isForm={true}>
+      {/* <Modal active={modalLogin} setActive={setModalLogin} isForm={true}>
         <div className="modal-login">
           <h1 className="modal-title">Вход</h1>
           <LoginForm onSubmit={handleCloseModalLogin} />
@@ -167,7 +167,7 @@ const Header = ({ modalLogin, setModalLogin }) => {
             <ForgotPasswordForm />
           )}
         </div>
-      </Modal>
+      </Modal> */}
     </section>
   );
 };
