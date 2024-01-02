@@ -1,8 +1,10 @@
-.personal-info,.personal-adress,.change-password{
- padding: 60px 0 60px 50px;
+.personal-info,
+.personal-adress,
+.change-password {
+  padding: 60px 0 60px 50px;
 }
 
-.personal-info__email-wrapper{
+.personal-info__email-wrapper {
   position: relative;
   display: inline-block;
 }
@@ -41,265 +43,333 @@
 .personal-info__email-wrapper:hover .tooltiptext {
   visibility: visible;
 }
-.personal-adress{
+
+.personal-adress {
   display: flex;
   gap: 50px;
 }
 
-.btn-edit-adress:disabled{
-display: none;
+.btn-edit-adress:disabled {
+  display: none;
 }
-.btn.btn-edit-adress{
-width: 250px;
+
+.btn.btn-edit-adress {
+  width: 250px;
 }
-.personal-adress__select{
-border: none;
-padding: 0;
+
+.personal-adress__select {
+  border: none;
+  padding: 0;
 }
 
 /* Кастомизация Select с префиксом custom-select-adress */
-.custom-select-adress__placeholder{
+.custom-select-adress__placeholder {
   color: #b7c1c5 !important;
 }
-.custom-select-adress__control{
+
+.custom-select-adress__control {
   border: none !important;
   border-bottom: 1px solid var(--basic-first) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
-.custom-select-adress__control--menu-is-open{
+
+.custom-select-adress__control--menu-is-open {
   border-color: var(--basic-dark) !important;
 }
-.custom-select-adress__indicator-separator{
+
+.custom-select-adress__indicator-separator {
   width: 0 !important;
 }
-.custom-select-adress__value-container{
+
+.custom-select-adress__value-container {
   padding: 0 !important;
 }
-.custom-select-adress__indicator{
+
+.custom-select-adress__indicator {
   padding: 0 !important;
 }
-.custom-select-adress__single-value{
+
+.custom-select-adress__single-value {
   padding-left: 3px !important;
   /* padding-left: 15px !important; */
 }
-.custom-select-adress__menu{
+
+.custom-select-adress__menu {
   margin: 0 !important;
   box-shadow: none !important;
   border: 1px solid var(--basic-dark);
   border-top: none;
   border-radius: 0 !important;
 }
-.custom-select-adress__menu-list{
+
+.custom-select-adress__menu-list {
   margin: 0 !important;
   background-color: transparent !important;
 }
-.custom-select-adress__option{
+
+.custom-select-adress__option {
   cursor: pointer !important;
   padding-left: 15px !important;
 }
-.custom-select-adress__option--is-focused{
-background-color: #fff !important;
+
+.custom-select-adress__option--is-focused {
+  background-color: #fff !important;
 }
-.custom-select-adress__option--is-focused:hover{
+
+.custom-select-adress__option--is-focused:hover {
   background-color: var(--light-grey) !important;
 }
-.custom-select-adress__option--is-selected{
+
+.custom-select-adress__option--is-selected {
   background-color: var(--basic-dark) !important;
 }
-.custom-select-adress__option--is-selected:hover{
+
+.custom-select-adress__option--is-selected:hover {
   background-color: var(--basic-dark) !important;
 }
+
 /* Конец кастомизации Select */
 
 /* Кастомизация Select с префиксом custom-select-account*/
-.custom-select-account__single-value {
-padding: 9px 10px !important;  
+.custom-select-account__input {
+  color: transparent !important;
 }
-.custom-select-account__single-value a{
+
+.custom-select-account__single-value {
+  padding: 9px 10px !important;
+}
+
+.custom-select-account__single-value a {
   display: flex;
   align-items: center;
 }
-.custom-select-account__control{
+
+.custom-select-account__control {
   border: none !important;
   border: 1px solid var(--light-grey) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
-.custom-select-account__control--menu-is-open{
+
+.custom-select-account__control--menu-is-open {
   border-color: var(--light-grey) !important;
   color: var(--light-grey) !important;
 }
-.custom-select-account__indicator-separator{
+
+.custom-select-account__indicator-separator {
   background-color: transparent !important;
   width: 0 !important;
 }
-.custom-select-account__value-container{
+
+.custom-select-account__value-container {
   padding: 0 !important;
 }
-.custom-select-account__indicator{
+
+.custom-select-account__indicator {
   padding: 0 !important;
 }
-.custom-select-account__menu{
+
+.custom-select-account__menu {
   margin: 0 !important;
   box-shadow: none !important;
   border: 1px solid var(--light-grey);
   border-top: none;
   border-radius: 0 !important;
-  
+
 }
-.custom-select-account__menu a{
+
+.custom-select-account__menu a {
   color: #B7C1C5 !important;
   display: flex;
   align-items: center;
 
 }
-.custom-select-account__menu-list{
+
+.custom-select-account__menu-list {
   margin: 0 !important;
   background-color: transparent !important;
-  
+
 }
-.custom-select-account__option{
-  cursor: pointer !important  ;
+
+.custom-select-account__option {
+  cursor: pointer !important;
   padding: 15px 10px !important;
 }
-.custom-select-account__option--is-focused{
-background-color: #fff !important;
+
+.custom-select-account__option--is-focused {
+  background-color: #fff !important;
 }
+
 .custom-select-account__option--is-focused:hover {
   background-color: var(--light-grey) !important;
 }
-.custom-select-account__option--is-selected a{
+
+.custom-select-account__option--is-selected a {
   color: var(--basic-dark) !important;
 }
+
 .custom-select-account__option--is-selected {
   background-color: transparent !important;
 }
-.custom-select-account__option--is-selected:hover{
+
+.custom-select-account__option--is-selected:hover {
   background-color: var(--light-grey) !important;
 }
-.custom-select-account__menu svg path{
-  fill:#B7C1C5;
-  stroke:#B7C1C5;
+
+.custom-select-account__menu svg path {
+  fill: #B7C1C5;
+  stroke: #B7C1C5;
 }
-.custom-select-account__option--is-selected svg path{
-  fill:var(--basic-dark);
-  stroke:var(--basic-dark);
+
+.custom-select-account__option--is-selected svg path {
+  fill: var(--basic-dark);
+  stroke: var(--basic-dark);
 }
-.custom-select-account__menu svg rect{
-  stroke:#B7C1C5;
+
+.custom-select-account__menu svg rect {
+  stroke: #B7C1C5;
 }
-.custom-select-account__menu svg circle{
-  stroke:#B7C1C5;
+
+.custom-select-account__menu svg circle {
+  stroke: #B7C1C5;
 }
-.custom-select-account__menu svg.icon-person path{
-  fill:#B7C1C5;
-  stroke:none;
+
+.custom-select-account__menu svg.icon-person path {
+  fill: #B7C1C5;
+  stroke: none;
 }
-.custom-select-account__menu svg.icon-heart path{
-  fill:none;
-  stroke:#B7C1C5;
+
+.custom-select-account__menu svg.icon-heart path {
+  fill: none;
+  stroke: #B7C1C5;
 }
-.custom-select-account__menu svg.icon-changePass path{
-  fill:none;
+
+.custom-select-account__menu svg.icon-changePass path {
+  fill: none;
 }
-.custom-select-account__menu svg.icon-history path{
-  fill:none;
-  stroke:#B7C1C5;
+
+.custom-select-account__menu svg.icon-history path {
+  fill: none;
+  stroke: #B7C1C5;
 }
-.custom-select-account__menu svg.icon-shoppingCart path{
-  fill:none;
-  stroke:#B7C1C5;
+
+.custom-select-account__menu svg.icon-shoppingCart path {
+  fill: none;
+  stroke: #B7C1C5;
 }
 
 
 
-.custom-select-account__option--is-selected svg rect{
-  stroke:var(--basic-dark);
+.custom-select-account__option--is-selected svg rect {
+  stroke: var(--basic-dark);
 }
-.custom-select-account__option--is-selected svg circle{
-  stroke:var(--basic-dark);
+
+.custom-select-account__option--is-selected svg circle {
+  stroke: var(--basic-dark);
 }
-.custom-select-account__option--is-selected svg.icon-person path{
-  fill:var(--basic-dark);
-  stroke:none;
+
+.custom-select-account__option--is-selected svg.icon-person path {
+  fill: var(--basic-dark);
+  stroke: none;
 }
-.custom-select-account__option--is-selected svg.icon-heart path{
-  fill:none;
-  stroke:var(--basic-dark);
+
+.custom-select-account__option--is-selected svg.icon-heart path {
+  fill: none;
+  stroke: var(--basic-dark);
 }
-.custom-select-account__option--is-selected svg.icon-changePass path{
-  fill:none;
+
+.custom-select-account__option--is-selected svg.icon-changePass path {
+  fill: none;
 }
-.custom-select-account__option--is-selected svg.icon-history path{
-  fill:none;
-  stroke:var(--basic-dark);
+
+.custom-select-account__option--is-selected svg.icon-history path {
+  fill: none;
+  stroke: var(--basic-dark);
 }
-.custom-select-account__option--is-selected svg.icon-shoppingCart path{
-  fill:none;
-  stroke:var(--basic-dark);
+
+.custom-select-account__option--is-selected svg.icon-shoppingCart path {
+  fill: none;
+  stroke: var(--basic-dark);
 }
+
 /* Конец кастомизации Select */
 
-.input-home-wrapper{
+.input-home-wrapper {
   display: flex;
   justify-content: space-between;
 }
-.input-home__item{
-  width: calc(50% - 5px );
+
+.input-home__item {
+  width: calc(50% - 5px);
 }
-.personal-adress__edit{
+
+.personal-adress__edit {
   color: var(--focus);
   cursor: pointer;
 }
-.personal-adress{
+
+.personal-adress {
   border-bottom: 1px solid #EAE9E8;
 }
-.mobile-navigation{
+
+.mobile-navigation {
   display: none;
-  max-width:400px;
+  max-width: 400px;
   margin: 20px auto;
 }
-.no-history{
+
+.no-history {
   margin: 60px 50px;
   /* padding: 0 15px; */
   max-width: 400px;
   margin-bottom: 200px;
 }
-.no-history h3{
+
+.no-history h3 {
   margin-bottom: 20px;
 }
-.no-history p{
+
+.no-history p {
   margin-bottom: 30px;
 }
+
 @media screen and (max-width: 800px) {
-  .personal-info-row.form-register-row{
+  .personal-info-row.form-register-row {
     flex-direction: column;
-    gap:0;
+    gap: 0;
   }
 }
+
 @media screen and (max-width:600px) {
-  .advanced-navigation{
+  .advanced-navigation {
     display: none;
   }
-  .mobile-navigation{
+
+  .mobile-navigation {
     display: block;
   }
-  .personal-info,.personal-adress,.change-password{
-    max-width:400px;
-  margin: 20px auto 50px;
-  padding: 0;
+
+  .personal-info,
+  .personal-adress,
+  .change-password {
+    max-width: 400px;
+    margin: 20px auto 50px;
+    padding: 0;
   }
-  .personal-adress{
+
+  .personal-adress {
     flex-direction: column;
     gap: 20px;
     border: none;
     margin-bottom: 50px;
   }
-  .btn.btn-edit-adress{
+
+  .btn.btn-edit-adress {
     width: 100%;
   }
-  .no-history{
+
+  .no-history {
     margin: 20px auto 50px;
 
   }

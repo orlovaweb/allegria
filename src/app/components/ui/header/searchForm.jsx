@@ -5,6 +5,7 @@ import { IconContext } from "react-icons";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaWindowClose } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
 import {
   clearSearchItem,
   getSearchItem,
@@ -20,11 +21,13 @@ const SearchForm = ({ onSubmit }) => {
   const submitAction = (data) => {
     dispatch(setSearchItem(data.searchText.trim()));
     onSubmit(false);
+    scroll.scrollToTop();
   };
   const handleClearSearch = () => {
     reset();
     dispatch(clearSearchItem());
     onSubmit(false);
+    scroll.scrollToTop();
   };
   return (
     <form onSubmit={handleSubmit(submitAction)} className="search-form">

@@ -7,6 +7,7 @@ import IconAdress from "../../common/svgs/iconAdress";
 import IconHistory from "../../common/svgs/iconHistory";
 import IconChangePass from "../../common/svgs/iconChangePass";
 import IconLogOut from "../../common/svgs/iconLogOut";
+import { animateScroll as scroll } from "react-scroll";
 
 const navOptions = [
   {
@@ -123,7 +124,11 @@ const AccountNavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/logOut" className="nav-link">
+          <NavLink
+            to="/logOut"
+            className="nav-link"
+            onClick={scroll.scrollToTop}
+          >
             <IconLogOut />
             <span>Выйти</span>
           </NavLink>

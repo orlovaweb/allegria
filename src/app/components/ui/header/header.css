@@ -73,6 +73,10 @@
     padding: 0 5px;
 }
 
+.sign-in {
+    display: flex;
+}
+
 .sign-in button {
     border: none;
     background-color: transparent;

@@ -89,11 +89,14 @@ const Header = ({ setModalLogin }) => {
                 to="/favorite"
                 activeClassName="active-link"
                 className="header-link"
+                onClick={scroll.scrollToTop}
               >
                 <IconHeart />
               </NavLink>
               {countFavorite > 0 && (
-                <div className="favorite__bage">{countFavorite}</div>
+                <NavLink to="/favorite" onClick={scroll.scrollToTop}>
+                  <div className="favorite__bage">{countFavorite}</div>
+                </NavLink>
               )}
             </div>
             <div className="shopping-cart">
@@ -101,11 +104,14 @@ const Header = ({ setModalLogin }) => {
                 to="/shoppingCart"
                 activeClassName="active-link"
                 className="header-link"
+                onClick={scroll.scrollToTop}
               >
                 <IconCart />
               </NavLink>
               {countCart > 0 && (
-                <div className="shopping-cart__bage">{countCart}</div>
+                <NavLink to="/shoppingCart" onClick={scroll.scrollToTop}>
+                  <div className="shopping-cart__bage">{countCart}</div>
+                </NavLink>
               )}
             </div>
           </div>

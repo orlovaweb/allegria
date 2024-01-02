@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 import { getBrands } from "../../../../store/brands";
 import Bookmark from "../../../common/bookmark/bookmark";
 import Discount from "../../../common/discount";
@@ -19,7 +20,7 @@ const GoodsItem = ({ item }) => {
   };
   return (
     <div className="product-card">
-      <Link to={`/goods/${item.art}`}>
+      <Link to={`/goods/${item.art}`} onClick={scroll.scrollToTop}>
         <div className="product-img">
           <img
             src={process.env.PUBLIC_URL + "/img/" + item.img}

@@ -71,10 +71,12 @@ const ShoppingCart = ({ setModalLogin }) => {
           )}
           {!isLoggedIn && (
             <div className="cart__offer-enter">
-              <p>Чтобы сделать заказ, пройдите авторизацию.</p>
-              <button className="btn" onClick={() => setModalLogin(true)}>
-                Войти
-              </button>
+              <div className="cart__offer-enter-box">
+                <p>Чтобы сделать заказ, пройдите авторизацию.</p>
+                <button className="btn" onClick={() => setModalLogin(true)}>
+                  Войти
+                </button>
+              </div>
             </div>
           )}
           <div className="cart__table">

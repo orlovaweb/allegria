@@ -1,4 +1,5 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
+import { animateScroll as scroll } from "react-scroll";
 import { toast } from "react-toastify";
 import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
@@ -252,6 +253,7 @@ export const logOut = () => (dispatch) => {
   localStorageService.removeAuthData();
   dispatch(userLoggedOut());
   history.push("/");
+  scroll.scrollToTop();
 };
 
 

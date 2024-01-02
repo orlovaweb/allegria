@@ -48,38 +48,35 @@
 }
 
 .cart-wrapper {
-  display: flex;
-  /* justify-content: space-around; */
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .cart__order-form {
-  width: 50%;
-  /* margin-left: auto; */
-  /* flex-basis: 50%; */
+  grid-column: 1/2;
 }
 
 .cart__offer-enter {
-  /* margin: 30px 15px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  grid-column: 1/2;
   margin-left: auto;
-  /* flex-basis: 50%; */
   border-left: 1px solid var(--dark-grey);
   max-width: 420px;
-  margin-left: auto;
-  height: 100%;
-  padding: 30px 15px 0 30px;
-  /* justify-content: center; */
+  /* min-height: 100%; */
+  padding: 30px 30px 0 30px;
+}
+
+.cart__offer-enter-box {
+  max-width: 300px;
+  padding-bottom: 50px;
 }
 
 .cart__table {
   border-left: 1px solid var(--dark-grey);
   padding-top: 15px;
-  /* flex-basis: 50%; */
-  width: 50%;
-  /* height: 100%; */
+  grid-column: 2/3;
 }
 
 .cart__table-total {
@@ -92,12 +89,82 @@
   font-weight: bold;
 }
 
-/* .cart__btn-enter{
-  color: var(--focus);
-} */
-
 .cart__offer-enter p {
   font-weight: 500;
   margin-bottom: 30px;
   color: var(--focus);
+}
+
+@media (max-width:833px) {
+  .cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart__offer-enter {
+    order: 2;
+    margin-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--dark-grey);
+    min-width: 100%;
+  }
+
+  .cart__offer-enter-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart__order-form {
+    order: 2;
+    min-width: 100%;
+    border-top: 1px solid var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding-bottom: 20px;
+  }
+
+  .order-form {
+    margin-left: 0;
+    border-left: none;
+  }
+
+  .order-form .input-text-wrapper {
+    width: 100%;
+  }
+
+  .btn.order-form__btn {
+    width: 100%;
+  }
+
+  .cart__table {
+    width: 100%;
+    border-left: none;
+    padding-top: 0;
+  }
+
+  .cart__table-total {
+    margin: 30px 30px;
+  }
+}
+
+@media (max-width:467px) {
+  .cart__table {
+    margin-left: 0px;
+    border-left: none;
+    padding-top: 0;
+  }
+}
+
+@media (max-width:400px) {
+  .cart__table-total {
+    margin: 30px 15px;
+  }
+
+  .order-form {
+    padding: 30px 15px 0 15px;
+  }
 }
