@@ -1,48 +1,34 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getGoods, uploadProduct } from "../../store/goods";
-import useMockData from "../../utils/mockData";
+import { Redirect, Route, Switch } from "react-router-dom";
+import AdminNavBar from "../../components/ui/adminParts/adminNavBar";
 import "./admin.css";
-import LetterList from "../../components/ui/letterList";
+import AdminGoods from "../../components/ui/adminParts/adminGoods";
+import AdminCategories from "../../components/ui/adminParts/adminCategories";
+import AdminBrands from "../../components/ui/adminParts/adminBrands";
+import AdminLetters from "../../components/ui/adminParts/adminLetters";
+import AdminUsers from "../../components/ui/adminParts/adminUsers";
+import AdminInitial from "../../components/ui/adminParts/adminInitial";
 const Admin = () => {
-  const dispatch = useDispatch();
-  const goods = useSelector(getGoods());
-  const { error, initialize, progress, status } = useMockData();
-  
-
-  const handleClick = () => {
-    initialize();
-  };
-  const handleRefreshLastPrices = () => {
-    goods.forEach((product) => {
-      const newProduct = {
-        ...product,
-        lastPrice: product.price - (product.discount / 100) * product.price
-      };
-      dispatch(uploadProduct(newProduct));
-    });
-  };
-
   return (
     <section className="admin">
       <h1 className="admin__title"> Панель администратора</h1>
       <div className="container">
-        <h3 className="admin__initial">Инициализация данных в FireBase</h3>
-        <ul>
-          <li>Status:{status}</li>
-          <li>Progress:{progress}%</li>
-          {error && <li>Error:{error}</li>}
-        </ul>
-        <button className="btn btn-primary" onClick={handleClick}>
-          Инициализировать
-        </button>
-        <div className="admin__refresh-last-price">
-          <button className="btn" onClick={handleRefreshLastPrices}>
-            Обновить итоговую цену товаров
-          </button>
+        <div className="admin-wrapper">
+          <div className="admin__navigation">
+            <AdminNavBar />
+          </div>
+          <div className="admin__content">
+            <Switch>
+              <Route path="/admin/goods" component={AdminGoods} />
+              <Route path="/admin/categories" component={AdminCategories} />
+              <Route path="/admin/brands" component={AdminBrands} />
+              <Route path="/admin/letters" component={AdminLetters} />
+              <Route path="/admin/users" component={AdminUsers} />
+              <Route path="/admin/initial" component={AdminInitial} />
+              <Redirect exact from="/admin" to="/admin/goods" />
+            </Switch>
+          </div>
         </div>
-
-        <LetterList />
       </div>
     </section>
   );

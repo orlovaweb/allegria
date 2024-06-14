@@ -1,8 +1,8 @@
-import React from "react";
-import "./orderForm.css";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import "./orderForm.css";
 
 const OrderForm = ({ user }) => {
   const { name, surname, phone, email, adress } = user;
@@ -72,7 +72,7 @@ const OrderForm = ({ user }) => {
           <label htmlFor="radio-2">При получении заказа</label>
         </p>
 
-        <button className="btn order-form__btn" disabled={!isDirty}>
+        <button className="btn order-form__btn" disabled={!isDirty || !adress}>
           {type ? (type === "online" ? "Оплатить" : "Заказать") : "Заказать"}
         </button>
       </form>
