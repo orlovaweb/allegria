@@ -83,6 +83,7 @@
   /* align-items: stretch; */
   /* align-self: center; */
   position: relative;
+  margin-bottom: 30px;
 }
 
 .product-header,
@@ -96,6 +97,14 @@
   padding: 10px;
   border: 1px solid #EAE9E8;
   text-align: center;
+}
+
+.product-art {
+  font-size: 12px;
+}
+
+.product-name {
+  text-align: left;
 }
 
 /* .product-row {
