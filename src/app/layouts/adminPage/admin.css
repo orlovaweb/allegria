@@ -114,21 +114,32 @@
   grid-template-columns: repeat(6, 1fr);
 } */
 
-.product-delete {
-  padding: 10px;
+.product-edit_delete {
+  padding: 3px;
   display: flex;
   justify-content: space-around;
 }
 
-.product-delete svg {
+.product-edit_delete svg {
   cursor: pointer;
 }
 
+.product-edit,
+.product-delete {
+  padding: 7px;
+  border-radius: 50%;
+  border: none;
+}
 
+.product-edit:hover,
+.product-delete:hover {
+  background-color: #EAE9E8;
+}
 
-.icon-edit:hover path {
+.product-edit:hover .icon-edit path {
   fill: #E64926;
 }
+
 
 /* .product-delete svg:hover {
   -webkit-filter: brightness(15%);

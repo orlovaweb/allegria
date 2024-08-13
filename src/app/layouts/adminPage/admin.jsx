@@ -19,7 +19,7 @@ const Admin = () => {
           </div>
           <div className="admin__content">
             <Switch>
-              <Route path="/admin/goods" component={AdminGoods} />
+              <Route path="/admin/goods/:productArt?" component={AdminGoods} />
               <Route path="/admin/categories" component={AdminCategories} />
               <Route path="/admin/brands" component={AdminBrands} />
               <Route path="/admin/letters" component={AdminLetters} />

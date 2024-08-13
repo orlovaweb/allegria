@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory, useLocation, NavLink } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
-import "./footer.css";
-import GsapFooterForm from "./GsapFooterForm";
 import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 import { getEmailResetedPassword, removeError } from "../../../store/users";
 import Modal from "../../common/modal";
-import LoginForm from "../loginForm";
 import ForgotPasswordForm from "../forgotPasswordForm";
+import LoginForm from "../loginForm";
+import "./footer.css";
+import GsapFooterForm from "./GsapFooterForm";
 
 const Footer = ({ modalLogin, setModalLogin }) => {
   const [modalForgotPassword, setModalForgotPassword] = useState(false);
@@ -65,7 +65,10 @@ const Footer = ({ modalLogin, setModalLogin }) => {
               <p>Все права защищены © 2020 Allegria.com</p>
             </div>
             <div className="developer">
-              <p>Разработчик: Orlovaweb</p>
+              <p>
+                Разработчик:{" "}
+                <a href="https://resume.orlovaweb.ru/">Orlovaweb</a>
+              </p>
             </div>
           </div>
         </div>
