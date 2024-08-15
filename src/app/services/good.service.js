@@ -13,6 +13,10 @@ const goodService = {
   upload: async (payload) => {
     const { data } = await httpService.patch(goodEndpoint + payload._id, payload);
     return data;
+  },
+  delete: async (payload) => {
+    const { data } = await httpService.delete(goodEndpoint + payload);
+    return data;
   }
 
 };

@@ -151,3 +151,40 @@
   position: sticky;
   top: 0;
 }
+
+.modal-revision-delete {
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+.modal-revision-delete h5 {
+  margin-bottom: 30px;
+}
+
+.modal-revision-delete__buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn.modal-revision-delete__confirm {
+  width: 150px;
+}
+
+.modal-revision-delete__reject {
+  width: 150px;
+  height: 41px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--basic-dark);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--basic-dark);
+  cursor: pointer;
+
+}
+
+.modal-revision-delete__reject:hover {
+  background-color: #f6f5f4;
+}

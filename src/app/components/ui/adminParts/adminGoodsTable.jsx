@@ -7,6 +7,7 @@ import AdminGoodsItem from "./adminGoodsItem";
 
 const AdminGoodsTable = () => {
   const goods = useSelector(getGoods());
+  console.log("goods=", goods);
   if (goods) {
     return (
       <>

@@ -2,6 +2,7 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 import goodService from "../services/good.service";
 import history from "../utils/history";
 import isOutdated from "../utils/isOutdated";
+import { toast } from "react-toastify";
 
 const goodsSlice = createSlice({
   name: "goods",
@@ -33,15 +34,20 @@ const goodsSlice = createSlice({
     },
     searchItemIsCleared: (state) => {
       state.searchItem = null;
+    },
+    productDeleted: (state, action) => {
+      state.entities = state.entities.filter((c) => c._id !== action.payload);
     }
   }
 });
 
 const { reducer: goodsReducer, actions } = goodsSlice;
-const { goodsRequested, goodsReceived, goodsRequestFailed, productUploaded, searchItemIsSet, searchItemIsCleared } = actions;
+const { goodsRequested, goodsReceived, goodsRequestFailed, productUploaded, searchItemIsSet, searchItemIsCleared, productDeleted } = actions;
 
 const productUploadRequested = createAction("goods/productUploadRequested");
 const productUploadFailed = createAction("goods/productUploadFailed");
+const removeProductRequested = createAction("goods/removeProductRequested");
+const removeProductFailed = createAction("goods/removeProductFailed");
 
 export const loadGoodsList = () => async (dispatch, getState) => {
   const { lastFetch } = getState().goods;
@@ -55,6 +61,29 @@ export const loadGoodsList = () => async (dispatch, getState) => {
     }
   }
 };
+export function removeProduct(payload) {
+  return async function (dispatch) {
+    dispatch(removeProductRequested());
+    try {
+      const { content } = await goodService.delete(payload);
+      if (content === null) {
+        dispatch(productDeleted(payload));
+      }
+      toast.success("Продукт был успешно удалён", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: "dark",
+      });
+    } catch (error) {
+      dispatch(removeProductFailed(error.message));
+      toast.error("Что-то пошло не так. Попробуйте позже.", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        theme: "dark",
+      });
+    }
+  };
+}
 export function uploadProduct(payload) {
   return async function (dispatch) {
     dispatch(productUploadRequested());
